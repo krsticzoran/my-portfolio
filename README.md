@@ -24,6 +24,3 @@ Hi! I'm Zoran Krstić, a front-end developer passionate about creating clean, pe
 
 ⚠️ This project is currently in the initial development phase.
 
----
-
-Feel free to contribute or follow along as I build out this portfolio!
