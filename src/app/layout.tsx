@@ -1,19 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Exo_2 } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import { BackgroundWrapper } from "@/components/layout/background-wrapper";
+import { Header } from "@/components/layout/header";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const exo2 = Exo_2({
   subsets: ["latin"],
+  display: "swap",
+  variable: "--font-exo2",
 });
 
 export const metadata: Metadata = {
-  title: "Zoran Krstić – Frontend Developer",
+  title: "Zoran Krstić | Frontend Developer Portfolio",
   description:
     "Portfolio of Zoran Krstić, a frontend developer specialized in React and Next.js. Check out my projects, skills, and contact info.",
 };
@@ -25,7 +24,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+      <body className={`${exo2.variable} font-exo antialiased`}>
+        <BackgroundWrapper>
+          <Header />
+          {children}
+        </BackgroundWrapper>
+      </body>
     </html>
   );
 }
