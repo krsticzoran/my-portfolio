@@ -1,7 +1,8 @@
+import { IconBrandGithub, IconBrandLinkedin } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { Button } from "../ui/button";
+import DesktopNavLinks from "./desktop-nav-links";
 
 export function Header() {
   return (
@@ -10,33 +11,29 @@ export function Header() {
         <Image src="/logo.jpg" alt="Logo" width={56} height={56} />
       </div>
 
-      <nav className="flex gap-6 items-center">
-        <Button
-          asChild
-          variant="ghost"
-          className="text-white font-medium text-lg hover:text-white hover:bg-zinc-800 rounded-full"
-        >
-          <Link href="#home" className="">
-            Home
-          </Link>
-        </Button>
-        <Button
-          asChild
-          variant="ghost"
-          className="text-white font-medium text-lg hover:text-white hover:bg-zinc-800 rounded-full"
-        >
-          <Link href="#projects">Projects</Link>
-        </Button>
-        <Button
-          asChild
-          variant="ghost"
-          className="text-white font-medium text-lg hover:text-white hover:bg-zinc-800 rounded-full"
-        >
-          <Link href="#contacts">Contacts</Link>
-        </Button>
-      </nav>
+      <DesktopNavLinks />
 
-      <div className="flex w-24 items-center">akdas</div>
+      <div className="flex items-center gap-4">
+        <Link
+          href="https://github.com/krsticzoran"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub"
+          className="rounded-xl p-2 border border-zinc-800 hover:border-zinc-800 hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center"
+        >
+          <IconBrandGithub size={24} className="text-white" />
+        </Link>
+
+        <Link
+          href="https://www.linkedin.com/in/zorankrstic/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+          className="rounded-xl p-2 border border-zinc-800 hover:border-zinc-800 hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center"
+        >
+          <IconBrandLinkedin size={24} className="text-white" />
+        </Link>
+      </div>
     </header>
   );
 }
