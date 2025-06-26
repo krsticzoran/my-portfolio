@@ -1,7 +1,5 @@
 import Image from "next/image";
 
-import { socialLinks } from "@/data/social-links";
-
 import DesktopNavLinks from "./desktop-nav-links";
 import SocialIcons from "../common/social-icons";
 
@@ -14,7 +12,7 @@ export function Header() {
 
       <DesktopNavLinks />
 
-      <SocialIcons socialLinks={socialLinks.slice(0, 2)} />
+      <SocialIcons limit={2} />
     </header>
   );
 }

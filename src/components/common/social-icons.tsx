@@ -1,21 +1,17 @@
-import type { Icon } from "@tabler/icons-react";
 import Link from "next/link";
 
-type SocialLink = {
-  href: string;
-  label: string;
-  icon: Icon;
-  isEmail?: boolean; // Optional property to indicate if the link is an email
-};
+import { socialLinks, type SocialLink } from "@/data/social-links";
 
-type SocialIconsProps = {
-  socialLinks: SocialLink[];
-};
+interface SocialIconsProps {
+  links?: SocialLink[];
+  limit?: number;
+}
 
-export default function SocialIcons({ socialLinks }: SocialIconsProps) {
+export default function SocialIcons({ links = socialLinks, limit }: SocialIconsProps) {
+  const displayedLinks = limit ? links.slice(0, limit) : links;
   return (
     <div className="flex items-center gap-4">
-      {socialLinks.map(({ href, label, icon: Icon, isEmail }) => {
+      {displayedLinks.map(({ href, label, icon: Icon, isEmail }) => {
         // If isEmail is true, use mailto: prefix
         const linkHref = isEmail ? `mailto:${href}` : href;
 
