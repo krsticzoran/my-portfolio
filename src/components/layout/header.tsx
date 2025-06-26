@@ -1,8 +1,9 @@
-import { IconBrandGithub, IconBrandLinkedin } from "@tabler/icons-react";
 import Image from "next/image";
-import Link from "next/link";
+
+import { socialLinks } from "@/data/social-links";
 
 import DesktopNavLinks from "./desktop-nav-links";
+import SocialIcons from "../common/social-icons";
 
 export function Header() {
   return (
@@ -13,27 +14,7 @@ export function Header() {
 
       <DesktopNavLinks />
 
-      <div className="flex items-center gap-4">
-        <Link
-          href="https://github.com/krsticzoran"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="GitHub"
-          className="rounded-xl p-2 border border-zinc-800 hover:border-zinc-800 hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center"
-        >
-          <IconBrandGithub size={24} className="text-white" />
-        </Link>
-
-        <Link
-          href="https://www.linkedin.com/in/zorankrstic/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="LinkedIn"
-          className="rounded-xl p-2 border border-zinc-800 hover:border-zinc-800 hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center"
-        >
-          <IconBrandLinkedin size={24} className="text-white" />
-        </Link>
-      </div>
+      <SocialIcons socialLinks={socialLinks.slice(0, 2)} />
     </header>
   );
 }
