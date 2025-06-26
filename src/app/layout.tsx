@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Exo_2 } from "next/font/google";
-import "./globals.css";
+import "@/styles/globals.css";
 
 import { BackgroundWrapper } from "@/components/layout/background-wrapper";
 import { Header } from "@/components/layout/header";

@@ -21,7 +21,9 @@ export default function DesktopNavLinks() {
             asChild
             variant="ghost"
             className={`font-medium text-lg rounded-full transition-colors ${
-              isActive ? "bg-white text-black" : "text-white hover:text-white hover:bg-zinc-800"
+              isActive
+                ? "bg-white text-black hover:bg-white hover:text-black "
+                : "text-foreground hover:bg-zinc-800"
             }`}
           >
             <Link href={href}>{label}</Link>

@@ -27,7 +27,7 @@ export default function SocialIcons({ links = socialLinks, limit }: SocialIconsP
             aria-label={label}
             className="rounded-xl p-2 border border-zinc-800 hover:border-zinc-800 hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center"
           >
-            <Icon size={24} className="text-white" />
+            <Icon size={24} />
           </Link>
         );
       })}

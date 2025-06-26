@@ -15,13 +15,14 @@ export function BackgroundWrapper({ children }: { children: React.ReactNode }) {
   };
 
   const baseDots =
-    "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Ccircle cx='2' cy='2' r='1.5' fill='%23404040' fill-opacity='0.4' /%3E%3C/svg%3E\")";
+    "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' opacity='0.4' width='16' height='16' fill='none'%3E%3Ccircle fill='%238183f4' cx='10' cy='10' r='0.8' /%3E%3C/svg%3E\")";
+
   const hoverDots =
-    "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Ccircle cx='2' cy='2' r='1.5' fill='%23818181' fill-opacity='0.6' /%3E%3C/svg%3E\")";
+    "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' opacity='0.9' width='16' height='16' fill='none'%3E%3Ccircle fill='%238183f4' cx='10' cy='10' r='1.2' /%3E%3C/svg%3E\")";
 
   return (
     <div
-      className="relative w-full min-h-screen overflow-hidden bg-black group"
+      className="relative w-full min-h-screen overflow-hidden  group"
       onMouseMove={handleMouseMove}
     >
       {/* Base dots */}
@@ -39,14 +40,14 @@ export function BackgroundWrapper({ children }: { children: React.ReactNode }) {
           backgroundImage: hoverDots,
           WebkitMaskImage: useMotionTemplate`
             radial-gradient(
-              150px circle at ${mouseX}px ${mouseY}px,
+              220px circle at ${mouseX}px ${mouseY}px,
               black 0%,
               transparent 100%
             )
           `,
           maskImage: useMotionTemplate`
             radial-gradient(
-              150px circle at ${mouseX}px ${mouseY}px,
+              220px circle at ${mouseX}px ${mouseY}px,
               black 0%,
               transparent 100%
             )
