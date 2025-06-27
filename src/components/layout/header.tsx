@@ -1,11 +1,15 @@
 import Image from "next/image";
 
+import Container from "./container";
 import DesktopNavLinks from "./desktop-nav-links";
 import SocialIcons from "../common/social-icons";
 
 export function Header() {
   return (
-    <header className="flex items-center w-full justify-between p-4 mt-14 bg-transparent gap-10 mx-auto xl:w-[70%]  font-exo ">
+    <Container
+      as="header"
+      className="flex items-center justify-between font-exo bg-transparent mt-14"
+    >
       <div className="flex items-center">
         <Image src="/logo.jpg" alt="Logo" width={56} height={56} />
       </div>
@@ -14,6 +18,6 @@ export function Header() {
       </div>
 
       <SocialIcons limit={2} />
-    </header>
+    </Container>
   );
 }
