@@ -11,7 +11,7 @@ export function Header() {
   return (
     <Container
       as="header"
-      className="flex items-center justify-between font-exo bg-transparent mt-14"
+      className="flex items-center justify-between font-exo bg-transparent mt-8 lg:mt-12"
     >
       <div className="flex items-center">
         <Image src={Logo} alt="Zoran Krstić logo" width={56} height={56} priority />

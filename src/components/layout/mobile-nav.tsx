@@ -30,7 +30,7 @@ export default function MobileNav() {
       >
         <SheetTitle className="sr-only">Navigation menu</SheetTitle>
 
-        <div className="flex p-4 items-center justify-between mt-6 ">
+        <div className="flex px-4 items-center justify-between pt-6 pb-4">
           <div className="flex items-center">
             <Image src={Logo} alt="Zoran Krstić logo" width={56} height={56} />
             <h2 className="font-semibold">zkrstic.com</h2>
@@ -58,7 +58,7 @@ export default function MobileNav() {
             </SheetClose>
           ))}
         </div>
-        <div className="px-4">
+        <div className="px-4 py-6">
           <SocialIcons links={socialLinks} />
         </div>
       </SheetContent>
