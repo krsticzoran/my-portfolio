@@ -44,19 +44,21 @@ export default function MobileNav() {
             </button>
           </SheetClose>
         </div>
-        <div className="flex flex-col gap-4 mt-4 p-4">
+        <div className="flex flex-col gap-4 p-4">
           {navLinks.map(({ href, label }) => (
             <SheetClose asChild key={href}>
               <Link
                 href={href}
-                className={"text-lg font-medium px-2 py-1 rounded-md transition-colors"}
+                className={
+                  "text-lg font-medium px-2 py-1 rounded-md transition-colors duration-300"
+                }
               >
                 {label}
               </Link>
             </SheetClose>
           ))}
         </div>
-        <div className="p-4">
+        <div className="px-4">
           <SocialIcons links={socialLinks} />
         </div>
       </SheetContent>
