@@ -1,7 +1,10 @@
 import Image from "next/image";
 
+import Logo from "@/../public/logo.jpg";
+
 import Container from "./container";
-import DesktopNavLinks from "./desktop-nav-links";
+import DesktopNav from "./desktop-nav";
+import MobileNav from "./mobile-nav";
 import SocialIcons from "../common/social-icons";
 
 export function Header() {
@@ -11,13 +14,20 @@ export function Header() {
       className="flex items-center justify-between font-exo bg-transparent mt-14"
     >
       <div className="flex items-center">
-        <Image src="/logo.jpg" alt="Logo" width={56} height={56} />
+        <Image src={Logo} alt="Zoran Krstić logo" width={56} height={56} priority />
       </div>
-      <div className="hidden md:block">
-        <DesktopNavLinks />
+      <div className="hidden lg:block">
+        <DesktopNav />
       </div>
 
-      <SocialIcons limit={2} />
+      <div className="flex items-center gap-4">
+        <div className="hidden sm:block">
+          <SocialIcons limit={2} />
+        </div>
+        <div className="lg:hidden">
+          <MobileNav />
+        </div>
+      </div>
     </Container>
   );
 }

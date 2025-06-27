@@ -7,7 +7,7 @@ import { navLinks } from "@/data/nav-links";
 
 import { Button } from "../ui/button";
 
-export default function DesktopNavLinks() {
+export default function DesktopNav() {
   const pathname = usePathname();
 
   return (

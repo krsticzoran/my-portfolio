@@ -25,7 +25,7 @@ export default function SocialIcons({ links = socialLinks, limit }: SocialIconsP
               rel: "noopener noreferrer",
             })}
             aria-label={label}
-            className="rounded-xl p-2 border border-zinc-800 hover:border-zinc-800 hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center"
+            className="rounded-xl w-10 h-10 border border-zinc-800 hover:border-zinc-800 hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center"
           >
             <Icon size={24} />
           </Link>
