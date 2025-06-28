@@ -5,7 +5,7 @@ import Logo from "@/../public/logo.jpg";
 import Container from "./container";
 import DesktopNav from "./desktop-nav";
 import MobileNav from "./mobile-nav";
-import SocialIcons from "../common/social-icons";
+import SocialIcons from "../ui/social-icons";
 
 export function Header() {
   return (

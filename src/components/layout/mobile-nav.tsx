@@ -10,7 +10,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from "@/com
 import { navLinks } from "@/data/nav-links";
 import { socialLinks } from "@/data/social-links";
 
-import SocialIcons from "../common/social-icons";
+import SocialIcons from "../ui/social-icons";
 
 export default function MobileNav() {
   return (
@@ -21,6 +21,7 @@ export default function MobileNav() {
           className="rounded-xl w-10 h-10 border border-zinc-800 hover:border-zinc-800 hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center"
         >
           <Menu className="!w-6 !h-6" />
+          <span className="sr-only">Open menu</span>
         </Button>
       </SheetTrigger>
 

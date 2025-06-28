@@ -90,3 +90,17 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes gentleUpDown {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-gentle-up-down {
+  animation: gentleUpDown 5s ease-in-out infinite;
+}
