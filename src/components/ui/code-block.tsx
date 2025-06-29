@@ -1,12 +1,15 @@
 import React from "react";
 
+import { getFreelanceExperience } from "@/lib/helpers";
+
+import CodeLine from "./code-line";
 import SkillTags from "./skill-tag";
 
 export default function CodeBlock() {
   return (
     <section
       aria-label="Simulated code block with developer information"
-      className="h-full lg:w-1/2 bg-gradient-to-r from-black to-[#0a0d37] border border-[#1b2c68a0] relative rounded-lg shadow-lg min-w-0 px-2 sm:px-0 text-foreground"
+      className="w-full lg:w-1/2 bg-gradient-to-r from-black to-[#0a0d37] border border-[#1b2c68a0] relative rounded-lg shadow-lg min-w-0 px-2 sm:px-0 text-foreground"
     >
       {/* Top visual lines */}
       <div className="flex flex-row">
@@ -33,11 +36,13 @@ export default function CodeBlock() {
         <div className="relative flex">
           {/* Line numbers (hidden from screen readers) */}
           <div
-            className="hidden md:flex flex-col items-end pr-4  text-gray-500 text-xs select-none opacity-70 leading-relaxed"
+            className="hidden md:flex flex-col items-end pr-4 pt-[6px] text-gray-500 text-sm select-none opacity-70 leading-relaxed"
             aria-hidden="true"
           >
             {[...Array(12).keys()].map((n) => (
-              <div key={n}>{n + 1}</div>
+              <div key={n} className="pb-[6px]">
+                {n + 1}
+              </div>
             ))}
           </div>
 
@@ -49,24 +54,10 @@ export default function CodeBlock() {
               <span className="mr-2 text-pink-400">=</span>
               <span className="text-gray-400">{"{"}</span>
             </div>
-            <div className="pl-6">
-              <span className="text-white mr-1">name:</span>
-              <span className="text-gray-400">&apos;</span>
-              <span className="text-green-400">Zoran Krstić</span>
-              <span className="text-gray-500 dark:text-gray-400">&apos;,</span>
-            </div>
-            <div className="pl-6">
-              <span className="text-white mr-1">role:</span>
-              <span className="text-gray-400">&apos;</span>
-              <span className="text-green-400">Frontend Developer</span>
-              <span className="text-gray-500 dark:text-gray-400">&apos;,</span>
-            </div>
-            <div className="pl-6">
-              <span className="text-white mr-1">location:</span>
-              <span className="text-gray-400">&apos;</span>
-              <span className="text-green-400">Serbia</span>
-              <span className="text-gray-500 dark:text-gray-400">&apos;,</span>
-            </div>
+            <CodeLine label="name" value="Zoran Krstić" />
+            <CodeLine label="role" value="Frontend Developer" />
+            <CodeLine label="freelanceExperience" value={getFreelanceExperience()} />
+            <CodeLine label="location" value="Serbia" />
             <div className="pl-6">
               <span className="text-white mr-1">skills:</span>
               <span className="text-gray-400">{"["}</span>
