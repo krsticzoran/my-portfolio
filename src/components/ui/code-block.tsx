@@ -9,7 +9,7 @@ export default function CodeBlock() {
   return (
     <section
       aria-label="Simulated code block with developer information"
-      className="w-full lg:w-1/2 bg-gradient-to-r from-black to-[#0a0d37] border border-[#1b2c68a0] relative rounded-lg shadow-lg min-w-0 px-2 sm:px-0 text-foreground"
+      className="w-full lg:w-1/2 bg-gradient-to-r from-black to-[#0a0d37] border border-[#1b2c68a0] relative rounded-lg shadow-lg px-2 sm:px-0 text-foreground"
     >
       {/* Top visual lines */}
       <div className="flex flex-row">
