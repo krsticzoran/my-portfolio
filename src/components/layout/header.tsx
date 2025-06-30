@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 
 import Logo from "@/../public/logo.jpg";
+import { useScrollToTop } from "@/hooks/use-scroll-to-top";
 import { useScrolled } from "@/hooks/use-scrolled";
 
 import Container from "./container";
@@ -14,6 +14,9 @@ import SocialIcons from "../ui/social-icons";
 export function Header() {
   // Use custom hook to track if the page has been scrolled more than 10 pixels vertically
   const scrolled = useScrolled(10);
+
+  // Custom hook to scroll to the top of the page
+  const scrollToTop = useScrollToTop();
 
   return (
     <Container
@@ -27,9 +30,14 @@ export function Header() {
     >
       {/* Logo wrapped in a Link to scroll to #hero section */}
       <div className="flex items-center">
-        <Link href="#hero" className="flex items-center">
+        <button
+          onClick={scrollToTop}
+          className="flex items-center cursor-pointer"
+          aria-label="Scroll to top"
+          type="button"
+        >
           <Image src={Logo} alt="Zoran Krstić logo" width={56} height={56} priority />
-        </Link>
+        </button>
       </div>
 
       {/* Desktop navigation - visible only on large screens (lg and above) */}
