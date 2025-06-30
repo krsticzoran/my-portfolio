@@ -13,6 +13,7 @@ export default function Home() {
       <Hero />
       <Container
         as="section"
+        id="about"
         className="mt-24  md:mt-28 lg:mt-32 2xl:mt-36 flex flex-col lg:flex-row gap-16  "
       >
         <div className="lg:w-1/2 w-full relative aspect-square rounded-lg shadow-lg overflow-hidden ">
@@ -59,6 +60,7 @@ export default function Home() {
           </MagicCard>
         </div>
       </Container>
+      <div className="min-h-screen"></div>
     </>
   );
 }

@@ -21,10 +21,7 @@ export function BackgroundWrapper({ children }: { children: React.ReactNode }) {
     "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' opacity='0.9' width='16' height='16' fill='none'%3E%3Ccircle fill='%238183f4' cx='10' cy='10' r='1.2' /%3E%3C/svg%3E\")";
 
   return (
-    <div
-      className="relative w-full min-h-screen overflow-hidden  group"
-      onMouseMove={handleMouseMove}
-    >
+    <div className="relative w-full min-h-screen group" onMouseMove={handleMouseMove}>
       {/* Base dots */}
       <div
         className="absolute inset-0 pointer-events-none z-0"
