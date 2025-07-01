@@ -49,9 +49,9 @@ export default function About() {
           <div className=" w-full  flex items-center justify-center ">
             <a
               href="/CV.pdf"
-              download
+              download="Zoran_Krstic_CV.pdf"
               className="flex flex-col gap-1 text-center w-full h-full py-2 lg:py-10"
-              aria-label="Download my CV"
+              aria-label="Download my CV (lightweight PDF)"
             >
               <span>Resume</span>
               <span className="text-zinc-400 text-bas ">(Click to download)</span>
