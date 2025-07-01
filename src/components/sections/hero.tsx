@@ -8,6 +8,7 @@ export default function Hero() {
       as="section"
       id="hero"
       className="mt-24 md:mt-28 lg:mt-32 2xl:mt-36 flex flex-col lg:flex-row items-center gap-16"
+      isHero={true}
     >
       {/* Left column containing text content */}
       <div className="relative max-w-[500px] lg:max-w-1/2 lg:w-1/2">
