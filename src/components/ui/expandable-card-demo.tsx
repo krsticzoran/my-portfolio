@@ -50,7 +50,7 @@ export default function ExpandableCardDemo() {
       </AnimatePresence>
       <AnimatePresence>
         {active && typeof active === "object" ? (
-          <div className="fixed inset-0  grid place-items-center z-[100]">
+          <div className="fixed inset-0 flex justify-center mt-20 2xl:grid place-items-center  2xl:mt-0 z-[100]">
             <motion.button
               key={`button-${active.title}-${id}`}
               layout
@@ -74,15 +74,15 @@ export default function ExpandableCardDemo() {
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
-              className="w-full max-w-[600px] overflow-y-auto shadow-lg  h-full md:h-fit md:max-h-[90%]  flex flex-col bg-white dark:bg-neutral-900 sm:rounded-3xl overflow-hidden"
+              className="w-full max-w-[600px] overflow-y-auto shadow-lg h-full md:h-fit md:max-h-[90%]  flex flex-col bg-white dark:bg-neutral-900 sm:rounded-3xl overflow-hidden"
             >
               <motion.div layoutId={`image-${active.title}-${id}`}>
                 <Image
-                  width={200}
-                  height={200}
+                  width={800}
+                  height={800}
                   src={active.src}
                   alt={active.title}
-                  className="w-full h-80 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg object-cover object-top"
+                  className="w-full h-auto sm:rounded-tr-lg sm:rounded-tl-lg object-cover object-top"
                 />
               </motion.div>
 
@@ -125,17 +125,18 @@ export default function ExpandableCardDemo() {
                     <IconPlayerPlay size={16} className="mr-2" />
                     Live
                   </motion.a>
-
-                  <motion.a
-                    layoutId={`github-${active.title}-${id}`}
-                    href={active.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-4 py-2 text-sm rounded-full font-bold cursor-pointer bg-foreground text-background  border border-background hover:bg-zinc-200 transition"
-                  >
-                    <IconBrandGithub size={16} className="mr-2" />
-                    GitHub
-                  </motion.a>
+                  {active.github ? (
+                    <motion.a
+                      layoutId={`github-${active.title}-${id}`}
+                      href={active.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center px-4 py-2 text-sm rounded-full font-bold cursor-pointer bg-foreground text-background  border border-background hover:bg-zinc-200 transition"
+                    >
+                      <IconBrandGithub size={16} className="mr-2" />
+                      GitHub
+                    </motion.a>
+                  ) : null}
                 </div>
               </div>
             </motion.div>
@@ -144,38 +145,40 @@ export default function ExpandableCardDemo() {
       </AnimatePresence>
       <ul className=" mx-auto w-full gap-4">
         {cards.map((card, index) => (
-          <motion.div
+          <motion.li
             layoutId={`card-${card.title}-${index}-${id}`}
             key={`card-${card.title}-${index}-${id}`}
             onClick={() => setActive(card)}
-            className="p-4 flex flex-col md:flex-row justify-between items-center hover:bg-zinc-900/80 rounded-xl cursor-pointer transition-all duration-500"
+            className="my-6 px-6 py-4 flex flex-col md:flex-row justify-between items-center hover:bg-zinc-900/80 rounded-xl cursor-pointer transition-all duration-500"
           >
-            <div className="flex gap-4 flex-col md:flex-row items-center">
-              <motion.div layoutId={`image-${card.title}-${id}`}>
+            <div className="flex gap-6 flex-col md:flex-row items-center">
+              <motion.div
+                layoutId={`image-${card.title}-${id}`}
+                className="relative min-h-32 min-w-48 md:h-20 md:w-20"
+              >
                 <Image
-                  width={64}
-                  height={64}
+                  fill
                   src={card.src}
                   alt={card.title}
-                  className="rounded-lg object-cover object-center h-16 w-16 md:h-20 md:w-20"
+                  className="rounded-lg object-cover object-center "
                 />
               </motion.div>
               <div className="">
                 <motion.h3
                   layoutId={`title-${card.title}-${id}`}
-                  className="text-base sm:text-lg font-semibold text-foreground tracking-tight text-center md:text-left"
+                  className="text-lg sm:text-2xl font-semibold text-foreground tracking-tight text-center md:text-left"
                 >
                   {card.title}
                 </motion.h3>
                 <motion.p
                   layoutId={`description-${card.description}-${id}`}
-                  className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-1 uppercase tracking-wide text-center md:text-left"
+                  className="text-sm sm:text-base text-zinc-500 dark:text-zinc-400 mt-2 tracking-wide text-center md:text-left"
                 >
                   {card.description}
                 </motion.p>
                 <motion.p
                   layoutId={`year-${card.description}-${id}`}
-                  className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 text-center md:text-left"
+                  className="text-sm text-zinc-400 mt-1 text-center md:text-left"
                 >
                   {card.year}
                 </motion.p>
@@ -183,11 +186,11 @@ export default function ExpandableCardDemo() {
             </div>
             <motion.button
               layoutId={`button-${card.title}-${id}`}
-              className="px-4 py-2 text-xs sm:text-sm rounded-full font-semibold bg-foreground text-background hover:bg-zinc-700 transition-colors duration-300 mt-4 md:mt-0 whitespace-nowrap capitalize cursor-pointer"
+              className="px-6 py-2 text-sm sm:text-base rounded-full font-semibold bg-foreground text-background hover:bg-zinc-700 transition-colors duration-300 mt-6 md:mt-0 capitalize"
             >
               {card.explore}
             </motion.button>
-          </motion.div>
+          </motion.li>
         ))}
       </ul>
     </>
@@ -235,6 +238,7 @@ const cards = [
     year: "2025",
     explore: "Explore",
     ctaText: "Live",
+    github: "https://github.com/krsticzoran/e-store",
     ctaLink: "https://e-store.zkrstic.com/",
     content: () => {
       return (
@@ -266,16 +270,15 @@ const cards = [
       return (
         <>
           <p>
-            I built this website for basketball coach <strong>Siniša Savović</strong>, known as the
-            first coach of NBA MVP Nikola Jokić. The goal was to create a fast, elegant, and
-            functional portfolio that showcases his coaching legacy and allows players or parents to
-            easily get in touch.
+            I built this website for basketball coach <strong>Siniša Savović</strong>, the first
+            coach of NBA MVP Nikola Jokić. The goal was to create a fast, elegant portfolio
+            showcasing his legacy and enabling easy contact for players and parents.
           </p>
 
           <p className="mt-2">
-            The site is built with <strong>Next.js</strong> for performance and SEO, styled with{" "}
-            <strong>SASS</strong> for full design control, and features a contact form using the{" "}
-            <strong>Resend API</strong> to handle inquiries.
+            The site uses <strong>Next.js</strong> for performance and SEO, styled with{" "}
+            <strong>SASS</strong> for full design control, and includes a contact form powered by
+            the <strong>Resend API</strong>.
           </p>
         </>
       );
@@ -294,18 +297,16 @@ const cards = [
       return (
         <>
           <p>
-            I worked on improving and maintaining the website for a PVC joinery company based in
-            Pula, Croatia. The site was built with <strong>WordPress and Elementor</strong>, and I
-            handled tasks such as adding new pages, cleaning up legacy code, and{" "}
-            <strong>optimizing plugin usage</strong> by reducing their number by seven.
+            I improved and maintained the website for a PVC joinery company in Pula, Croatia. Built
+            with <strong>WordPress and Elementor</strong>, I added pages, cleaned legacy code, and{" "}
+            <strong>reduced plugins by seven</strong>.
           </p>
 
           <p>
-            Additionally, I <strong>boosted the mobile performance score</strong> from 40 to 75 on
-            Google PageSpeed Insights, configured lead-generating contact forms, and implemented
-            on-page SEO improvements. A targeted <strong>link-building strategy</strong> helped
-            raise keyword rankings (e.g. “pvc stolarija Pula”) from page 2 to{" "}
-            <strong>top positions on page 1</strong>.
+            I also <strong>boosted mobile performance</strong> from 40 to 75 on Google PageSpeed,
+            set up lead-generating forms, and improved on-page SEO. A focused{" "}
+            <strong>link-building strategy</strong> raised key rankings (e.g. “pvc stolarija Pula”)
+            from page 2 to <strong>top of page 1</strong>.
           </p>
         </>
       );
@@ -324,19 +325,16 @@ const cards = [
       return (
         <>
           <p>
-            I developed a dynamic real estate platform as a personal project to demonstrate{" "}
-            <strong>frontend expertise</strong> and gain hands-on fullstack experience. The frontend
-            is built with <strong>React and TypeScript</strong>, styled using{" "}
-            <strong>Bootstrap</strong> for responsiveness, and enhanced with{" "}
-            <strong>Framer Motion</strong> for smooth animations.
+            Developed a real estate platform to showcase <strong>frontend skills</strong> and
+            fullstack experience. Frontend built with <strong>React, TypeScript</strong>,{" "}
+            <strong>Bootstrap</strong>, and <strong>Framer Motion</strong>.
           </p>
 
           <p>
-            On the backend, I used <strong>Express.js and MongoDB</strong> to create a custom admin
-            dashboard for managing property listings. Core features include property filtering,
-            search, and a <strong>login-protected admin panel</strong>. The app uses{" "}
-            <strong>GraphQL</strong> for efficient data fetching and demonstrates a clean fullstack
-            architecture.
+            Backend uses <strong>Express.js, MongoDB</strong> with a custom admin dashboard for
+            listings management, including filtering, search, and{" "}
+            <strong>login-protected admin panel</strong>. Uses <strong>GraphQL</strong> for data
+            fetching.
           </p>
         </>
       );
@@ -355,20 +353,15 @@ const cards = [
       return (
         <>
           <p>
-            I built a voice-enabled ChatGPT interface called <strong>AI Buddy</strong> to enhance
-            user interaction and explore real-world AI integration in frontend development. The app
-            was developed using <strong>React and Bootstrap</strong>, applying advanced techniques
-            like <strong>useRef, useContext, useCallback</strong>, and <strong>React.memo</strong>{" "}
-            for performance optimization.
+            Developed <strong>AI Buddy</strong>, a voice-enabled ChatGPT interface using{" "}
+            <strong>React</strong> and <strong>Bootstrap</strong> with advanced hooks for better
+            performance.
           </p>
 
           <p>
-            It features <strong>voice-to-text interaction</strong> using react-speech-kit,
-            integrated with the <strong>OpenAI API</strong> for conversational AI responses. I
-            implemented <strong>Redux Toolkit</strong> for global state management, added{" "}
-            <strong>Firebase Authentication</strong> for secure login, and wrote tests using{" "}
-            <strong>Jest</strong> and <strong>React Testing Library</strong> to ensure stability and
-            correctness.
+            Features <strong>voice-to-text</strong>, integrates <strong>OpenAI API</strong>, uses{" "}
+            <strong>Redux Toolkit</strong> for state, <strong>Firebase Authentication</strong>, and
+            tested with <strong>Jest</strong> and <strong>React Testing Library</strong>.
           </p>
         </>
       );
