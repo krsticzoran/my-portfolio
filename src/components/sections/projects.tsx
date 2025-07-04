@@ -13,7 +13,7 @@ export default function Projects() {
     <Container
       as="section"
       id="projects"
-      className="mt-24 md:mt-28 lg:mt-32 2xl:mt-36  gap-16 pb-[500px]"
+      className="my-24 md:mt-28 lg:mt-32 2xl:mt-36 pb-32 2xl:pb-36"
     >
       <ExpandableCardDemo />
       {/* <IconCloud icons={icons} /> */}
