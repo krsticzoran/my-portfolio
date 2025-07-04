@@ -2,7 +2,11 @@ import skills from "@/data/skill";
 
 export default function SkillTags() {
   return (
-    <div className="pl-6 flex flex-wrap gap-2" role="list" aria-label="List of programming skills">
+    <div
+      className="text-sm sm:text-base pl-6 flex flex-wrap gap-2"
+      role="list"
+      aria-label="List of programming skills"
+    >
       {skills.map((skill, index) => {
         const isLast = index === skills.length - 1;
         return (

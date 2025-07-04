@@ -24,7 +24,7 @@ export default function CodeBlock() {
           <div className="h-3 w-3 rounded-full bg-orange-400" />
           <div className="h-3 w-3 rounded-full bg-green-400" />
         </div>
-        <div className="text-sm text-gray-400 font-mono">coder . js</div>
+        <div className="text-xs sm:text-sm text-gray-400 font-mono">coder . js</div>
       </header>
 
       {/* Main code body */}
@@ -47,10 +47,10 @@ export default function CodeBlock() {
           </div>
 
           {/* Simulated code block */}
-          <code className="text-xl font-mono">
+          <code className="text-base sm:text-xl font-mono">
             <div>
               <span className="text-pink-400 mr-2">const</span>
-              <span className="mr-2 text-violet-400">coder</span>
+              <span className="mr-2 text-violet-400">profile</span>
               <span className="mr-2 text-pink-400">=</span>
               <span className="text-gray-400">{"{"}</span>
             </div>
@@ -76,7 +76,7 @@ export default function CodeBlock() {
       </div>
 
       {/* Semantic footer */}
-      <footer className="mx-4 lg:mx-8 my-4 border-t border-indigo-900 py-3 text-sm text-gray-500 flex justify-between items-center">
+      <footer className="mx-4 lg:mx-8 my-4 border-t border-indigo-900 py-3 text-xs sm:text-sm text-gray-500 flex justify-between items-center">
         <div>UTF-8</div>
         <div>JavaScript</div>
         <div>Ln 12, Col 1</div>
