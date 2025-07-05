@@ -58,7 +58,7 @@ export default function ExpandableCardDemo() {
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
-              className="relative w-full max-w-[600px] overflow-y-auto shadow-lg  h-fit md:max-h-[90%]  flex flex-col  bg-white sm:rounded-3xl overflow-hidden"
+              className="relative w-full max-w-[600px] overflow-y-auto shadow-lg h-screen sm:h-fit md:max-h-[90%]  flex flex-col  bg-white sm:rounded-3xl overflow-hidden"
             >
               <motion.button
                 key={`button-${active.title}-${id}`}
@@ -90,9 +90,9 @@ export default function ExpandableCardDemo() {
                 />
               </motion.div>
 
-              <div>
-                <div className="flex justify-between items-start p-4">
-                  <div className="">
+              <div className="flex flex-col h-full">
+                <div className="flex justify-between items-start p-4 ">
+                  <div>
                     <motion.h3
                       layoutId={`title-${active.title}-${id}`}
                       className="text-xl font-semibold text-background tracking-tight"
@@ -113,34 +113,36 @@ export default function ExpandableCardDemo() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="text-zinc-700 dark:text-zinc-300 text-sm md:text-base lg:text-base leading-relaxed h-fit max-h-[70vh] pb-10 flex flex-col items-start gap-4 overflow-auto [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
+                    className="text-zinc-700 dark:text-zinc-300 text-sm md:text-base lg:text-base leading-relaxed h-fit pb-10 flex flex-col items-start gap-4 overflow-auto [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
                   >
                     {typeof active.content === "function" ? active.content() : active.content}
                   </motion.div>
                 </div>
-                <div className="flex gap-2 px-4 mb-5">
-                  <motion.a
-                    layoutId={`button-${active.title}-${id}`}
-                    href={active.ctaLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-4 py-2 text-sm rounded-full font-bold cursor-pointer transition bg-background text-foreground hover:bg-zinc-800"
-                  >
-                    <IconPlayerPlay size={16} className="mr-2" />
-                    Live
-                  </motion.a>
-                  {active.github ? (
+                <div className="flex  px-4 mb-5 flex-grow">
+                  <div className="flex mt-auto gap-2">
                     <motion.a
-                      layoutId={`github-${active.title}-${id}`}
-                      href={active.github}
+                      layoutId={`button-${active.title}-${id}`}
+                      href={active.ctaLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center px-4 py-2 text-sm rounded-full font-bold cursor-pointer bg-foreground text-background  border border-background hover:bg-zinc-200 transition"
+                      className="inline-flex items-center px-4 py-2 text-sm rounded-full font-bold cursor-pointer transition bg-background text-foreground hover:bg-zinc-800"
                     >
-                      <IconBrandGithub size={16} className="mr-2" />
-                      GitHub
+                      <IconPlayerPlay size={16} className="mr-2" />
+                      Open Site
                     </motion.a>
-                  ) : null}
+                    {active.github ? (
+                      <motion.a
+                        layoutId={`github-${active.title}-${id}`}
+                        href={active.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center px-4 py-2 text-sm rounded-full font-bold cursor-pointer bg-foreground text-background  border border-background hover:bg-zinc-200 transition"
+                      >
+                        <IconBrandGithub size={16} className="mr-2" />
+                        GitHub
+                      </motion.a>
+                    ) : null}
+                  </div>
                 </div>
               </div>
             </motion.div>
