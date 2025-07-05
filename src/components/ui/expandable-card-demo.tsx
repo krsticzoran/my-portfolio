@@ -6,6 +6,7 @@ import { IconBrandGithub, IconPlayerPlay } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 
+import { CloseIcon } from "@/components/ui/close-icon";
 import { projectsData as cards } from "@/data/projects-data";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 
@@ -44,41 +45,41 @@ export default function ExpandableCardDemo() {
       <AnimatePresence>
         {active && typeof active === "object" && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-background/95 h-full w-full z-10"
+            initial={{ opacity: 0, zIndex: 10 }}
+            animate={{ opacity: 1, zIndex: 50 }}
+            exit={{ opacity: 0, zIndex: 10 }}
+            className="fixed inset-0 bg-background/95 h-full w-full"
           />
         )}
       </AnimatePresence>
       <AnimatePresence>
         {active && typeof active === "object" ? (
-          <div className="fixed inset-0 flex justify-center mt-20 2xl:grid place-items-center  2xl:mt-0 z-[100]">
-            <motion.button
-              key={`button-${active.title}-${id}`}
-              layout
-              initial={{
-                opacity: 0,
-              }}
-              animate={{
-                opacity: 1,
-              }}
-              exit={{
-                opacity: 0,
-                transition: {
-                  duration: 0.05,
-                },
-              }}
-              className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-white rounded-full h-6 w-6"
-              onClick={() => setActive(null)}
-            >
-              <CloseIcon />
-            </motion.button>
+          <div className="fixed inset-0 flex justify-center items-start sm:items-center  xl:mt-20  z-[100]">
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
-              className="w-full max-w-[600px] overflow-y-auto shadow-lg h-full md:h-fit md:max-h-[90%]  flex flex-col bg-white dark:bg-neutral-900 sm:rounded-3xl overflow-hidden"
+              className="relative w-full max-w-[600px] overflow-y-auto shadow-lg  h-fit md:max-h-[90%]  flex flex-col  bg-white sm:rounded-3xl overflow-hidden"
             >
+              <motion.button
+                key={`button-${active.title}-${id}`}
+                layout
+                initial={{
+                  opacity: 0,
+                }}
+                animate={{
+                  opacity: 1,
+                }}
+                exit={{
+                  opacity: 0,
+                  transition: {
+                    duration: 0.05,
+                  },
+                }}
+                className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-white rounded-full h-6 w-6"
+                onClick={() => setActive(null)}
+              >
+                <CloseIcon />
+              </motion.button>
               <motion.div layoutId={`image-${active.title}-${id}`}>
                 <Image
                   width={800}
@@ -112,7 +113,7 @@ export default function ExpandableCardDemo() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="text-zinc-700 dark:text-zinc-300 text-sm md:text-base lg:text-base leading-relaxed h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
+                    className="text-zinc-700 dark:text-zinc-300 text-sm md:text-base lg:text-base leading-relaxed h-fit max-h-[70vh] pb-10 flex flex-col items-start gap-4 overflow-auto [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
                   >
                     {typeof active.content === "function" ? active.content() : active.content}
                   </motion.div>
@@ -160,36 +161,3 @@ export default function ExpandableCardDemo() {
     </>
   );
 }
-
-export const CloseIcon = () => {
-  return (
-    <motion.svg
-      initial={{
-        opacity: 0,
-      }}
-      animate={{
-        opacity: 1,
-      }}
-      exit={{
-        opacity: 0,
-        transition: {
-          duration: 0.05,
-        },
-      }}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="h-4 w-4 text-black"
-    >
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M18 6l-12 12" />
-      <path d="M6 6l12 12" />
-    </motion.svg>
-  );
-};
