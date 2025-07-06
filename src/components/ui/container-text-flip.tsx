@@ -26,7 +26,7 @@ export function ContainerTextFlip({
     "Next.js Developer",
     "JavaScript Developer",
     "UI/UX Enthusiast",
-    "Design-Lover",
+    "Pixel Perfect",
   ],
   interval = 5000,
   className,

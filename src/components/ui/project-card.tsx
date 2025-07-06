@@ -34,7 +34,7 @@ export default function ProjectCard({ card, index, id, setActive }: Props) {
           <div>
             <motion.h3
               layoutId={`title-${card.title}-${id}`}
-              className="text-base text-pretty sm:text-xl lg:text-2xl font-semibold text-foreground tracking-tight text-center md:text-left"
+              className="text-base text-pretty sm:text-xl lg:text-2xl font-semibold text-foreground tracking-tight text-center md:text-left leading-tight"
             >
               {card.title}
             </motion.h3>

@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-import Logo from "@/../public/logo.jpg";
+import Logo from "@/../public/logo.png";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from "@/components/ui/sheet";
 import { navLinks } from "@/data/nav-links";

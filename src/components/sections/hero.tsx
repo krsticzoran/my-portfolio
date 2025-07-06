@@ -7,14 +7,13 @@ export default function Hero() {
     <Container
       as="section"
       id="hero"
-      className="mt-24 md:mt-28 lg:mt-32 2xl:mt-36 flex flex-col lg:flex-row items-center gap-16"
-      isHero={true}
+      className="mt-24 md:mt-28 lg:mt-32 2xl:mt-36 flex flex-col lg:flex-row gap-16 scroll-mt-60"
     >
       {/* Left column containing text content */}
-      <div className="relative max-w-[500px] lg:max-w-1/2 lg:w-1/2">
+      <div className="relative w-full sm:max-w-4/5 lg:max-w-1/2 lg:w-1/2 lg:my-auto">
         {/* Decorative floating tag - "UI Magic" */}
         <div className="px-3 py-2 hidden sm:block absolute top-8 left-16 sm:left-32 bg-purple-500/20 rounded-[6px] w-max font-medium text-purple-300 border border-purple-500/20 animate-gentle-up-down ">
-          UI Magic
+          Smooth UX
         </div>
 
         {/* Decorative floating tag - "Clean Code" */}
@@ -34,10 +33,12 @@ export default function Hero() {
         </div>
 
         {/* Main headline */}
-        <h1 className="text-zinc-300  mt-2 sm:mt-4  md:mt-8 font-bold text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tight  leading-tight ">
+        <h1 className="text-zinc-300  mt-2 sm:mt-4  md:mt-8 font-bold text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tight leading-tight">
           <span className="block">Hello</span>
 
-          <span className="block mt-2 sm:mt-4">I&apos;m Zoran Krstić</span>
+          <span className="block mt-2 sm:mt-4">
+            I&apos;m <span className="text-foreground">Zoran Krstić</span>
+          </span>
         </h1>
 
         {/* Animated text flipping component */}

@@ -11,7 +11,7 @@ export default function About() {
     <Container
       as="section"
       id="about"
-      className="mt-24  md:mt-28 lg:mt-32 2xl:mt-36 flex flex-col lg:flex-row gap-16 "
+      className="mt-24  md:mt-28 lg:mt-32 2xl:mt-36 flex flex-col lg:flex-row gap-16 scroll-mt-30 lg:scroll-mt-40"
     >
       {/* Left side: Image with lens zoom effect */}
       <div className="lg:w-1/2 w-full  relative aspect-square rounded-lg shadow-lg overflow-hidden ">
@@ -30,16 +30,23 @@ export default function About() {
 
       {/* Right side: Text content and links */}
       <div className="lg:w-1/2 w-full  lg:min-h-full lg:h-full mt-auto">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold px-4  mb-6">Beyond the Code</h2>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold px-4 mb-6 tracking-tight leading-tight">
+          Beyond the Code
+        </h2>
         <p className="text-zinc-400 text-base md:text-lg leading-relaxed px-4 text-pretty">
-          I&apos;m not just passionate about writing clean, scalable front-end code—I&apos;m also a
-          dedicated runner. Whether I&apos;m pushing pixels or pushing my limits on the track,
-          discipline and focus drive everything I do.
+          I&apos;m not just passionate about writing{" "}
+          <span className="italic">clean, scalable front-end code</span> — I&apos;m also a{" "}
+          <span className="italic">dedicated runner</span>. Whether I&apos;m pushing pixels or
+          pushing my limits on the track, <span className="italic">discipline and focus</span> drive
+          everything I do.
         </p>
+
         <p className="text-zinc-400 text-base md:text-lg leading-relaxed mt-3 px-4 text-pretty">
-          This unique combination of creativity and endurance shapes how I approach every project:
-          with clarity, energy, and commitment.
+          This unique combination of <span className="italic">creativity and endurance</span> shapes
+          how I approach every project: with{" "}
+          <span className="italic">clarity, energy, and commitment</span>.
         </p>
+
         <div className="flex items-start w-full mt-8 sm:mt-10 md:mt-12 px-4">
           <SocialIcons size={32} />
         </div>

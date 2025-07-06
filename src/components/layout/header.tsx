@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import Logo from "@/../public/logo.jpg";
+import Logo from "@/../public/logo.png";
 import { useScrolled } from "@/hooks/use-scrolled";
 
 import Container from "./container";

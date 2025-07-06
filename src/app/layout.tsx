@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Exo_2 } from "next/font/google";
 import "@/styles/globals.css";
+import { Toaster } from "sonner";
 
 import { BackgroundWrapper } from "@/components/layout/background-wrapper";
 import { Header } from "@/components/layout/header";
@@ -28,6 +29,7 @@ export default function RootLayout({
         <BackgroundWrapper>
           <Header />
           {children}
+          <Toaster position="bottom-left" />
         </BackgroundWrapper>
       </body>
     </html>
