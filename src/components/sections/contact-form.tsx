@@ -21,6 +21,7 @@ import { Input } from "@/components/ui/input";
 const formSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
   message: z.string().min(10, "Message must be at least 10 characters"),
+  startTime: z.number(),
   website: z.string().optional(), // honeypot
 });
 
@@ -31,6 +32,7 @@ export default function ContactForm() {
     defaultValues: {
       email: "",
       message: "",
+      startTime: Date.now(),
       website: "", // honeypot field
     },
     mode: "onSubmit",
@@ -47,7 +49,7 @@ export default function ContactForm() {
         toast.success("Message sent successfully!");
         reset();
       } else {
-        toast.error("Error sending message", {
+        toast.error(result.message || "Error sending message", {
           style: {
             background: "#F44336",
             color: "white",
