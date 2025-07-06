@@ -1,131 +1,124 @@
 "use client";
 
-import React, { useCallback, useMemo, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
-import { AnimatePresence, motion, useMotionTemplate } from "motion/react";
-
-interface Position {
-  /** The x coordinate of the lens */
-  x: number;
-  /** The y coordinate of the lens */
-  y: number;
-}
+import { AnimatePresence, motion } from "motion/react";
 
 interface LensProps {
-  /** The children of the lens */
   children: React.ReactNode;
-  /** The zoom factor of the lens */
   zoomFactor?: number;
-  /** The size of the lens */
   lensSize?: number;
-  /** The position of the lens */
-  position?: Position;
-  /** The default position of the lens */
-  defaultPosition?: Position;
-  /** Whether the lens is static */
+  position?: {
+    x: number;
+    y: number;
+  };
   isStatic?: boolean;
-  /** The duration of the animation */
-  duration?: number;
-  /** The color of the lens */
-  lensColor?: string;
-  /** The aria label of the lens */
-  ariaLabel?: string;
+  isFocusing?: () => void;
+  hovering?: boolean;
+  setHovering?: (_hovering: boolean) => void;
 }
 
-export function Lens({
+export const Lens: React.FC<LensProps> = ({
   children,
-  zoomFactor = 1.3,
+  zoomFactor = 1.5,
   lensSize = 170,
   isStatic = false,
-  position = { x: 0, y: 0 },
-  defaultPosition,
-  duration = 0.1,
-  lensColor = "black",
-  ariaLabel = "Zoom Area",
-}: LensProps) {
-  if (zoomFactor < 1) {
-    throw new Error("zoomFactor must be greater than 1");
-  }
-  if (lensSize < 0) {
-    throw new Error("lensSize must be greater than 0");
-  }
-
-  const [isHovering, setIsHovering] = useState(false);
-  const [mousePosition, setMousePosition] = useState<Position>(position);
+  position = { x: 200, y: 150 },
+  hovering,
+  setHovering,
+}) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const currentPosition = useMemo(() => {
-    if (isStatic) return position;
-    if (defaultPosition && !isHovering) return defaultPosition;
-    return mousePosition;
-  }, [isStatic, position, defaultPosition, isHovering, mousePosition]);
+  const [localIsHovering, setLocalIsHovering] = useState(false);
 
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+  const isHovering = hovering !== undefined ? hovering : localIsHovering;
+  const setIsHovering = setHovering || setLocalIsHovering;
+
+  const [mousePosition, setMousePosition] = useState({ x: 100, y: 100 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    setMousePosition({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-  }, []);
-
-  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    if (e.key === "Escape") setIsHovering(false);
-  }, []);
-
-  const maskImage = useMotionTemplate`radial-gradient(circle ${
-    lensSize / 2
-  }px at ${currentPosition.x}px ${currentPosition.y}px, ${lensColor} 100%, transparent 100%)`;
-
-  const LensContent = useMemo(() => {
-    const { x, y } = currentPosition;
-
-    return (
-      <motion.div
-        initial={{ opacity: 0, scale: 0.58 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.8 }}
-        transition={{ duration }}
-        className="absolute inset-0 overflow-hidden"
-        style={{
-          maskImage,
-          WebkitMaskImage: maskImage,
-          transformOrigin: `${x}px ${y}px`,
-          zIndex: 50,
-        }}
-      >
-        <div
-          className="absolute inset-0"
-          style={{
-            transform: `scale(${zoomFactor})`,
-            transformOrigin: `${x}px ${y}px`,
-          }}
-        >
-          {children}
-        </div>
-      </motion.div>
-    );
-  }, [currentPosition, duration, maskImage, zoomFactor, children]);
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    setMousePosition({ x, y });
+  };
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <div
       ref={containerRef}
-      className="relative z-20 overflow-hidden rounded-xl"
-      onMouseEnter={() => setIsHovering(true)}
+      className="relative overflow-hidden rounded-lg z-20"
+      onMouseEnter={() => {
+        setIsHovering(true);
+      }}
       onMouseLeave={() => setIsHovering(false)}
       onMouseMove={handleMouseMove}
-      onKeyDown={handleKeyDown}
-      role="region"
-      aria-label={ariaLabel}
-      // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
-      tabIndex={0}
     >
       {children}
-      {isStatic || defaultPosition ? (
-        LensContent
+
+      {isStatic ? (
+        <div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.58 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="absolute inset-0 overflow-hidden"
+            style={{
+              maskImage: `radial-gradient(circle ${lensSize / 2}px at ${
+                position.x
+              }px ${position.y}px, black 100%, transparent 100%)`,
+              WebkitMaskImage: `radial-gradient(circle ${lensSize / 2}px at ${
+                position.x
+              }px ${position.y}px, black 100%, transparent 100%)`,
+              transformOrigin: `${position.x}px ${position.y}px`,
+            }}
+          >
+            <div
+              className="absolute inset-0"
+              style={{
+                transform: `scale(${zoomFactor})`,
+                transformOrigin: `${position.x}px ${position.y}px`,
+              }}
+            >
+              {children}
+            </div>
+          </motion.div>
+        </div>
       ) : (
-        <AnimatePresence mode="popLayout">{isHovering && LensContent}</AnimatePresence>
+        <AnimatePresence>
+          {isHovering && (
+            <div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.58 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="absolute inset-0 overflow-hidden"
+                style={{
+                  maskImage: `radial-gradient(circle ${lensSize / 2}px at ${
+                    mousePosition.x
+                  }px ${mousePosition.y}px, black 100%, transparent 100%)`,
+                  WebkitMaskImage: `radial-gradient(circle ${
+                    lensSize / 2
+                  }px at ${mousePosition.x}px ${mousePosition.y}px, black 100%, transparent 100%)`,
+                  transformOrigin: `${mousePosition.x}px ${mousePosition.y}px`,
+                  zIndex: 50,
+                }}
+              >
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    transform: `scale(${zoomFactor})`,
+                    transformOrigin: `${mousePosition.x}px ${mousePosition.y}px`,
+                  }}
+                >
+                  {children}
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
       )}
     </div>
   );
-}
+};
