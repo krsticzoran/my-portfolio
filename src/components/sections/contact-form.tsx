@@ -20,7 +20,11 @@ import { Input } from "@/components/ui/input";
 // Define the schema for the contact form using Zod
 const formSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
+  message: z
+    .string()
+    .min(10, "Message must be at least 10 characters")
+    .max(2000, "Message cannot exceed 2000 characters")
+    .transform((msg) => msg.replace(/</g, "&lt;").replace(/>/g, "&gt;")),
   startTime: z.number(),
   website: z.string().optional(), // honeypot
 });
