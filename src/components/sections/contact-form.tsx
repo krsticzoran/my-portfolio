@@ -21,6 +21,7 @@ import { Input } from "@/components/ui/input";
 const formSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
   message: z.string().min(10, "Message must be at least 10 characters"),
+  website: z.string().optional(), // honeypot
 });
 
 export default function ContactForm() {
@@ -30,6 +31,7 @@ export default function ContactForm() {
     defaultValues: {
       email: "",
       message: "",
+      website: "", // honeypot field
     },
     mode: "onSubmit",
     reValidateMode: "onSubmit",
@@ -101,7 +103,22 @@ export default function ContactForm() {
             </FormItem>
           )}
         />
-
+        {/* honeypot field to prevent spam  */}
+        <FormField
+          control={form.control}
+          name="website" // honeypot field
+          render={({ field }) => (
+            <FormItem className="hidden">
+              {" "}
+              {/* hide for users */}
+              <FormLabel className="sr-only">Website</FormLabel>
+              <FormControl>
+                <Input type="text" autoComplete="off" tabIndex={-1} {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <Button
           type="submit"
           disabled={form.formState.isSubmitting}
