@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import zk from "@/../public/zk.webp";
+import zk from "@/assets/zk.webp";
 import Container from "@/components/layout/container";
 import { Lens } from "@/components/magicui/lens";
 import { MagicCard } from "@/components/magicui/magic-card";

@@ -4,6 +4,7 @@ import "@/styles/globals.css";
 import { Toaster } from "sonner";
 
 import { BackgroundWrapper } from "@/components/layout/background-wrapper";
+import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 
 const exo2 = Exo_2({
@@ -30,6 +31,7 @@ export default function RootLayout({
           <Header />
           {children}
           <Toaster position="bottom-left" />
+          <Footer />
         </BackgroundWrapper>
       </body>
     </html>

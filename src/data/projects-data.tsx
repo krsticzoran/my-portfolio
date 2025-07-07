@@ -1,9 +1,17 @@
 import { JSX } from "react";
 
+import { StaticImageData } from "next/image";
+
+import aiBuddyImage from "@/assets/ai-buddy.webp";
+import basketballImage from "@/assets/basketball.webp";
+import eStoreImage from "@/assets/e-store.webp";
+import realEstateImage from "@/assets/real-estate.webp";
+import rolloImage from "@/assets/rollo.webp";
+
 export type Project = {
   description: string;
   title: string;
-  src: string;
+  src: string | StaticImageData;
   year: string;
   explore: string;
   ctaText: string;
@@ -16,7 +24,7 @@ export const projectsData: Project[] = [
   {
     description: "Next.js, Tailwind CSS, Framer Motion, WP as Headless CMS",
     title: "Tea Shop – E-commerce Website – Personal Project",
-    src: "/e-store.webp",
+    src: eStoreImage,
     year: "2025",
     explore: "Explore",
     ctaText: "Live",
@@ -42,7 +50,7 @@ export const projectsData: Project[] = [
   {
     description: "Next.js, SASS, Resend API",
     title: "Basketball Coach Website – Freelance Project ",
-    src: "/basketball.webp",
+    src: basketballImage,
     explore: "explore",
     year: "2024",
     ctaText: "Live",
@@ -70,7 +78,7 @@ export const projectsData: Project[] = [
   {
     description: "SEO",
     title: "Rollo Website – Freelance Project ",
-    src: "/rollo.webp",
+    src: rolloImage,
     explore: "explore",
     year: "2024 - Present",
     ctaText: "Live",
@@ -97,7 +105,7 @@ export const projectsData: Project[] = [
   {
     description: "React, TypeScript, GraphQL, Express.js, MongoDB",
     title: "Real Estate Agency Website – Personal Project ",
-    src: "/real-estate.webp",
+    src: realEstateImage,
     explore: "explore",
     year: "2023 - 2024",
     ctaText: "Live",
@@ -125,7 +133,7 @@ export const projectsData: Project[] = [
   {
     description: "React, Bootstrap, Redux Toolkit, Firebase",
     title: "AI Buddy – Personal Project ",
-    src: "/ai-buddy.webp",
+    src: aiBuddyImage,
     explore: "explore",
     year: "2023",
     ctaText: "Live",
