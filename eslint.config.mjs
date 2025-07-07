@@ -32,7 +32,11 @@ const eslintConfig = [
       "comma-dangle": ["error", "only-multiline"],
       "object-curly-spacing": ["error", "always"],
       "arrow-spacing": ["error", { "before": true, "after": true }],
-      "space-before-function-paren": ["error", "never"],
+      "space-before-function-paren": ["error", {
+  "anonymous": "never",
+  "named": "never",
+  "asyncArrow": "never"
+}],
       "react-hooks/rules-of-hooks": "error", 
       "react-hooks/exhaustive-deps": "warn",
       "import/order": [
