@@ -45,7 +45,6 @@ export default function ContactForm() {
 
   const { reset } = form;
 
-  // Function to handle form submission
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       const result = await submitContactForm(values);
