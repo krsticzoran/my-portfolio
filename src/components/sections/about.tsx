@@ -14,7 +14,8 @@ export default function About() {
       className="mt-24  md:mt-28 lg:mt-32 2xl:mt-36 flex flex-col lg:flex-row gap-16 scroll-mt-30 lg:scroll-mt-40"
     >
       {/* Left side: Image with lens zoom effect */}
-      <div className="lg:w-1/2 w-full  relative aspect-square rounded-lg shadow-lg overflow-hidden ">
+      {/* Zoom image for biger screens */}
+      <div className="lg:w-1/2 w-full relative aspect-square rounded-lg shadow-lg overflow-hidden ">
         <Lens>
           <Image
             src={zk}
@@ -26,6 +27,17 @@ export default function About() {
             className="rounded-lg shadow-lg"
           />
         </Lens>
+
+        {/*image for small screens */}
+        <Image
+          src={zk}
+          alt="Zoran Krstić"
+          width={640}
+          sizes="100vw"
+          style={{ objectFit: "cover" }}
+          priority={false}
+          className="rounded-lg shadow-lg block sm:hidden"
+        />
       </div>
 
       {/* Right side: Text content and links */}
