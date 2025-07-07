@@ -1,14 +1,32 @@
+"use client";
+
+import dynamic from "next/dynamic";
+import { useInView } from "react-intersection-observer";
+
 import Container from "@/components/layout/container";
 
 import ContactForm from "./contact-form";
-import { Globe } from "../magicui/globe";
+
+// Dynamically import Globe component without SSR (server-side rendering)
+// This avoids loading the Globe on the server and improves initial load performance
+const Globe = dynamic(() => import("../magicui/globe").then((mod) => mod.Globe), {
+  ssr: false,
+  loading: () => <div className="w-full h-full" />, // Placeholder while loading
+});
 
 export default function Contact() {
+  // Use Intersection Observer to detect when the Globe container is in the viewport
+  // This allows us to lazy-load Globe only when it becomes visible on screen
+  const { ref, inView } = useInView({
+    triggerOnce: true, // Only trigger once, no repeated loads
+    threshold: 0.2, // Trigger when 20% of the component is visible
+  });
+
   return (
     <Container
       as="section"
       id="contact"
-      className="py-24  md:py-28 lg:py-32 2xl:py-36 flex flex-col-reverse lg:flex-row gap-16 h-full scroll-mt-20 lg:scroll-mt-30"
+      className="py-24 md:py-28 lg:py-32 2xl:py-36 flex flex-col-reverse lg:flex-row gap-16 h-full scroll-mt-20 lg:scroll-mt-30"
     >
       <div className="w-full sm:w-4/5 lg:w-1/2">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 tracking-tight leading-tight">
@@ -27,8 +45,10 @@ export default function Contact() {
             <span className="italic">Let’s build something great together.</span>
           </p>
         </div>
-        <div className="relative h-full min-h-[250px] ">
-          <Globe />
+        {/* Attach the ref for inView detection */}
+        <div ref={ref} className="relative h-full min-h-[250px]">
+          {/* Render Globe component only when it’s in the viewport */}
+          {inView && <Globe />}
         </div>
       </div>
     </Container>
