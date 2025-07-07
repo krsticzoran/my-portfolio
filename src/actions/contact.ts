@@ -36,8 +36,8 @@ export async function submitContactForm(data: {
 
   try {
     await resend.emails.send({
-      from: "website@zkrstic.com",
-      to: "contact@zkrstic.com",
+      from: "website@zkrstic.dev",
+      to: "zorankrstic81@gmail.com",
       subject: `New message from ${data.email}`,
       html: `
       <div style="font-family: Arial, sans-serif; line-height: 1.5; color: #333;">
