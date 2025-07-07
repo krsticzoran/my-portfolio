@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { useMotionValue, useMotionTemplate, motion } from "motion/react";
+import { useMotionValue, useMotionTemplate, motion } from "framer-motion";
 
 export function BackgroundWrapper({ children }: { children: React.ReactNode }) {
   const mouseX = useMotionValue(0);

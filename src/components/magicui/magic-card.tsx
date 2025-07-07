@@ -2,7 +2,7 @@
 
 import React, { useCallback, useEffect, useRef } from "react";
 
-import { motion, useMotionTemplate, useMotionValue } from "motion/react";
+import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 

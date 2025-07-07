@@ -3,7 +3,7 @@
 import React, { useEffect, useId, useRef, useState } from "react";
 
 import { IconBrandGithub, IconPlayerPlay } from "@tabler/icons-react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 
 import { CloseIcon } from "@/components/ui/close-icon";
@@ -54,7 +54,7 @@ export default function ExpandableCardDemo() {
       </AnimatePresence>
       <AnimatePresence>
         {active && typeof active === "object" ? (
-          <div className="fixed inset-0 flex justify-center items-start sm:items-center  xl:mt-20  z-[100]">
+          <div className="fixed inset-0 flex justify-center items-start sm:items-center z-[100]">
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
