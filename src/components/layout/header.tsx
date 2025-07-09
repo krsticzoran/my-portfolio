@@ -19,15 +19,15 @@ export function Header() {
     <Container
       as="header"
       id="header"
-      className={`sticky top-0 z-50 font-exo   transition-[background,box-shadow] ease-in-out duration-1000 ${
+      className={`sticky top-0 z-50 font-exo  transition-[background,box-shadow] ease-in-out duration-1000 ${
         scrolled
           ? "bg-background lg:bg-zinc-900/80 backdrop-blur-md rounded-lg shadow-lg"
-          : "bg-transparent"
+          : "bg-transparent pt-8 "
       }`}
     >
       <div
         className={`flex items-center justify-between  transition-[padding] ease-in-out duration-1000 ${
-          scrolled ? " py-2 lg:py-4" : "pt-8 lg:pt-12"
+          scrolled ? " py-2 lg:py-4" : "lg:pt-12"
         }`}
       >
         {/* Logo wrapped in a Link to scroll to #hero section */}
