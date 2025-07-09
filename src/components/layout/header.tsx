@@ -19,7 +19,7 @@ export function Header() {
     <Container
       as="header"
       id="header"
-      className={`sticky top-0 z-50 flex items-center justify-between font-exo  transition-all duration-1000 ${
+      className={`sticky top-0 z-50 flex items-center justify-between font-exo  transition-all duration-1500 ${
         scrolled
           ? "bg-background lg:bg-zinc-900/80 backdrop-blur-md py-2 lg:py-4 rounded-lg shadow-lg"
           : "bg-transparent pt-8 lg:pt-12"
