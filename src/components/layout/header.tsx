@@ -19,44 +19,38 @@ export function Header() {
     <Container
       as="header"
       id="header"
-      className={`sticky top-0 z-50 font-exo  transition-[background,box-shadow] ease-in-out duration-1000 ${
+      className={`sticky top-0 z-50 py-3 flex items-center justify-between font-exo transition-[padding,background,box-shadow] ease-in-out duration-100 lg:duration-1000 ${
         scrolled
-          ? "bg-background lg:bg-zinc-900/80 backdrop-blur-md rounded-lg shadow-lg"
-          : "bg-transparent pt-8 "
+          ? "bg-background lg:bg-zinc-900/80 lg:backdrop-blur-md  lg:py-4 rounded-lg shadow-lg"
+          : "bg-transparent lg:pt-12"
       }`}
     >
-      <div
-        className={`flex items-center justify-between  transition-[padding] ease-in-out duration-1000 ${
-          scrolled ? " py-2 lg:py-4" : "lg:pt-12"
-        }`}
-      >
-        {/* Logo wrapped in a Link to scroll to #hero section */}
-        <div className="flex items-center">
-          <Link
-            href={"#hero"}
-            className="flex items-center cursor-pointer"
-            aria-label="Scroll to hero section"
-          >
-            <Image src={Logo} alt="Zoran Krstić logo" width={56} height={56} priority />
-          </Link>
+      {/* Logo wrapped in a Link to scroll to #hero section */}
+      <div className="flex items-center">
+        <Link
+          href={"#hero"}
+          className="flex items-center cursor-pointer"
+          aria-label="Scroll to hero section"
+        >
+          <Image src={Logo} alt="Zoran Krstić logo" width={56} height={56} priority />
+        </Link>
+      </div>
+
+      {/* Desktop navigation - visible only on large screens (lg and above) */}
+      <div className="hidden lg:block">
+        <DesktopNav />
+      </div>
+
+      {/* Section containing social icons and mobile navigation menu */}
+      <div className="flex items-center gap-4">
+        {/* Social icons, visible on small screens and larger */}
+        <div className="hidden sm:block">
+          <SocialIcons limit={2} />
         </div>
 
-        {/* Desktop navigation - visible only on large screens (lg and above) */}
-        <div className="hidden lg:block">
-          <DesktopNav />
-        </div>
-
-        {/* Section containing social icons and mobile navigation menu */}
-        <div className="flex items-center gap-4">
-          {/* Social icons, visible on small screens and larger */}
-          <div className="hidden sm:block">
-            <SocialIcons limit={2} />
-          </div>
-
-          {/* Mobile navigation menu, visible only on smaller screens */}
-          <div className="lg:hidden">
-            <MobileNav />
-          </div>
+        {/* Mobile navigation menu, visible only on smaller screens */}
+        <div className="lg:hidden">
+          <MobileNav />
         </div>
       </div>
     </Container>
