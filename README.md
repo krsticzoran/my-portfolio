@@ -1,6 +1,6 @@
 # 🚀 Zoran Krstić – Front-End Developer Portfolio
 
-![Portfolio Screenshot](./public/og-image.png)
+![Portfolio Screenshot](./public/og-image.jpg)
 
 🔗 **Live Website**: [zkrstic.dev](https://zkrstic.dev)
 
@@ -17,23 +17,23 @@ This portfolio showcases my work, skills, and the technologies I use.
 
 ### Frameworks and Languages
 
-- Next.js
-- TypeScript
+- ⚛️ **Next.js** – React framework for building fast and scalable web apps.
+- 🟦 **TypeScript** – Typed superset of JavaScript for better safety and DX.
 
 ### Styling
 
-- Tailwind CSS
+- 🎨 **Tailwind CSS** – Utility-first CSS framework for rapid UI development.
 
 ### UI Component Libraries
 
-- shadcn/ui
-- magic-ui
-- ui.aceternity.com
+- 🧱 **shadcn/ui** – Accessible, reusable UI components built with Tailwind CSS.
+- ✨ **magic-ui** – A set of animated UI primitives and transitions.
+- 🧬 **ui-aceternity** – A modern collection of animated and interactive UI components.
 
 ### Icons
 
-- Tabler Icons
-- lucide-react
+- 🖼️ **Tabler Icons** – Crisp, customizable SVG icons.
+- 🧩 **lucide-react** – Beautiful open-source icon library for React.
 
 ## Features
 
