@@ -25,7 +25,7 @@ export function Header() {
           : "bg-transparent lg:pt-12"
       }`}
     >
-      {/* Logo wrapped in a Link to scroll to #hero section */}
+      {/* Logo wrapped in a Link to scroll to #hero */}
       <div className="flex items-center">
         <Link
           href={"#hero"}
