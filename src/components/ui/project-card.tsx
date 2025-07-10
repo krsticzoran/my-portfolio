@@ -27,7 +27,9 @@ export default function ProjectCard({ card, index, id, setActive }: Props) {
             fill
             src={card.src}
             alt={card.title}
-            className="rounded-lg object-cover object-top "
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 36vw, 48vw"
+            className="rounded-lg object-cover object-top"
+            loading="lazy"
           />
         </motion.div>
         <div className="flex flex-col md:flex-row md:justify-between items-center w-full">
