@@ -53,7 +53,7 @@ To protect the contact form from spam and abuse, several techniques have been im
 - 🕳️ **Honeypot Field** – A hidden input that only bots tend to fill. If it's filled, the submission is flagged as spam.
 - ⏱️ **Time-Based Check** – If the form is submitted in under 3 seconds, it's likely a bot and gets rejected.
 - 🧼 **Input Sanitization** – All form inputs are sanitized to prevent cross-site scripting (XSS) and malicious code injection.
-- 🚫 **Rate Limiting** – (Planned) Implementation of per-IP request limiting to prevent brute-force and spam attempts.
+- 🚫 **Rate Limiting** – Per-IP request limiting is implemented using an in-memory lru-cache. Requests are throttled to prevent spam and brute-force attacks.
 
 ## Status
 
@@ -61,6 +61,5 @@ To protect the contact form from spam and abuse, several techniques have been im
 
 The website is already visually polished and fully representative, but a few tasks remain:
 
-- Implementing rate limiting on the contact form
 - Final testing and refinements
 - Minor visual and UX improvements

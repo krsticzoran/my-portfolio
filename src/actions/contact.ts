@@ -1,6 +1,6 @@
 "use server";
 
-import { LRUCache } from "lru-cache"; //
+import { LRUCache } from "lru-cache"; // A simple in-memory cache to track request counts per IP
 import { headers } from "next/headers";
 import { Resend } from "resend";
 import { z } from "zod";
@@ -35,7 +35,7 @@ export async function submitContactForm(data: {
   // If entry exists and request count has reached or exceeded the limit (5 in this example),
   // block further requests and return a rate limit message
 
-  if (entry && entry.count >= 5) {
+  if (entry && entry.count >= 3) {
     return { success: false, message: "Too many requests. Please try again later." };
   }
 
