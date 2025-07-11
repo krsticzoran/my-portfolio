@@ -17,7 +17,7 @@ export default function Hero() {
         </div>
 
         {/* Decorative floating tag - "Clean Code" */}
-        <div className="px-3 py-2 hidden sm:block absolute top-26  right-0 bg-blue-500/20 rounded-[6px] w-max font-medium text-blue-300 border border-blue-500/20 animate-gentle-up-down ">
+        <div className="px-3 py-2 hidden sm:block absolute top-20 right-16 xl:top-26  xl:right-0 2xl:right-8 bg-blue-500/20 rounded-[6px] w-max font-medium text-blue-300 border border-blue-500/20 animate-gentle-up-down ">
           Clean Code
         </div>
 
@@ -33,17 +33,17 @@ export default function Hero() {
         </div>
 
         {/* Main headline */}
-        <h1 className="text-zinc-300  mt-2 sm:mt-4  md:mt-8 font-bold text-4xl md:text-5xl lg:text-6xl xl:text-6xl tracking-tight leading-tight">
-          <span className="block">I&apos;m Zoran Krstić </span>
+        <h1 className="text-zinc-300  mt-2 sm:mt-4 lg:mt-6 xl:mt-8 font-bold text-3xl xs:text-4xl sm:text-5xl xl:text-6xl tracking-tight leading-tight">
+          <span className="block">Hi, I&apos;m Zoran</span>
 
-          <span className="block mt-2 sm:mt-6 text-foreground">Front-End Developer</span>
+          <span className="block mt-2 sm:mt-4 text-foreground ">Front-End Developer</span>
         </h1>
 
         {/* Animated text flipping component */}
         <ContainerTextFlip />
 
         {/* Subheading with professional description */}
-        <div className="text-lg text-zinc-400 mt-8 sm:mt-10 md:mt-8 font-bold flex flex-col">
+        <div className="text-lg text-zinc-400 mt-4 sm:mt-6 xl:mt-8 font-bold flex flex-col">
           <span>React Enthusiast ⚛️ | Next.js Lover 🚀</span>
           <span className="font-normal italic mt-2 text-pretty">
             Creating high-performance web apps with clean, well-structured code to provide seamless
