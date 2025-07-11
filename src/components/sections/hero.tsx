@@ -33,17 +33,17 @@ export default function Hero() {
         </div>
 
         {/* Main headline */}
-        <h1 className="text-zinc-300  mt-4 sm:mt-6 xl:mt-10 font-bold text-3xl xs:text-4xl sm:text-5xl xl:text-6xl tracking-tight leading-tight">
+        <h1 className="text-zinc-300  mt-4 sm:mt-6 xl:mt-8 font-bold text-3xl xs:text-4xl sm:text-5xl xl:text-6xl tracking-tight leading-tight">
           <span className="block">Hi, I&apos;m Zoran</span>
 
-          <span className="block mt-2 sm:mt-4 xl:mt-6 text-foreground ">Front-End Developer</span>
+          <span className="block mt-2 sm:mt-4 xl:mt-4 text-foreground ">Front-End Developer</span>
         </h1>
 
         {/* Animated text flipping component */}
         <ContainerTextFlip />
 
         {/* Subheading with professional description */}
-        <div className="text-lg text-zinc-400 mt-6 sm:mt-8 xl:mt-12 font-bold flex flex-col">
+        <div className="text-lg text-zinc-400 mt-6 sm:mt-8 xl:mt-10 font-bold flex flex-col">
           <span>React Enthusiast ⚛️ | Next.js Lover 🚀</span>
           <span className="font-normal italic mt-2 text-pretty">
             Creating high-performance web apps with clean, well-structured code to provide seamless
