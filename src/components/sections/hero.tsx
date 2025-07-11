@@ -33,7 +33,7 @@ export default function Hero() {
         </div>
 
         {/* Main headline */}
-        <h1 className="text-zinc-300  mt-2 sm:mt-4 lg:mt-6 xl:mt-8 font-bold text-3xl xs:text-4xl sm:text-5xl xl:text-6xl tracking-tight leading-tight">
+        <h1 className="text-zinc-300  mt-2 sm:mt-4 font-bold text-3xl xs:text-4xl sm:text-5xl xl:text-6xl tracking-tight leading-tight">
           <span className="block">Hi, I&apos;m Zoran</span>
 
           <span className="block mt-2 sm:mt-4 text-foreground ">Front-End Developer</span>
