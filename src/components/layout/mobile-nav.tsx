@@ -18,7 +18,7 @@ export default function MobileNav() {
       <SheetTrigger asChild>
         <Button
           variant="ghost"
-          className="rounded-xl w-10 h-10 border border-zinc-800 hover:border-zinc-800 hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center"
+          className="rounded-xl w-10 h-10 border border-zinc-800 hover:border-zinc-800 hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center cursor-pointer"
         >
           <Menu className="!w-6 !h-6" />
           <span className="sr-only">Open menu</span>
@@ -59,7 +59,7 @@ export default function MobileNav() {
             </SheetClose>
           ))}
         </div>
-        <div className="px-4 py-6">
+        <div className="px-4 py-6 ">
           <SocialIcons links={socialLinks} />
         </div>
       </SheetContent>
