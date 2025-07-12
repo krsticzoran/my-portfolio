@@ -72,7 +72,7 @@ export default function ExpandableCardDemo() {
                 exit={{
                   opacity: 0,
                   transition: {
-                    duration: 0.05,
+                    duration: 0,
                   },
                 }}
                 className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-white rounded-full h-6 w-6"
@@ -119,9 +119,14 @@ export default function ExpandableCardDemo() {
                   </motion.div>
                 </div>
                 <div className="flex  px-4 mb-5 flex-grow">
-                  <div className="flex mt-auto gap-2">
+                  <motion.div
+                    layout
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="flex mt-auto gap-2"
+                  >
                     <motion.a
-                      layoutId={`button-${active.title}-${id}`}
                       href={active.ctaLink}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -132,7 +137,6 @@ export default function ExpandableCardDemo() {
                     </motion.a>
                     {active.github ? (
                       <motion.a
-                        layoutId={`github-${active.title}-${id}`}
                         href={active.github}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -142,7 +146,7 @@ export default function ExpandableCardDemo() {
                         GitHub
                       </motion.a>
                     ) : null}
-                  </div>
+                  </motion.div>
                 </div>
               </div>
             </motion.div>
