@@ -21,7 +21,7 @@ export function Header() {
       id="header"
       className={`sticky top-0 z-50 py-3 flex items-center justify-between font-exo transition-[padding,background,box-shadow] ease-in-out duration-100 lg:duration-1000 ${
         scrolled
-          ? "bg-background lg:bg-zinc-900/80 lg:backdrop-blur-md  lg:py-4 rounded-lg shadow-lg"
+          ? "bg-zinc-900/90 lg:bg-zinc-900/80 backdrop-blur-md  py-4 lg:rounded-lg shadow-lg"
           : "bg-transparent lg:pt-12"
       }`}
     >
