@@ -3,25 +3,23 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    let countryCode = "JP";
-
-    if (process.env.NODE_ENV !== "development") {
-      const headerList = headers();
-      const vercelCountry = (await headerList).get("x-vercel-ip-country");
-      if (vercelCountry) {
-        countryCode = vercelCountry;
-      }
-    }
+    const headerList = headers();
+    const countryCode = (await headerList).get("x-vercel-ip-country") || "JP";
 
     const response = await fetch(`https://restcountries.com/v3.1/alpha/${countryCode}`);
-    if (!response.ok) throw new Error("Country API failed");
+
+    if (!response.ok) {
+      const text = await response.text();
+      console.error("Country API error:", text);
+      return NextResponse.json({ capital: "Tokyo" }, { status: 200 });
+    }
 
     const data = await response.json();
     const capital = data[0]?.capital?.[0] || "Tokyo";
 
     return NextResponse.json({ capital });
   } catch (error) {
-    console.error("Error fetching capital:", error);
+    console.error("Fetch error:", error);
     return NextResponse.json({ capital: "Tokyo" }, { status: 200 });
   }
 }
