@@ -1,13 +1,23 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 import Container from "@/components/layout/container";
 
 import ContactForm from "./contact-form";
 import GlobeComponent from "../ui/globe-component";
 
-export default async function Contact() {
-  const baseUrl =
-    process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://zkrstic.dev";
-  const res = await fetch(`${baseUrl}/api/capital`);
-  const { capital } = await res.json();
+export default function Contact() {
+  const [capital, setCapital] = useState("Tokyo");
+
+  useEffect(() => {
+    fetch("/api/capital")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.capital) setCapital(data.capital);
+      })
+      .catch((err) => console.error("API error", err));
+  }, []);
 
   return (
     <Container
