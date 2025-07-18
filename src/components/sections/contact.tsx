@@ -1,26 +1,13 @@
-"use client";
-
-import dynamic from "next/dynamic";
-import { useInView } from "react-intersection-observer";
-
 import Container from "@/components/layout/container";
 
 import ContactForm from "./contact-form";
+import GlobeComponent from "../ui/globe-component";
 
-// Dynamically import Globe component without SSR (server-side rendering)
-// This avoids loading the Globe on the server and improves initial load performance
-const Globe = dynamic(() => import("../magicui/globe").then((mod) => mod.Globe), {
-  ssr: false,
-  loading: () => <div className="w-full h-full" />, // Placeholder while loading
-});
-
-export default function Contact() {
-  // Use Intersection Observer to detect when the Globe container is in the viewport
-  // This allows us to lazy-load Globe only when it becomes visible on screen
-  const { ref, inView } = useInView({
-    triggerOnce: true, // Only trigger once, no repeated loads
-    threshold: 0.2, // Trigger when 20% of the component is visible
-  });
+export default async function Contact() {
+  const baseUrl =
+    process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://zkrstic.dev";
+  const res = await fetch(`${baseUrl}/api/capital`);
+  const { capital } = await res.json();
 
   return (
     <Container
@@ -40,16 +27,12 @@ export default function Contact() {
             Based in Serbia, Available Worldwide
           </h3>
           <p className="text-zinc-400 text-base md:text-lg leading-relaxed text-pretty">
-            Whether you’re in Berlin, New York, or Tokyo — I’m ready to{" "}
+            Whether you&apos;re in Berlin, New York, or {capital} — I&apos;m ready to{" "}
             <span className="italic">collaborate remotely</span> and bring your ideas to life.{" "}
-            <span className="italic">Let’s build something great together.</span>
+            <span className="italic">Let&apos;s build something great together.</span>
           </p>
         </div>
-        {/* Attach the ref for inView detection */}
-        <div ref={ref} className="relative h-full min-h-[250px]">
-          {/* Render Globe component only when it’s in the viewport */}
-          {inView && <Globe />}
-        </div>
+        <GlobeComponent />
       </div>
     </Container>
   );
