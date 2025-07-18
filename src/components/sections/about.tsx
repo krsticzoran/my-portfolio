@@ -46,17 +46,13 @@ export default function About() {
           Beyond the Code
         </h2>
         <p className="text-zinc-400 text-base md:text-lg leading-relaxed px-4 text-pretty">
-          I&apos;m not just passionate about writing{" "}
-          <span className="italic">clean, scalable front-end code</span> — I&apos;m also a{" "}
-          <span className="italic">dedicated runner</span>. Whether I&apos;m pushing pixels or
-          pushing my limits on the track, <span className="italic">discipline and focus</span> drive
-          everything I do.
+          When I’m not at the computer, you’ll probably find me running in nature. Very often,
+          that’s when the solution to a bug I’ve been stuck on suddenly clicks.
         </p>
 
         <p className="text-zinc-400 text-base md:text-lg leading-relaxed mt-3 px-4 text-pretty">
-          This unique combination of <span className="italic">creativity and endurance</span> shapes
-          how I approach every project: with{" "}
-          <span className="italic">clarity, energy, and commitment</span>.
+          Running has taught me that only dedication and consistency lead to meaningful progress —
+          just as in coding, there are no shortcuts to real results.
         </p>
 
         <div className="flex items-start w-full mt-8 sm:mt-10 md:mt-12 px-4">
