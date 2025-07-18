@@ -58,7 +58,7 @@ export default function ExpandableCardDemo() {
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
-              className="relative w-full max-w-[600px] overflow-y-auto shadow-lg h-screen sm:h-fit md:max-h-[90%]  flex flex-col  bg-white sm:rounded-3xl overflow-hidden"
+              className="relative w-full max-w-[600px] overflow-y-auto shadow-lg h-[100dvh] sm:h-fit md:max-h-[90%]  flex flex-col  bg-white sm:rounded-3xl overflow-hidden "
             >
               <motion.button
                 key={`button-${active.title}-${id}`}
