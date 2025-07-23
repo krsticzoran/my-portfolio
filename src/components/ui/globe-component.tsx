@@ -39,7 +39,7 @@ export default function GlobeComponent() {
         </h3>
         <p className="text-zinc-400 text-base md:text-lg leading-relaxed text-pretty">
           Whether you&apos;re in Berlin, New York, or{" "}
-          {capital === "Berlin" || capital === "New York" ? "Tokyo" : capital} — I&apos;m ready to{" "}
+          {capital === "Berlin" || capital === "New York" ? "Tokyo" : capital}, I&apos;m ready to{" "}
           <span className="italic">collaborate remotely</span> and bring your ideas to life.{" "}
           <span className="italic">Let&apos;s build something great together.</span>
         </p>

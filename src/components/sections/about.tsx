@@ -51,7 +51,7 @@ export default function About() {
         </p>
 
         <p className="text-zinc-400 text-base md:text-lg leading-relaxed mt-3 px-4 text-pretty">
-          Running has taught me that only dedication and consistency lead to meaningful progress —
+          Running has taught me that only dedication and consistency lead to meaningful progress,
           just as in coding, there are no shortcuts to real results.
         </p>
 
