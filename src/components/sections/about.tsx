@@ -63,7 +63,7 @@ export default function About() {
         <MagicCard className="mt-4 sm:mt-6 md:mt-8 rounded-lg shadow-lg border bg-zinc-800/50">
           <div className=" w-full  flex items-center justify-center ">
             <a
-              href="/CV.pdf"
+              href="/ZoranKrsticCV.pdf"
               download="Zoran_Krstic_CV.pdf"
               className="flex flex-col gap-1 text-center w-full h-full py-2 lg:py-10"
               aria-label="Download my CV (lightweight PDF)"
