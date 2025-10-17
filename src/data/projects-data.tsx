@@ -5,6 +5,7 @@ import { StaticImageData } from "next/image";
 import aiBuddyImage from "@/assets/ai-buddy.webp";
 import basketballImage from "@/assets/basketball.webp";
 import eStoreImage from "@/assets/e-store.webp";
+import learnPlus from "@/assets/learnplus.webp";
 import realEstateImage from "@/assets/real-estate.webp";
 import rolloImage from "@/assets/rollo.webp";
 
@@ -21,6 +22,33 @@ export type Project = {
 };
 
 export const projectsData: Project[] = [
+  {
+    description: "Next.js, TypeScript, Tailwind CSS, Strapi",
+    title: "Learn Plus – NGO Website – Client Project (Upwork)",
+    src: learnPlus,
+    year: "2025",
+    explore: "Explore",
+    ctaText: "Live",
+    github: "https://github.com/krsticzoran/learn-plus-ngo-next.js",
+    ctaLink: "https://learn-plus.org/",
+    content: () => {
+      return (
+        <>
+          <p>
+            Developed a professional and accessible website for <strong>Learn Plus</strong>, an NGO
+            focused on education and personal development. The goal was to present their programs,
+            activities, and mission in a clear and engaging way.
+          </p>
+          <p>
+            Built with <strong>Next.js</strong> and <strong>Strapi</strong> for a fully headless
+            architecture, providing fast performance, easy content management, and a responsive
+            layout optimized for all devices.
+          </p>
+        </>
+      );
+    },
+  },
+
   {
     description: "Next.js, Tailwind CSS, Framer Motion, WP as Headless CMS",
     title: "Tea Shop – E-commerce Website – Personal Project",
@@ -49,7 +77,7 @@ export const projectsData: Project[] = [
   },
   {
     description: "Next.js, SASS, Resend API",
-    title: "Basketball Coach Website – Freelance Project ",
+    title: "Basketball Coach Website – Client Project ",
     src: basketballImage,
     explore: "explore",
     year: "2024",
@@ -77,7 +105,7 @@ export const projectsData: Project[] = [
 
   {
     description: "SEO",
-    title: "Rollo Website – Freelance Project ",
+    title: "Rollo Website – Client Project ",
     src: rolloImage,
     explore: "explore",
     year: "2024 - Present",

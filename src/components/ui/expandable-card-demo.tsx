@@ -154,7 +154,7 @@ export default function ExpandableCardDemo() {
         ) : null}
       </AnimatePresence>
       <ul className=" mx-auto w-full gap-4">
-        {cards.slice(0, 4).map((card, index) => (
+        {cards.slice(0, 5).map((card, index) => (
           <ProjectCard
             key={`card-${card.title}-${index}-${id}`}
             card={card}
