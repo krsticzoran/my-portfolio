@@ -84,7 +84,7 @@ export const projectsData: Project[] = [
   {
     type: "client",
     description: "Figma to HTML/CSS/JS",
-    title: "Infiniwave – Client Project (Upwork)",
+    title: "Designer Portfolio Landing Page – Client Project (Upwork)",
     src: infiniwave,
     year: "2025",
     explore: "Explore",
@@ -138,7 +138,7 @@ export const projectsData: Project[] = [
   {
     type: "client",
     description: "Next.js, SASS, Resend API",
-    title: "Basketball Coach Website – Client Project ",
+    title: "Basketball Coach Portfolio – Client Project",
     src: basketballImage,
     explore: "explore",
     year: "2024",
@@ -167,7 +167,7 @@ export const projectsData: Project[] = [
   {
     type: "client",
     description: "SEO",
-    title: "Rollo Website – Client Project ",
+    title: "Rollo – PVC Joinery Website – Client Project",
     src: rolloImage,
     explore: "explore",
     year: "2024 - Present",
