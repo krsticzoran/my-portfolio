@@ -24,7 +24,7 @@ export default function DesktopNav() {
             key={href}
             asChild
             variant="ghost"
-            className={`font-medium text-lg rounded-full transition-colors ${
+            className={`font-medium text-lg transition-colors ${
               isActive
                 ? "bg-white text-black hover:bg-white hover:text-black"
                 : "text-foreground hover:bg-zinc-800"

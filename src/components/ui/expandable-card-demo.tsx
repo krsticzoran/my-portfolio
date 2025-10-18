@@ -7,12 +7,14 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 
 import { CloseIcon } from "@/components/ui/close-icon";
-import { projectsData as cards } from "@/data/projects-data";
+import { projectsData } from "@/data/projects-data";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 
 import ProjectCard from "./project-card";
 
-export default function ExpandableCardDemo() {
+export default function ExpandableCardDemo({ type }: { type?: "all" | "personal" | "client" }) {
+  const cards =
+    type && type !== "all" ? projectsData.filter((project) => project.type === type) : projectsData;
   const [active, setActive] = useState<(typeof cards)[number] | boolean | null>(null);
   const ref = useRef<HTMLDivElement>(null!);
   const id = useId();
@@ -130,7 +132,7 @@ export default function ExpandableCardDemo() {
                       href={active.ctaLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center px-4 py-2 text-sm rounded-full font-bold cursor-pointer transition bg-background text-foreground hover:bg-zinc-800"
+                      className="inline-flex items-center px-4 py-2 text-sm rounded-md font-bold cursor-pointer transition bg-background text-foreground hover:bg-zinc-800"
                     >
                       <IconPlayerPlay size={16} className="mr-2" />
                       Open Site
@@ -140,7 +142,7 @@ export default function ExpandableCardDemo() {
                         href={active.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center px-4 py-2 text-sm rounded-full font-bold cursor-pointer bg-foreground text-background  border border-background hover:bg-zinc-200 transition"
+                        className="inline-flex items-center px-4 py-2 text-sm rounded-md font-bold cursor-pointer bg-foreground text-background  border border-background hover:bg-zinc-200 transition"
                       >
                         <IconBrandGithub size={16} className="mr-2" />
                         GitHub
@@ -154,7 +156,7 @@ export default function ExpandableCardDemo() {
         ) : null}
       </AnimatePresence>
       <ul className=" mx-auto w-full gap-4">
-        {cards.slice(0, 5).map((card, index) => (
+        {cards.map((card, index) => (
           <ProjectCard
             key={`card-${card.title}-${index}-${id}`}
             card={card}

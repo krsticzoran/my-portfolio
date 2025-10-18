@@ -5,11 +5,14 @@ import { StaticImageData } from "next/image";
 import aiBuddyImage from "@/assets/ai-buddy.webp";
 import basketballImage from "@/assets/basketball.webp";
 import eStoreImage from "@/assets/e-store.webp";
+import fakturify from "@/assets/fakturify.webp";
+import infiniwave from "@/assets/infiniwave.webp";
 import learnPlus from "@/assets/learnplus.webp";
 import realEstateImage from "@/assets/real-estate.webp";
 import rolloImage from "@/assets/rollo.webp";
 
 export type Project = {
+  type: "client" | "personal";
   description: string;
   title: string;
   src: string | StaticImageData;
@@ -23,6 +26,36 @@ export type Project = {
 
 export const projectsData: Project[] = [
   {
+    type: "client",
+    description: "Nuxt 3, Vue, Tailwind CSS, Markdown Blog",
+    title: "Fakturify – SaaS Marketing Site – Client Project",
+    src: fakturify,
+    year: "2025",
+    explore: "Explore",
+    ctaText: "Live",
+    ctaLink: "https://www.fakturify.com/",
+    content: () => {
+      return (
+        <>
+          <p>
+            Created a high-performance marketing website for <strong>Fakturify</strong>, an
+            invoicing SaaS platform targeting Serbian freelancers. The site focuses on conversion
+            optimization and clear product presentation with smooth entrance animations and polished
+            UX.
+          </p>
+          <p>
+            Implemented using <strong>Nuxt 3</strong> for SSR benefits,{" "}
+            <strong>Tailwind CSS</strong>
+            for rapid styling, and a custom markdown parsing system for the blog. Features include
+            dynamic routing, contact form with spam protection, and fully responsive design
+            optimized for all devices.
+          </p>
+        </>
+      );
+    },
+  },
+  {
+    type: "client",
     description: "Next.js, TypeScript, Tailwind CSS, Strapi",
     title: "Learn Plus – NGO Website – Client Project (Upwork)",
     src: learnPlus,
@@ -48,8 +81,35 @@ export const projectsData: Project[] = [
       );
     },
   },
-
   {
+    type: "client",
+    description: "Figma to HTML/CSS/JS",
+    title: "Infiniwave – Client Project (Upwork)",
+    src: infiniwave,
+    year: "2025",
+    explore: "Explore",
+    ctaText: "Live",
+    github: "https://github.com/krsticzoran/Infiniwave",
+    ctaLink: "https://infiniwave.be/",
+    content: () => {
+      return (
+        <>
+          <p>
+            Client project from <strong>Upwork</strong>, focused on converting a detailed{" "}
+            <strong>Figma design</strong> into a fully responsive and pixel-perfect{" "}
+            <strong>landing page</strong> using <strong>HTML, CSS,</strong> and{" "}
+            <strong>JavaScript</strong>.
+          </p>
+          <p>
+            The goal was to deliver a clean, maintainable codebase with smooth animations and
+            consistent layout across all devices, following best front-end development practices.
+          </p>
+        </>
+      );
+    },
+  },
+  {
+    type: "personal",
     description: "Next.js, Tailwind CSS, Framer Motion, WP as Headless CMS",
     title: "Tea Shop – E-commerce Website – Personal Project",
     src: eStoreImage,
@@ -76,6 +136,7 @@ export const projectsData: Project[] = [
     },
   },
   {
+    type: "client",
     description: "Next.js, SASS, Resend API",
     title: "Basketball Coach Website – Client Project ",
     src: basketballImage,
@@ -104,6 +165,7 @@ export const projectsData: Project[] = [
   },
 
   {
+    type: "client",
     description: "SEO",
     title: "Rollo Website – Client Project ",
     src: rolloImage,
@@ -131,6 +193,7 @@ export const projectsData: Project[] = [
     },
   },
   {
+    type: "personal",
     description: "React, TypeScript, GraphQL, Express.js, MongoDB",
     title: "Real Estate Agency Website – Personal Project ",
     src: realEstateImage,
@@ -159,6 +222,7 @@ export const projectsData: Project[] = [
     },
   },
   {
+    type: "personal",
     description: "React, Bootstrap, Redux Toolkit, Firebase",
     title: "AI Buddy – Personal Project ",
     src: aiBuddyImage,

@@ -55,7 +55,7 @@ export default function ProjectCard({ card, index, id, setActive }: Props) {
           </div>
           <motion.button
             layoutId={`button-${card.title}-${id}`}
-            className="hidden md:block px-6 py-2 text-sm lg:text-base rounded-full font-semibold bg-foreground text-background hover:bg-zinc-700 transition-colors duration-300 mt-6 md:mt-0 capitalize cursor-pointer"
+            className="hidden md:block px-6 py-2 text-sm lg:text-base rounded-md font-semibold bg-foreground text-background hover:bg-zinc-700 transition-colors duration-300 mt-6 md:mt-0 capitalize cursor-pointer"
           >
             {card.explore}
           </motion.button>
