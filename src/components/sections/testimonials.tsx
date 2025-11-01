@@ -1,6 +1,10 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import dynamic from "next/dynamic";
+
+import { testimonials } from "@/data/testimonials";
 
 import Container from "../layout/container";
 
@@ -9,6 +13,24 @@ const AnimatedTestimonials = dynamic(() => import("../ui/animated-testimonials")
 });
 
 export default function Testimonials() {
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    let idleId: number | undefined;
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+
+    if ("requestIdleCallback" in window) {
+      idleId = requestIdleCallback(() => setIsReady(true), { timeout: 2000 });
+    } else {
+      timeoutId = setTimeout(() => setIsReady(true), 1000);
+    }
+
+    return () => {
+      if (idleId !== undefined) cancelIdleCallback(idleId);
+      if (timeoutId !== undefined) clearTimeout(timeoutId);
+    };
+  }, []);
+
   return (
     <Container
       as="section"
@@ -19,44 +41,7 @@ export default function Testimonials() {
       <h2 id="testimonial-heading" className="sr-only">
         Testimonials
       </h2>
-      <AnimatedTestimonials
-        testimonials={[
-          {
-            quote: "Zoran fixed a tricky deployment bug fast and kept everything running smoothly.",
-            name: "Shea Onstott - USA",
-            designation: "Startup Founder",
-            src: "/shea.webp",
-          },
-          {
-            quote:
-              "The work was done properly, communication was clear and smooth. Nothing to complain about. I definitely recommend!",
-            name: "Siham Ouanguich - Belgium",
-            designation: "Designer",
-            src: "/siham.jpeg",
-          },
-          {
-            quote:
-              "Zoran designed and built my website exactly as I wanted. Professional, reliable, and easy to work with.",
-            name: "Siniša Savović - Serbia",
-            designation: "Basketball Coach",
-            src: "/sinisa.jpg",
-          },
-          {
-            quote:
-              "Great guy, responsive and with a strong understanding of his assignments. Will definitely hire again.",
-            name: "Muthasim Abrar - Australia",
-            designation: "Full Stack Developer at MAYVK",
-            src: "/muthasim.jpeg",
-          },
-          {
-            quote:
-              "Zoran was great from start to finish, very professional, responsive, and delivered a fully functional, attractive website. Highly recommended!",
-            name: "Krunoslav Vukelić - Croatia",
-            designation: "Professor",
-            src: "/kruno.webp",
-          },
-        ]}
-      />
+      {isReady && <AnimatedTestimonials testimonials={testimonials} />}
     </Container>
   );
 }
