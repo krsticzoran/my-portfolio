@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
 import dynamic from "next/dynamic";
+import { useInView } from "react-intersection-observer";
 
 import { testimonials } from "@/data/testimonials";
 
@@ -10,26 +9,15 @@ import Container from "../layout/container";
 
 const AnimatedTestimonials = dynamic(() => import("../ui/animated-testimonials"), {
   ssr: false,
+  loading: () => <div className="w-full h-[660px]" />, // Placeholder to reserve space
 });
 
 export default function Testimonials() {
-  const [isReady, setIsReady] = useState(false);
-
-  useEffect(() => {
-    let idleId: number | undefined;
-    let timeoutId: ReturnType<typeof setTimeout> | undefined;
-
-    if ("requestIdleCallback" in window) {
-      idleId = requestIdleCallback(() => setIsReady(true), { timeout: 2000 });
-    } else {
-      timeoutId = setTimeout(() => setIsReady(true), 1000);
-    }
-
-    return () => {
-      if (idleId !== undefined) cancelIdleCallback(idleId);
-      if (timeoutId !== undefined) clearTimeout(timeoutId);
-    };
-  }, []);
+  // Use Intersection Observer to lazy-load testimonials when visible
+  const { ref, inView } = useInView({
+    triggerOnce: true, // Only load once
+    threshold: 0.1, // Trigger when 10% visible
+  });
 
   return (
     <Container
@@ -38,10 +26,14 @@ export default function Testimonials() {
       aria-labelledby="testimonial-heading"
       className="mt-24 md:mt-28 lg:mt-32 2xl:mt-36 scroll-mt-30 lg:scroll-mt-40"
     >
-      <h2 id="testimonial-heading" className="sr-only">
-        Testimonials
-      </h2>
-      {isReady && <AnimatedTestimonials testimonials={testimonials} />}
+      <div ref={ref} className="h-full">
+        <h2 id="testimonial-heading" className="sr-only">
+          Testimonials
+        </h2>
+
+        {/* Render AnimatedTestimonials only when in viewport */}
+        {inView && <AnimatedTestimonials testimonials={testimonials} />}
+      </div>
     </Container>
   );
 }
