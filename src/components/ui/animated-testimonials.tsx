@@ -44,7 +44,7 @@ const AnimatedTestimonials = ({
     return Math.floor(Math.random() * 21) - 10;
   };
   return (
-    <div className="mx-auto max-w-sm px-4 py-20  antialiased md:max-w-4xl md:px-8 lg:px-12">
+    <div className="mx-auto max-w-sm px-4 md:py-20  antialiased md:max-w-4xl md:px-8 lg:px-12">
       <div className="relative grid grid-cols-1 gap-10 md:gap-20 md:grid-cols-2">
         <div>
           <div className="relative h-80 w-full">
@@ -80,7 +80,7 @@ const AnimatedTestimonials = ({
                 >
                   <Image
                     src={testimonial.src}
-                    alt={testimonial.name}
+                    alt={`Photo of ${testimonial.name}`}
                     width={500}
                     height={500}
                     draggable={false}
@@ -143,12 +143,14 @@ const AnimatedTestimonials = ({
             <button
               onClick={handlePrev}
               className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800 cursor-pointer"
+              aria-label="Previous testimonial"
             >
               <IconArrowLeft className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:rotate-12 dark:text-neutral-400" />
             </button>
             <button
               onClick={handleNext}
               className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
+              aria-label="Next testimonial"
             >
               <IconArrowRight className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:-rotate-12 dark:text-neutral-400 cursor-pointer" />
             </button>

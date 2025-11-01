@@ -13,8 +13,12 @@ export default function Testimonials() {
     <Container
       as="section"
       id="testimonials"
+      aria-labelledby="testimonial-heading"
       className="mt-24 md:mt-28 lg:mt-32 2xl:mt-36 scroll-mt-30 lg:scroll-mt-40"
     >
+      <h2 id="testimonial-heading" className="sr-only">
+        Testimonials
+      </h2>
       <AnimatedTestimonials
         testimonials={[
           {
