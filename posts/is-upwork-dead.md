@@ -1,7 +1,8 @@
 ---
 title: "Is Upwork Dead? Is It Too Late to Start a Freelance Career?"
 date: "2025-11-01"
-excerpt: "My 3-year journey from zero interviews to landing clients on Upwork - what actually worked and what didn't."
+excerpt: "My 3-year journey from zero interviews to landing clients on Upwork. From 300 wasted connects to building a portfolio that changed everything - what actually worked, what didn't, and how I went from $15 jobs to consistent freelance work."
+imageUrl: "/upwork.webp"
 ---
 
 The current situation in the IT market isn't easy. Is it the economic crisis, wars, or AI? I'd say it's a mix of all of these. I believe many of you feel the same - it's often depressing, it seems impossible to land that first job, and the bar is set incredibly high.

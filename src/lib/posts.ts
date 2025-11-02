@@ -10,6 +10,7 @@ export interface PostMetadata {
   date: string;
   excerpt: string;
   slug: string;
+  imageUrl: string;
 }
 
 export interface Post extends PostMetadata {
@@ -39,6 +40,7 @@ export function getSortedPostsData(): PostMetadata[] {
         title: matterResult.data.title,
         date: matterResult.data.date,
         excerpt: matterResult.data.excerpt,
+        imageUrl: matterResult.data.imageUrl,
       } as PostMetadata;
     });
 
@@ -60,6 +62,7 @@ export function getPostBySlug(slug: string): Post {
     title: matterResult.data.title,
     date: matterResult.data.date,
     excerpt: matterResult.data.excerpt,
+    imageUrl: matterResult.data.imageUrl,
   };
 }
 
