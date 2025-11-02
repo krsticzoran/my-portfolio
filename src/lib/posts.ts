@@ -12,6 +12,10 @@ export interface PostMetadata {
   slug: string;
 }
 
+export interface Post extends PostMetadata {
+  content: string;
+}
+
 export function getSortedPostsData(): PostMetadata[] {
   // Get file names under /posts
   const fileNames = fs.readdirSync(postsDirectory);
@@ -45,7 +49,7 @@ export function getSortedPostsData(): PostMetadata[] {
 }
 
 // one post data
-export function getPostBySlug(slug: string) {
+export function getPostBySlug(slug: string): Post {
   const fullPath = path.join(postsDirectory, `${slug}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const matterResult = matter(fileContents);
@@ -53,7 +57,9 @@ export function getPostBySlug(slug: string) {
   return {
     slug,
     content: matterResult.content,
-    ...matterResult.data,
+    title: matterResult.data.title,
+    date: matterResult.data.date,
+    excerpt: matterResult.data.excerpt,
   };
 }
 
