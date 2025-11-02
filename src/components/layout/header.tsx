@@ -28,7 +28,7 @@ export function Header() {
       {/* Logo wrapped in a Link to scroll to #hero */}
       <div className="flex items-center">
         <Link
-          href={"/#hero"}
+          href={"/"}
           className="flex items-center cursor-pointer"
           aria-label="Scroll to hero section"
         >
