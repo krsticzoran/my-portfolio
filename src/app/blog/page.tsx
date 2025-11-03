@@ -19,14 +19,20 @@ export default function BlogPage() {
         </p>
       </div>
       <ul className="flex flex-col gap-8 lg:gap-10">
-        {posts.map(({ slug, title, excerpt, imageUrl }) => (
+        {posts.map(({ slug, title, excerpt, imageUrl }, index) => (
           <li key={slug}>
             <Link
               href={`/blog/${slug}`}
               className="flex flex-col lg:flex-row gap-6 p-4 sm:p-6 rounded-lg border hover:bg-zinc-800 transition-colors duration-300"
             >
               <div className="relative lg:min-w-[356px] h-[200px] sm:h-[240px] lg:h-[200px] rounded-lg overflow-hidden">
-                <Image src={imageUrl} alt={title} fill className="object-cover object-top" />
+                <Image
+                  src={imageUrl}
+                  alt={title}
+                  fill
+                  className="object-cover object-top"
+                  priority={index === 0}
+                />
               </div>
               <div className="flex-1">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 tracking-tight leading-tight">
