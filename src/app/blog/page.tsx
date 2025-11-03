@@ -32,6 +32,7 @@ export default function BlogPage() {
                   fill
                   className="object-cover object-top"
                   priority={index === 0}
+                  sizes="(max-width: 1024px) 100vw, 356px"
                 />
               </div>
               <div className="flex-1">
