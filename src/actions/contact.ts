@@ -70,6 +70,7 @@ export async function submitContactForm(data: {
 
     if (error) {
       console.error("Supabase insert error:", error);
+      return { success: false, message: "Database error" };
     }
 
     return { success: true };
