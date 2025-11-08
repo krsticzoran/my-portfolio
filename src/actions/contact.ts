@@ -5,6 +5,8 @@ import { headers } from "next/headers";
 import { Resend } from "resend";
 import { z } from "zod";
 
+import { supabaseServer } from "@/lib/supabaseServer";
+
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const rateLimiter = new LRUCache<string, { count: number }>({
@@ -80,6 +82,16 @@ export async function submitContactForm(data: {
       </div>
     `,
     });
+    const supabase = supabaseServer();
+    const { error } = await supabase.from("contact_messages").insert({
+      email: data.email,
+      message: sanitizedMessage,
+    });
+
+    if (error) {
+      console.error("Supabase insert error:", error);
+    }
+
     return { success: true };
   } catch (error) {
     const message = error instanceof Error ? error.message : "Failed to send email";
