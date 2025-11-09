@@ -13,7 +13,7 @@ const formSchema = z.object({
   comment: z.string().min(1, "Comment cannot be empty"),
 });
 
-export default function CommentForm() {
+export default function CommentForm({ slug }: { slug: string }) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: { comment: "" },
@@ -23,7 +23,7 @@ export default function CommentForm() {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const result = await addComment(values);
+      const result = await addComment({ comment: values.comment, postSlug: slug });
       if (result.success) {
         toast.success("Comment added successfully!");
         reset();

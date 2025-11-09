@@ -55,7 +55,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       >
         <ReactMarkdown>{post.content}</ReactMarkdown>
       </article>
-      <Comments />
+      <Comments slug={slug} />
     </Container>
   );
 }

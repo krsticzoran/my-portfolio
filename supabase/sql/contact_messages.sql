@@ -1,3 +1,21 @@
+create table if not exists contact_messages (
+  id bigserial primary key,
+  email text not null,
+  message text not null,
+  created_at timestamptz not null default now()
+);
+
+
+alter table contact_messages enable row level security;
+
+revoke all on contact_messages from anon;
+
+create policy "Allow public inserts"
+on contact_messages
+for insert
+to anon
+with check (true);
+
 create or replace function notify_send_mail()
 returns trigger as $$
 declare
@@ -19,3 +37,5 @@ begin
   return NEW;
 end;
 $$ language plpgsql security definer;
+
+
