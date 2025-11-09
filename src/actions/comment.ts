@@ -13,6 +13,7 @@ export async function addComment( data: {
         const { error } = await supabase.from("comments").insert({
             post_slug: data.postSlug,             
             comment: data.comment, 
+            name: "Anonymous",
         });
     
         if (error) {
