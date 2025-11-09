@@ -2,8 +2,10 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
+import { addComment } from "@/actions/comment";
 import { Button } from "@/components/ui/button";
 import { Form, FormField, FormItem, FormControl, FormMessage } from "@/components/ui/form";
 
@@ -17,8 +19,34 @@ export default function CommentForm() {
     defaultValues: { comment: "" },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values.comment);
+  const { reset } = form;
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      const result = await addComment(values);
+      if (result.success) {
+        toast.success("Comment added successfully!");
+        reset();
+      } else {
+        toast.error(result.message || "Error adding comment", {
+          style: {
+            background: "#F44336",
+            color: "white",
+            border: "none",
+          },
+          duration: 5000,
+        });
+      }
+    } catch {
+      toast.error("Server error", {
+        style: {
+          background: "#F44336",
+          color: "white",
+          border: "none",
+        },
+        duration: 5000,
+      });
+    }
   };
 
   return (
