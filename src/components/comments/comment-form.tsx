@@ -69,8 +69,12 @@ export default function CommentForm({ slug }: { slug: string }) {
             </FormItem>
           )}
         />
-        <Button type="submit" className="px-6 py-2 text-sm lg:text-base rounded-full font-semibold">
-          Send Comment
+        <Button
+          type="submit"
+          disabled={form.formState.isSubmitting}
+          className="px-6 py-2 text-sm lg:text-base rounded-full font-semibold"
+        >
+          {form.formState.isSubmitting ? "Sending..." : "Send Comment"}
         </Button>
       </form>
     </Form>
