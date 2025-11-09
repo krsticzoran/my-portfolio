@@ -1,6 +1,7 @@
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 
+import Comments from "@/components/comments/comments";
 import Container from "@/components/layout/container";
 import { getAllPostSlugs, getPostBySlug } from "@/lib/posts";
 
@@ -54,6 +55,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       >
         <ReactMarkdown>{post.content}</ReactMarkdown>
       </article>
+      <Comments />
     </Container>
   );
 }
