@@ -7,10 +7,20 @@ import { z } from "zod";
 
 import { addComment } from "@/actions/comment";
 import { Button } from "@/components/ui/button";
-import { Form, FormField, FormItem, FormControl, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormControl,
+  FormMessage,
+  FormLabel,
+} from "@/components/ui/form";
+
+import { Input } from "../ui/input";
 
 const formSchema = z.object({
   comment: z.string().min(1, "Comment cannot be empty"),
+  website: z.string().optional(), // honeypot
 });
 
 export default function CommentForm({ slug }: { slug: string }) {
@@ -64,6 +74,22 @@ export default function CommentForm({ slug }: { slug: string }) {
                   rows={7}
                   {...field}
                 />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        {/* honeypot field to prevent spam  */}
+        <FormField
+          control={form.control}
+          name="website" // honeypot field
+          render={({ field }) => (
+            <FormItem className="hidden">
+              {" "}
+              {/* hide for users */}
+              <FormLabel className="sr-only">Website</FormLabel>
+              <FormControl>
+                <Input type="text" autoComplete="off" tabIndex={-1} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

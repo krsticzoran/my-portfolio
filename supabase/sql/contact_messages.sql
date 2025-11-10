@@ -17,7 +17,11 @@ to anon
 with check (true);
 
 create or replace function notify_send_mail()
-returns trigger as $$
+returns trigger 
+language plpgsql 
+security definer
+set search_path = public, extensions  
+as $$  
 declare
   payload jsonb;
   request_id bigint;
@@ -36,6 +40,4 @@ begin
 
   return NEW;
 end;
-$$ language plpgsql security definer;
-
-
+$$;
