@@ -1,5 +1,8 @@
 "use server"; 
 
+import { headers } from "next/headers";
+
+import { rateLimiter } from "@/lib/rate-limit";
 import { supabaseServer } from "@/lib/supabaseServer";
 
 export async function addComment( data: {
@@ -12,6 +15,22 @@ export async function addComment( data: {
    // it indicates a bot submission since real users won't see or fill this field.
    if (data.website && data.website.trim() !== "") {
     return { success: false, message: "Honeypot field filled, likely a bot submission" };
+  }
+
+  // Get client IP
+  const headersList = await headers();
+  const ip = headersList.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+
+  // UPSTASH RATE LIMITING
+  const { success, reset } = await rateLimiter.limit(ip);
+
+  if (!success) {
+    const now = Date.now();
+    const minutes = Math.ceil((reset - now) / 1000 / 60);
+    return {
+      success: false,
+      message: `Too many requests. Please try again in ${minutes} minute${minutes > 1 ? "s" : ""}.`,
+    };
   }
 
     try {
