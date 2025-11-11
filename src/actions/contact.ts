@@ -23,6 +23,11 @@ export async function submitContactForm(data: {
     return { success: false, message: "Honeypot field filled, likely a bot submission" };
   }
 
+  // Check is message length too long
+  if (data.message.length > 2000) {
+    return { success: false, message: "Message is too long (max 2000 characters)" };
+  }
+
    // Get client IP
    const headersList = await headers();
    const ip = headersList.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
