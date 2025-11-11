@@ -3,6 +3,7 @@
 import { headers } from "next/headers";
 
 import { commentsRateLimiter } from "@/lib/rate-limit";
+import { sanitizeInput } from "@/lib/sanitize";
 import { supabaseServer } from "@/lib/supabaseServer";
 
 export async function addComment( data: {
@@ -50,11 +51,14 @@ export async function addComment( data: {
     };
   }
 
+  // Sanitize comment to prevent XSS
+  const sanitizeComment = sanitizeInput(data.comment);
+
     try {
         const supabase = supabaseServer();
         const { error } = await supabase.from("comments").insert({
             post_slug: data.postSlug,             
-            comment: data.comment, 
+            comment: sanitizeComment, 
             name: "Anonymous",
         });
     

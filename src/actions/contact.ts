@@ -4,11 +4,8 @@ import { headers } from "next/headers";
 import { z } from "zod";
 
 import { contactRateLimiter } from "@/lib/rate-limit";
+import { sanitizeInput } from "@/lib/sanitize";
 import { supabaseServer } from "@/lib/supabaseServer";
-
-const sanitizeMessage = (input: string) => {
-  return input.replace(/</g, "&lt;").replace(/>/g, "&gt;").substring(0, 2000);
-};
 
 export async function submitContactForm(data: {
   email: string;
@@ -44,7 +41,8 @@ export async function submitContactForm(data: {
    // Get client IP
    const headersList = await headers();
    const ip = headersList.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-
+   
+  // UPSTASH RATE LIMITING
   const { success, reset } = await contactRateLimiter.limit(ip);
 
 if (!success) {
@@ -55,10 +53,12 @@ if (!success) {
   };
 }
 
+// Validate email format
   const isValidEmail = z.string().email().safeParse(data.email).success;
   if (!isValidEmail) return { success: false, message: "Invalid email" };
 
-  const sanitizedMessage = sanitizeMessage(data.message);
+  // Sanitize message to prevent XSS
+  const sanitizedMessage = sanitizeInput(data.message);
 
   try {
     const supabase = supabaseServer();
