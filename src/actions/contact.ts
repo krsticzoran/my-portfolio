@@ -17,10 +17,18 @@ export async function submitContactForm(data: {
   startTime: number;
 }) {
 
+  const now = Date.now();
+
   // Honeypot check: if the hidden 'website' field is filled,
   // it indicates a bot submission since real users won't see or fill this field.
   if (data.website && data.website.trim() !== "") {
     return { success: false, message: "Honeypot field filled, likely a bot submission" };
+  }
+
+  // Check if form was submitted too quickly (less than 3 seconds)
+  const elapsedTime = now - data.startTime;
+  if (elapsedTime < 3000) {
+    return { success: false, message: "Form submitted too quickly" };
   }
 
   // Check is message length too long
@@ -35,7 +43,6 @@ export async function submitContactForm(data: {
   const { success, reset } = await contactRateLimiter.limit(ip);
 
 if (!success) {
-  const now = Date.now();
   const minutes = Math.ceil((reset - now) / 1000 / 60);
   return {
     success: false,

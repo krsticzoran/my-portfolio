@@ -20,20 +20,26 @@ import { Input } from "../ui/input";
 
 const formSchema = z.object({
   comment: z.string().min(1, "Comment cannot be empty"),
+  startTime: z.number(),
   website: z.string().optional(), // honeypot
 });
 
 export default function CommentForm({ slug }: { slug: string }) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: { comment: "" },
+    defaultValues: { comment: "", startTime: Date.now(), website: "" },
   });
 
   const { reset } = form;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const result = await addComment({ comment: values.comment, postSlug: slug });
+      const result = await addComment({
+        comment: values.comment,
+        postSlug: slug,
+        startTime: values.startTime,
+        website: values.website,
+      });
       if (result.success) {
         toast.success("Comment added successfully!");
         reset();

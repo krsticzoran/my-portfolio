@@ -9,8 +9,10 @@ export async function addComment( data: {
     comment:string;
     postSlug:string;
     website?: string;
+    startTime: number;
 } 
 ) {
+  const now = Date.now();
 
    // it indicates a bot submission since real users won't see or fill this field.
    if (data.website && data.website.trim() !== "") {
@@ -22,6 +24,12 @@ export async function addComment( data: {
     return { success: false, message: "Comment is too long (max 2000 characters)" };
   }
 
+   // Check if form was submitted too quickly (less than 3 seconds)
+   const elapsedTime = now - data.startTime;
+   if (elapsedTime < 3000) {
+     return { success: false, message: "Form submitted too quickly" };
+   }
+
   // Get client IP
   const headersList = await headers();
   const ip = headersList.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
@@ -30,7 +38,6 @@ export async function addComment( data: {
   const { success, reset } = await commentsRateLimiter.limit(ip);
 
   if (!success) {
-    const now = Date.now();
     const minutes = Math.ceil((reset - now) / 1000 / 60);
     return {
       success: false,
