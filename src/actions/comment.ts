@@ -2,7 +2,7 @@
 
 import { headers } from "next/headers";
 
-import { rateLimiter } from "@/lib/rate-limit";
+import { commentsRateLimiter } from "@/lib/rate-limit";
 import { supabaseServer } from "@/lib/supabaseServer";
 
 export async function addComment( data: {
@@ -22,7 +22,7 @@ export async function addComment( data: {
   const ip = headersList.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
 
   // UPSTASH RATE LIMITING
-  const { success, reset } = await rateLimiter.limit(ip);
+  const { success, reset } = await commentsRateLimiter.limit(ip);
 
   if (!success) {
     const now = Date.now();
