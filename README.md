@@ -48,12 +48,19 @@ This portfolio showcases my work, skills, and the technologies I use.
 
 ## Security and Anti-Spam Measures
 
-To protect the contact form from spam and abuse, several techniques have been implemented:
+To protect the contact form and comments system from spam and abuse, several techniques have been implemented:
 
-- 🕳️ **Honeypot Field** – A hidden input that only bots tend to fill. If it's filled, the submission is flagged as spam.
-- ⏱️ **Time-Based Check** – If the form is submitted in under 3 seconds, it's likely a bot and gets rejected.
-- 🧼 **Input Sanitization** – All form inputs are sanitized to prevent cross-site scripting (XSS) and malicious code injection.
-- 🚫 **Rate Limiting** – Per-IP request limiting is implemented using an in-memory lru-cache. Requests are throttled to prevent spam and brute-force attacks.
+🕳️ Honeypot Field – A hidden input that only bots tend to fill. If it’s filled, the submission is flagged as spam.
+
+⏱️ Time-Based Check – If the form is submitted in under 3 seconds, it’s likely a bot and gets rejected.
+
+🧼 Input Sanitization – All user input is sanitized to remove HTML tags and prevent cross-site scripting (XSS) or code injection.
+
+🚫 Rate Limiting (Upstash Redis) – Each IP address is limited to a safe number of requests within a defined timeframe. Excessive submissions are temporarily blocked to prevent brute-force or spam attacks.
+
+📏 Length Validation – Messages and comments have a maximum character limit (2,000 characters) to avoid abuse and excessive payloads.
+
+🔒 Empty Input Check – Whitespace-only messages are ignored to ensure all submissions are meaningful.
 
 ## Status
 
