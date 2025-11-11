@@ -18,6 +18,7 @@ This portfolio showcases my work, skills, and the technologies I use.
 ### Frameworks and Languages
 
 - ⚛️ **Next.js** – React framework for building fast and scalable web apps.
+- 🟩 **Supabase** – Open-source backend as a service providing PostgreSQL, authentication, and real-time APIs.
 - 🟦 **TypeScript** – Typed superset of JavaScript for better safety and DX.
 
 ### Styling
@@ -64,9 +65,15 @@ To protect the contact form and comments system from spam and abuse, several tec
 
 ## Status
 
-🚧 This project is in its final development phase.
+Status
 
-The website is already visually polished and fully representative, but a few tasks remain:
+🚧 Currently under active development
 
-- Final testing and refinements
-- Minor visual and UX improvements
+The core of the portfolio is complete — fully responsive, performant, and visually polished.
+The focus has now shifted toward expanding the Blog section, which is being built with Supabase as the backend.
+
+Ongoing tasks:
+
+📰 Integrating Supabase-powered Blog (blog list + single post pages)
+
+💬 Developing the Comments system
