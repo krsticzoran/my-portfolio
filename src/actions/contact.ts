@@ -25,6 +25,11 @@ export async function submitContactForm(data: {
     return { success: false, message: "Honeypot field filled, likely a bot submission" };
   }
 
+  // Check if message is empty or whitespace only
+  if (!data.message.trim()) {
+    return { success: false, message: "Comment cannot be empty or whitespace only" };
+  }
+
   // Check if form was submitted too quickly (less than 3 seconds)
   const elapsedTime = now - data.startTime;
   if (elapsedTime < 3000) {

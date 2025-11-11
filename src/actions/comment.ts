@@ -19,6 +19,11 @@ export async function addComment( data: {
     return { success: false, message: "Honeypot field filled, likely a bot submission" };
   }
 
+  // Check if comment is empty or whitespace only
+  if (!data.comment.trim()) {
+    return { success: false, message: "Comment cannot be empty or whitespace only" };
+  }
+
   // Check is comment length too long
   if (data.comment.length > 2000) {
     return { success: false, message: "Comment is too long (max 2000 characters)" };
