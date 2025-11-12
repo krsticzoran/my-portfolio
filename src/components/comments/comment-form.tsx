@@ -37,8 +37,6 @@ const formSchema = z.object({
 export default function CommentForm({ slug }: { slug: string }) {
   const router = useRouter();
 
-  const [isFocused, setIsFocused] = useState(false);
-
   const { isAuthenticated, user, setUser } = useAuth();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -129,8 +127,10 @@ export default function CommentForm({ slug }: { slug: string }) {
                   <textarea
                     placeholder="Your comment here..."
                     className="flex min-h-[80px]  w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 resize-none"
-                    onFocus={isAuthenticated ? () => setIsFocused(true) : handleLogin}
-                    rows={isFocused ? 7 : 3}
+                    onClick={() => {
+                      if (!isAuthenticated) handleLogin();
+                    }}
+                    rows={isAuthenticated ? 7 : 3}
                     {...field}
                   />
                 </FormControl>
@@ -157,7 +157,7 @@ export default function CommentForm({ slug }: { slug: string }) {
           <Button
             type="submit"
             disabled={form.formState.isSubmitting}
-            className={`px-6 py-2 text-sm lg:text-base rounded-full font-semibold ${isFocused ? "visible" : "invisible"} cursor-pointer`}
+            className={`px-6 py-2 text-sm lg:text-base rounded-full font-semibold ${isAuthenticated ? "visible" : "invisible"} cursor-pointer`}
           >
             {form.formState.isSubmitting ? "Sending..." : "Send Comment"}
           </Button>
