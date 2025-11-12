@@ -1,20 +1,22 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
-import { createBrowserClient } from "@supabase/ssr";
-import type { User } from "@supabase/supabase-js";
+type UserType = {
+  name: string;
+  avatar_url?: string;
+} | null;
 
 type AuthContextType = {
-  user: User | null;
+  user: UserType;
   isAuthenticated: boolean;
-  loading: boolean;
+  setUser: (user: UserType) => void;
 };
 
 const AuthContext = createContext<AuthContextType>({
   user: null,
   isAuthenticated: false,
-  loading: true,
+  setUser: () => {},
 });
 
 export function AuthProvider({
@@ -22,37 +24,14 @@ export function AuthProvider({
   initialUser,
 }: {
   children: React.ReactNode;
-  initialUser: User | null;
+  initialUser: UserType;
 }) {
-  const [user, setUser] = useState<User | null>(initialUser);
-  const [loading, setLoading] = useState(!initialUser);
-
-  useEffect(() => {
-    const supabase = createBrowserClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    );
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((event, session) => {
-      setUser(session?.user ?? null);
-      setLoading(false);
-    });
-
-    if (initialUser) {
-      setLoading(false);
-    }
-
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, [initialUser]);
+  const [user, setUser] = useState<UserType>(initialUser);
 
   const value = {
     user,
     isAuthenticated: !!user,
-    loading,
+    setUser,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
