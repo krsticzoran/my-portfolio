@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
         hostname: "assets.aceternity.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+      },
     ],
   },
 };

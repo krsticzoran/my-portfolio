@@ -11,6 +11,8 @@ export async function addComment( data: {
     postSlug:string;
     website?: string;
     startTime: number;
+    name: string;
+    avatar_url?: string;
 } 
 ) {
   const now = Date.now();
@@ -59,7 +61,8 @@ export async function addComment( data: {
         const { error } = await supabase.from("comments").insert({
             post_slug: data.postSlug,             
             comment: sanitizeComment, 
-            name: "Anonymous",
+            name: data.name,
+            avatar_url: data.avatar_url,
         });
     
         if (error) {

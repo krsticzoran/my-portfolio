@@ -3,6 +3,7 @@ create table if not exists comments (
   id bigserial primary key,
   post_slug text not null,             
   comment text not null, 
+  avatar_url text not null,
   name text not null,                                           
   created_at timestamptz not null default now()
 );
