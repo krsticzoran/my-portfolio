@@ -7,7 +7,6 @@ import { createClient } from "@/utils/supabase/server";
 export async function middleware(request: NextRequest) {
   const response = NextResponse.next();
 
-  // 👇 Dodaj custom header da vidiš da middleware radi
   response.headers.set("x-middleware-test", "true");
 
   const supabase = await createClient();
