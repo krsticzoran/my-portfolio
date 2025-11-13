@@ -1,4 +1,5 @@
 import CommentForm from "./comment-form";
+import CommentsList from "./comments-list";
 
 export default function Comments({ slug }: { slug: string }) {
   return (
@@ -7,6 +8,7 @@ export default function Comments({ slug }: { slug: string }) {
         Comments
       </h2>
       <CommentForm slug={slug} />
+      <CommentsList slug={slug} />
     </div>
   );
 }
