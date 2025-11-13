@@ -7,7 +7,9 @@ import Image from "next/image";
 
 export default function CommentsList({ slug }: { slug: string }) {
   const supabase = createClientComponentClient();
-  const [comments, setComments] = useState<any[]>([]);
+  const [comments, setComments] = useState<
+    { id: string; avatar_url: string; name: string; created_at: string; comment: string }[]
+  >([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
