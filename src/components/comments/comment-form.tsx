@@ -155,7 +155,7 @@ export default function CommentForm({ slug }: { slug: string }) {
           <Button
             type="submit"
             disabled={form.formState.isSubmitting}
-            className={`px-6 py-2 text-sm lg:text-base rounded-full font-semibold ${isAuthenticated ? "visible" : "invisible"} cursor-pointer`}
+            className={`px-6 py-2  text-sm lg:text-base rounded-full font-semibold ${isAuthenticated ? "visible mb-12" : "invisible"} cursor-pointer`}
           >
             {form.formState.isSubmitting ? "Sending..." : "Send Comment"}
           </Button>

@@ -5,11 +5,20 @@ import { useEffect, useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Image from "next/image";
 
+type CommentType = {
+  id: string;
+  avatar_url: string;
+  name: string;
+  created_at: string;
+  comment: string;
+  post_slug: string;
+};
+
 export default function CommentsList({ slug }: { slug: string }) {
   const supabase = createClientComponentClient();
-  const [comments, setComments] = useState<
-    { id: string; avatar_url: string; name: string; created_at: string; comment: string }[]
-  >([]);
+
+  const [comments, setComments] = useState<CommentType[]>([]);
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -30,9 +39,37 @@ export default function CommentsList({ slug }: { slug: string }) {
     };
 
     fetchComments();
+
+    const channel = supabase
+      .channel("realtime-comments")
+      .on(
+        "postgres_changes",
+        {
+          event: "INSERT",
+          schema: "public",
+          table: "comments",
+          filter: `post_slug=eq.${slug}`,
+        },
+        (payload) => {
+          console.log("REALTIME NEW COMMENT:", payload.new);
+          setComments((prev) => [payload.new as CommentType, ...prev]);
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, [slug]);
 
   if (loading) return <p className="text-zinc-400">Loading comments...</p>;
+
+  if (!comments.length)
+    return (
+      <p className="text-zinc-500 italic border-t py-6">
+        No comments yet. Be the first to comment!
+      </p>
+    );
 
   return (
     <div className="w-full border-t">
