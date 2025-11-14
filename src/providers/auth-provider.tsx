@@ -5,6 +5,7 @@ import { createContext, useContext, useState } from "react";
 type UserType = {
   name: string;
   avatar_url?: string;
+  user_id: string;
 } | null;
 
 type AuthContextType = {

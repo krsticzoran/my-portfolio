@@ -35,7 +35,6 @@ export default function CommentsList({ slug }: { slug: string }) {
         .order("created_at", { ascending: false });
 
       console.log("FETCH ERROR:", error);
-      console.log("FETCH DATA:", data);
 
       if (data) setComments(data);
       setLoading(false);
@@ -54,7 +53,6 @@ export default function CommentsList({ slug }: { slug: string }) {
           filter: `post_slug=eq.${slug}`,
         },
         (payload) => {
-          console.log("REALTIME NEW COMMENT:", payload.new);
           setComments((prev) => [payload.new as CommentType, ...prev]);
         }
       )

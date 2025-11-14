@@ -33,6 +33,7 @@ const formSchema = z.object({
   website: z.string().optional(), // honeypot
   name: z.string(),
   avatar_url: z.string(),
+  user_id: z.string(),
 });
 
 export default function CommentForm({ slug }: { slug: string }) {
@@ -56,6 +57,7 @@ export default function CommentForm({ slug }: { slug: string }) {
         website: values.website,
         name: user?.name || "Anonymous",
         avatar_url: user?.avatar_url || "/avatar.webp",
+        user_id: user ? user.user_id : "guest",
       });
       if (result.success) {
         toast.success("Comment added successfully!");

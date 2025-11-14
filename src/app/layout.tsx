@@ -58,6 +58,7 @@ export default async function RootLayout({
     ? {
         avatar_url: session.user.user_metadata.avatar_url || null,
         name: session.user.user_metadata.full_name || null,
+        user_id: session.user.id,
       }
     : null;
 

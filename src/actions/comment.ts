@@ -13,6 +13,7 @@ export async function addComment( data: {
     startTime: number;
     name: string;
     avatar_url?: string;
+    user_id: string;
 } 
 ) {
   const now = Date.now();
@@ -63,6 +64,7 @@ export async function addComment( data: {
             comment: sanitizeComment, 
             name: data.name,
             avatar_url: data.avatar_url,
+            user_id: data.user_id,
         });
     
         if (error) {
