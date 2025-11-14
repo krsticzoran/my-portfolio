@@ -18,6 +18,8 @@ export async function addComment( data: {
 ) {
   const now = Date.now();
 
+  console.log(data.name, data.avatar_url, data.user_id);
+
    // it indicates a bot submission since real users won't see or fill this field.
    if (data.website && data.website.trim() !== "") {
     return { success: false, message: "Honeypot field filled, likely a bot submission" };

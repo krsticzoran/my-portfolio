@@ -31,7 +31,6 @@ const formSchema = z.object({
   comment: z.string().min(1, "Comment cannot be empty"),
   startTime: z.number(),
   website: z.string().optional(), // honeypot
-  name: z.string(),
 });
 
 export default function CommentForm({ slug }: { slug: string }) {
