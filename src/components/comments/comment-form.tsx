@@ -32,8 +32,6 @@ const formSchema = z.object({
   startTime: z.number(),
   website: z.string().optional(), // honeypot
   name: z.string(),
-  avatar_url: z.string(),
-  user_id: z.string(),
 });
 
 export default function CommentForm({ slug }: { slug: string }) {
@@ -43,7 +41,11 @@ export default function CommentForm({ slug }: { slug: string }) {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: { comment: "", startTime: Date.now(), website: "", name: "", avatar_url: "" },
+    defaultValues: {
+      comment: "",
+      startTime: Date.now(),
+      website: "",
+    },
   });
 
   const { reset } = form;
