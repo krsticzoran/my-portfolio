@@ -5,20 +5,23 @@ import { headers } from "next/headers";
 import { commentsRateLimiter } from "@/lib/rate-limit";
 import { sanitizeInput } from "@/lib/sanitize";
 import { supabaseServer } from "@/lib/supabaseServer";
+import { createClient } from "@/utils/supabase/server";
 
 export async function addComment( data: {
     comment:string;
     postSlug:string;
     website?: string;
     startTime: number;
-    name: string;
-    avatar_url?: string;
-    user_id: string;
 } 
 ) {
-  const now = Date.now();
 
-  console.log(data.name, data.avatar_url, data.user_id);
+  const supabase = await createClient();
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  const now = Date.now();
 
    // it indicates a bot submission since real users won't see or fill this field.
    if (data.website && data.website.trim() !== "") {
@@ -64,9 +67,9 @@ export async function addComment( data: {
         const { error } = await supabase.from("comments").insert({
             post_slug: data.postSlug,             
             comment: sanitizeComment, 
-            name: data.name,
-            avatar_url: data.avatar_url,
-            user_id: data.user_id,
+            avatar_url: session?.user.user_metadata.avatar_url || null,
+        name: session?.user.user_metadata.full_name || null,
+        user_id: session?.user.id || null,
         });
     
         if (error) {

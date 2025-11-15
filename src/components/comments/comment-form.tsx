@@ -56,9 +56,6 @@ export default function CommentForm({ slug }: { slug: string }) {
         postSlug: slug,
         startTime: values.startTime,
         website: values.website,
-        name: user?.name || "Anonymous",
-        avatar_url: user?.avatar_url || "/avatar.webp",
-        user_id: user ? user.user_id : "guest",
       });
       if (result.success) {
         toast.success("Comment added successfully!");
