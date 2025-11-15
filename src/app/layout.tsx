@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Exo_2 } from "next/font/google";
 import "@/styles/globals.css";
@@ -67,6 +68,7 @@ export default async function RootLayout({
       <body className={`${exo2.variable} font-exo antialiased`}>
         <BackgroundWrapper>
           <Header />
+          <Analytics />
           <AuthProvider initialUser={user}>{children}</AuthProvider>
           <Toaster position="bottom-left" />
           <Footer />
