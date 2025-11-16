@@ -99,7 +99,13 @@ export default function CommentsList({ slug }: { slug: string }) {
         toast.success("Comment deleted");
         setComments((prev) => prev.filter((c) => c.id !== id));
       } else {
-        toast.error(result?.error || "Error deleting comment");
+        toast.error(result?.error || "Error deleting comment", {
+          style: {
+            background: "#F44336",
+            color: "white",
+            border: "none",
+          },
+        });
       }
     } catch (error) {
       console.error("Error deleting comment:", error);
