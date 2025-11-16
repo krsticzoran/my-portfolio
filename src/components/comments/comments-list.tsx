@@ -69,9 +69,9 @@ export default function CommentsList({ slug }: { slug: string }) {
           filter: `post_slug=eq.${slug}`,
         },
         (payload) => {
-          const deletedId = payload.old.id;
-
-          setComments((prev) => prev.filter((comment) => comment.id !== deletedId));
+          if (payload.old?.id) {
+            setComments((prev) => prev.filter((c) => c.id !== payload.old.id));
+          }
         }
       )
       .subscribe();
@@ -96,6 +96,7 @@ export default function CommentsList({ slug }: { slug: string }) {
 
       if (result?.success) {
         toast.success("Comment deleted");
+        setComments((prev) => prev.filter((c) => c.id !== id));
         setOpenId(null);
       } else {
         toast.error(result?.error || "Error deleting comment");
