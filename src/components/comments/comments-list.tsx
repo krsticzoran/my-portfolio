@@ -60,6 +60,20 @@ export default function CommentsList({ slug }: { slug: string }) {
           setComments((prev) => [payload.new as CommentType, ...prev]);
         }
       )
+      .on(
+        "postgres_changes",
+        {
+          event: "DELETE",
+          schema: "public",
+          table: "comments",
+          filter: `post_slug=eq.${slug}`,
+        },
+        (payload) => {
+          const deletedId = payload.old.id;
+
+          setComments((prev) => prev.filter((comment) => comment.id !== deletedId));
+        }
+      )
       .subscribe();
 
     return () => {
