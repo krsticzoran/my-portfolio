@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 
 import { createBrowserClient } from "@supabase/ssr";
 import Image from "next/image";
+import { toast } from "sonner";
+
+import { deleteCommentAction } from "@/actions/delete-comment";
 
 const supabase = createBrowserClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -20,6 +23,7 @@ type CommentType = {
 };
 
 export default function CommentsList({ slug }: { slug: string }) {
+  const [openId, setOpenId] = useState<string | null>(null);
   const [comments, setComments] = useState<CommentType[]>([]);
 
   const [loading, setLoading] = useState(true);
@@ -72,23 +76,61 @@ export default function CommentsList({ slug }: { slug: string }) {
       </p>
     );
 
+  const handleDelete = async (id: string) => {
+    try {
+      const result = await deleteCommentAction(id);
+
+      if (result?.success) {
+        toast.success("Comment deleted");
+      } else {
+        toast.error(result?.error || "Error deleting comment");
+      }
+    } catch (error) {
+      console.error("Error deleting comment:", error);
+      toast.error("Unexpected error");
+    }
+  };
+
   return (
     <div className="w-full border-t">
       {comments.map((comment) => (
         <div key={comment.id} className="flex flex-col gap-3 w-full border-b py-6">
-          <div className="flex gap-4">
-            <Image
-              src={comment.avatar_url || "/avatar.webp"}
-              width={40}
-              height={40}
-              alt="avatar"
-              className="rounded-full"
-            />
-            <div>
-              <p className="text-sm">{comment.name}</p>
-              <p className="text-xs text-zinc-400">
-                {new Date(comment.created_at).toLocaleDateString()}
-              </p>
+          <div className="flex items-end justify-between">
+            <div className="flex gap-4">
+              <Image
+                src={comment.avatar_url || "/avatar.webp"}
+                width={40}
+                height={40}
+                alt="avatar"
+                className="rounded-full"
+              />
+              <div>
+                <p className="text-sm">{comment.name}</p>
+                <p className="text-xs text-zinc-400">
+                  {new Date(comment.created_at).toLocaleDateString()}
+                </p>
+              </div>
+            </div>
+            <div className="relative">
+              <button
+                className="flex flex-row items-center gap-[4px] p-2 cursor-pointer rounded "
+                onClick={() => setOpenId(openId === comment.id ? null : comment.id)}
+              >
+                <span className="w-1 h-1 rounded-full bg-gray-500"></span>
+                <span className="w-1 h-1 rounded-full bg-gray-500"></span>
+                <span className="w-1 h-1 rounded-full bg-gray-500"></span>
+              </button>
+
+              {openId === comment.id && (
+                <div className="absolute right-0 mt-2 w-20 rounded-lg border bg-white shadow-lg p-2 text-sm">
+                  <button
+                    className="w-full text-left px-2 py-1 rounded text-background cursor-pointer"
+                    onClick={() => handleDelete(comment.id)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              )}
             </div>
           </div>
           <p className="text-zinc-300">{comment.comment}</p>
