@@ -1,6 +1,5 @@
 "use server";
 
-import { supabaseServer } from "@/lib/supabaseServer";
 import { createClient } from "@/utils/supabase/server";
 
 export async function deleteCommentAction(id: string) {
@@ -18,16 +17,22 @@ export async function deleteCommentAction(id: string) {
   }
 
   try {
-    const supabaseSrv = supabaseServer();
-
-    const { error } = await supabaseSrv
+    const { data, error } = await supabase
       .from("comments")
       .delete()
       .eq("id", id)
-      .eq("user_id", session.user.id);
+      .eq("user_id", session.user.id)
+      .select();
 
     if (error) {
       return { success: false, error: error.message };
+    }
+
+    if (!data || data.length === 0) {
+      return {
+        success: false,
+        error: "You are not allowed to delete this comment.",
+      };
     }
 
     return { success: true };

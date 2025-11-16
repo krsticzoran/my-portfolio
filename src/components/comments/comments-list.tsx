@@ -96,12 +96,14 @@ export default function CommentsList({ slug }: { slug: string }) {
 
       if (result?.success) {
         toast.success("Comment deleted");
+        setOpenId(null);
       } else {
         toast.error(result?.error || "Error deleting comment");
       }
     } catch (error) {
       console.error("Error deleting comment:", error);
       toast.error("Unexpected error");
+      setOpenId(null);
     }
   };
 
