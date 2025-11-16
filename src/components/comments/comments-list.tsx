@@ -91,20 +91,25 @@ export default function CommentsList({ slug }: { slug: string }) {
     );
 
   const handleDelete = async (id: string) => {
+    setOpenId(null);
     try {
       const result = await deleteCommentAction(id);
 
       if (result?.success) {
         toast.success("Comment deleted");
         setComments((prev) => prev.filter((c) => c.id !== id));
-        setOpenId(null);
       } else {
         toast.error(result?.error || "Error deleting comment");
       }
     } catch (error) {
       console.error("Error deleting comment:", error);
-      toast.error("Unexpected error");
-      setOpenId(null);
+      toast.error("Unexpected error", {
+        style: {
+          background: "#F44336",
+          color: "white",
+          border: "none",
+        },
+      });
     }
   };
 
