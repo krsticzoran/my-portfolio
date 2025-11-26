@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 
@@ -9,6 +10,54 @@ import { getAllPostSlugs, getPostBySlug } from "@/lib/posts";
 export async function generateStaticParams() {
   const slugs = getAllPostSlugs();
   return slugs;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
+
+  if (!post) {
+    return {
+      title: "Post not found",
+    };
+  }
+
+  const title = post.title;
+  const description = post.excerpt || post.title;
+  const image = post.imageUrl;
+  const url = `https://zkrstic.dev/blog/${slug}`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      type: "article",
+      url,
+      title,
+      description,
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
+    },
+  };
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
