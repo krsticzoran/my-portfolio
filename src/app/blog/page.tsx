@@ -1,9 +1,48 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
 import Container from "@/components/layout/container";
 import PageFadeIn from "@/components/layout/page-fade-in";
 import { getSortedPostsData } from "@/lib/posts";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const posts = getSortedPostsData();
+
+  const latest = posts[0];
+
+  const ogImage = latest?.imageUrl
+    ? [
+        {
+          url: latest.imageUrl,
+          width: 1200,
+          height: 630,
+          alt: latest.title,
+        },
+      ]
+    : [];
+
+  return {
+    title: "Blog – Reflections on Freelancing & Web Development",
+    description:
+      "Honest reflections on freelancing, web development, and the long road from beginner to professional.",
+    openGraph: {
+      title: "Blog – Reflections on Freelancing & Web Development",
+      description:
+        "Honest reflections on freelancing, web development, and the long road from beginner to professional.",
+      url: "https://tvoj-domen.com/blog",
+      type: "website",
+      images: ogImage,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Blog – Reflections on Freelancing & Web Development",
+      description:
+        "Honest reflections on freelancing, web development, and the long road from beginner to professional.",
+      images: ogImage,
+    },
+  };
+}
 
 export default function BlogPage() {
   const posts = getSortedPostsData();
