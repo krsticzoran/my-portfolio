@@ -28,6 +28,13 @@ export const testimonials: Testimonial[] = [
   },
   {
     quote:
+      "Zoran did a great development job. I will work with him again on the next project.",
+    name: "Goran Pinjusić - Croatia",
+    designation: "Sailboat Skipper",
+    src: "/goran.png",
+  },
+  {
+    quote:
       "Great guy, responsive and with a strong understanding of his assignments. Will definitely hire again.",
     name: "Muthasim Abrar - Australia",
     designation: "Full Stack Developer at MAYVK",
