@@ -59,7 +59,7 @@ export default function CodeBlock() {
             <CodeLine label="freelanceExperience" value={getFreelanceExperience()} />
             <CodeLine label="location" value="Serbia" />
             <div className="pl-6">
-              <span className="text-zinc-300 mr-1">skills:</span>
+              <span className="text-zinc-300 mr-1">stack:</span>
               <span className="text-gray-400">{"["}</span>
               <SkillTags />
               <div className="pl-0">
