@@ -5,6 +5,7 @@ const skills: string[] = [
   "Next.js",
   "Vue",
   "Nuxt.js",
+  "Supabase",
   "GraphQL",
   "REST API",
   "SASS",
