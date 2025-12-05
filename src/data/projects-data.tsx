@@ -8,6 +8,7 @@ import eStoreImage from "@/assets/e-store.webp";
 import fakturify from "@/assets/fakturify.webp";
 import infiniwave from "@/assets/infiniwave.webp";
 import learnPlus from "@/assets/learnplus.webp";
+import portage from "@/assets/portage.png";
 import realEstateImage from "@/assets/real-estate.webp";
 import rolloImage from "@/assets/rollo.webp";
 
@@ -25,6 +26,33 @@ export type Project = {
 };
 
 export const projectsData: Project[] = [
+  {
+    type: "client",
+    description: "Next.js, Tailwind CSS, Netlify",
+    title: "Portage Creek Web Designs | Custom Websites Built for Speed Client Project (Upwork)",
+    src: portage,
+    year: "2025",
+    explore: "Explore",
+    ctaText: "Live",
+    github: "https://github.com/krsticzoran/Portage-Creek",
+    ctaLink: "https://portagecreekwebdesigns.com/",
+    content: () => {
+      return (
+        <>
+          <p>
+            <strong>Portage Creek Web Designs</strong> is a high-performance web studio specializing
+            in hand-coded, lightning-fast websites built with Next.js 15 and Tailwind CSS 4,
+            delivering consistent 98–100 PageSpeed scores.
+          </p>
+          <p>
+            Designed for small businesses, professionals, and academics, each project features
+            responsive layouts, optimized images, dark mode support, and a clean UI engineered for
+            speed and reliability.
+          </p>
+        </>
+      );
+    },
+  },
   {
     type: "client",
     description: "Nuxt 3, Vue, Tailwind CSS, Markdown Blog",
