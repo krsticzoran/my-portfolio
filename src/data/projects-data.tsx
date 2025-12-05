@@ -29,7 +29,7 @@ export const projectsData: Project[] = [
   {
     type: "client",
     description: "Next.js, Tailwind CSS, Netlify",
-    title: "Portage Creek Web Designs | Portfolio Websites - Client Project (Upwork)",
+    title: "Portage Creek Web Designs - Portfolio Websites - Client Project (Upwork)",
     src: portage,
     year: "2025",
     explore: "Explore",
