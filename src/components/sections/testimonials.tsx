@@ -30,9 +30,12 @@ export default function Testimonials() {
         <h2 id="testimonial-heading" className="sr-only">
           Testimonials
         </h2>
-
         {/* Render AnimatedTestimonials only when in viewport */}
-        {inView && <AnimatedTestimonials testimonials={testimonials} />}
+        {inView ? (
+          <AnimatedTestimonials testimonials={testimonials} />
+        ) : (
+          <div className="h-[660px]" />
+        )}
       </div>
     </Container>
   );
