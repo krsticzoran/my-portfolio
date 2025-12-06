@@ -54,7 +54,7 @@ export default function MobileNav() {
                   "text-lg font-medium px-2 py-1 rounded-md transition-colors duration-300"
                 }
               >
-                {label}f
+                {label}
               </Link>
             </SheetClose>
           ))}
