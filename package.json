@@ -30,7 +30,7 @@
     "lru-cache": "^10.4.3",
     "lucide-react": "^0.523.0",
     "motion": "^12.23.24",
-    "next": "15.3.4",
+    "next": "^15.3.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.60.0",
