@@ -29,7 +29,7 @@ export const testimonials: Testimonial[] = [
   {
     quote:
       "Zoran did a great development job. I will work with him again on the next project.",
-    name: "Goran Pinjusić - Croatia",
+    name: "Goran Pinjušić - Croatia",
     designation: "Sailboat Skipper",
     src: "/goran.png",
   },
