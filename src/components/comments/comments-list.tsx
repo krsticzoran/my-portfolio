@@ -31,8 +31,6 @@ export default function CommentsList({ slug }: { slug: string }) {
   useEffect(() => {
     if (!slug) return;
 
-    setLoading(true);
-
     const fetchComments = async () => {
       const { data, error } = await supabase
         .from("comments")
@@ -40,18 +38,16 @@ export default function CommentsList({ slug }: { slug: string }) {
         .eq("post_slug", slug)
         .order("created_at", { ascending: false });
 
-      if (error) console.log("FETCH ERROR:", error);
+      console.log("FETCH ERROR:", error);
+
       if (data) setComments(data);
       setLoading(false);
     };
 
     fetchComments();
 
-    // Kreiramo jedinstveni channel da osiguramo da trigger-i budu aktivni
-    const uniqueChannelName = `realtime-comments-${slug}-${Date.now()}`;
-
     const channel = supabase
-      .channel(uniqueChannelName)
+      .channel("realtime-comments")
       .on(
         "postgres_changes",
         {
@@ -83,7 +79,6 @@ export default function CommentsList({ slug }: { slug: string }) {
         console.log("❌ Error:", err);
       });
 
-    // Clean up na unmount
     return () => {
       supabase.removeChannel(channel);
     };
