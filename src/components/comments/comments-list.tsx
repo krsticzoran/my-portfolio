@@ -46,8 +46,9 @@ export default function CommentsList({ slug }: { slug: string }) {
 
     fetchComments();
 
+    const uniqueChannelName = `realtime-comments-${slug}-${Date.now()}`;
     const channel = supabase
-      .channel("realtime-comments")
+      .channel(uniqueChannelName)
       .on(
         "postgres_changes",
         {
