@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 
-import Comments from "@/components/comments/comments";
 import Container from "@/components/layout/container";
 import PageFadeIn from "@/components/layout/page-fade-in";
 import { getAllPostSlugs, getPostBySlug } from "@/lib/posts";
