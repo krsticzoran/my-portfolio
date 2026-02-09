@@ -70,6 +70,7 @@ export default function CommentsList({ slug }: { slug: string }) {
         },
         (payload) => {
           if (payload.old?.id) {
+            console.log("📥 INSERT payload:", payload);
             setComments((prev) => prev.filter((c) => c.id !== payload.old.id));
           }
         }
