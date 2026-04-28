@@ -36,9 +36,4 @@ export const socialLinks: SocialLink[] = [
     label: "Instagram",
     icon: IconBrandInstagram,
   },
-  {
-    href: "https://www.youtube.com/@zo.run.official",
-    label: "Youtube",
-    icon: IconBrandYoutube,
-  },
 ];
