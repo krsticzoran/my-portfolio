@@ -3,7 +3,6 @@ import {
   IconBrandLinkedin,
   IconMail,
   IconBrandInstagram,
-  IconBrandYoutube
 } from "@tabler/icons-react";
 import type { Icon } from "@tabler/icons-react";
 
@@ -36,4 +35,5 @@ export const socialLinks: SocialLink[] = [
     label: "Instagram",
     icon: IconBrandInstagram,
   },
+  //  IconBrandYoutube
 ];
