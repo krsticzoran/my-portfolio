@@ -41,13 +41,13 @@ export default function ProjectCard({ card, index, id, setActive }: Props) {
               {card.title}
             </motion.h3>
             <motion.p
-              layoutId={`description-${card.description}-${id}`}
+              layoutId={`description-${card.title}-${id}`}
               className=" hidden sm:block text-sm lg:text-base text-zinc-500 dark:text-zinc-400 mt-1 lg:mt-2 tracking-wide text-center md:text-left"
             >
               {card.description}
             </motion.p>
             <motion.p
-              layoutId={`year-${card.description}-${id}`}
+              layoutId={`year-${card.title}-${id}`}
               className="hidden sm:block text-sm text-zinc-400 lg:mt-1 text-center md:text-left"
             >
               {card.year}
