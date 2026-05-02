@@ -8,6 +8,7 @@ import eStoreImage from "@/assets/e-store.webp";
 import fakturify from "@/assets/fakturify.webp";
 import infiniwave from "@/assets/infiniwave.webp";
 import learnPlus from "@/assets/learnplus.webp";
+import lyptaImage from "@/assets/lypta.webp";
 import portage from "@/assets/portage.png";
 import realEstateImage from "@/assets/real-estate.webp";
 import rolloImage from "@/assets/rollo.webp";
@@ -26,6 +27,34 @@ export type Project = {
 };
 
 export const projectsData: Project[] = [
+  {
+    type: "client",
+    description: "Nuxt 3, Vue, Tailwind CSS, Markdown Blog",
+    title: "Lypta – SaaS Marketing Site – Client Project",
+    src: lyptaImage,
+    year: "2026",
+    explore: "Explore",
+    ctaText: "Live",
+    ctaLink: "https://lypta-website.vercel.app/",
+    content: () => {
+      return (
+        <>
+          <p>
+            <strong>Lypta</strong> is a high-performance SaaS marketing platform built with
+            <strong> Nuxt 3</strong> and <strong>Tailwind CSS</strong>. The project was engineered
+            to provide a seamless, professional digital presence for a legal-tech solution focused
+            on law firm management.
+          </p>
+          <p>
+            This site features a <strong>Markdown-powered blog</strong> for efficient content
+            delivery, optimized asset loading, and a fully responsive UI. It is designed to convey
+            trust and efficiency, meeting the high standards required for legal workflow software
+            and professional services.
+          </p>
+        </>
+      );
+    },
+  },
   {
     type: "client",
     description: "Next.js, Tailwind CSS, Netlify",
