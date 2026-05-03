@@ -62,18 +62,3 @@ To protect the contact form and comments system from spam and abuse, several tec
 📏 Length Validation – Messages and comments have a maximum character limit (2,000 characters) to avoid abuse and excessive payloads.
 
 🔒 Empty Input Check – Whitespace-only messages are ignored to ensure all submissions are meaningful.
-
-## Status
-
-Status
-
-🚧 Currently under active development
-
-The core of the portfolio is complete — fully responsive, performant, and visually polished.
-The focus has now shifted toward expanding the Blog section, which is being built with Supabase as the backend.
-
-Ongoing tasks:
-
-📰 Integrating Supabase-powered Blog (blog list + single post pages)
-
-💬 Developing the Comments system
