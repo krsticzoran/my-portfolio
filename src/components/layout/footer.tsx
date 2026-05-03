@@ -15,7 +15,7 @@ export function Footer() {
     select-none
   "
     >
-      <p>© {year} Zoran Krstic. All rights reserved.</p>
+      <p>© 2025-{year} Zoran Krstic. All rights reserved.</p>
     </footer>
   );
 }
