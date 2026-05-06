@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { logError } from "@/lib/logger";
 
 import dynamic from "next/dynamic";
 import { useInView } from "react-intersection-observer";
+
+import { logError } from "@/lib/logger";
 
 // Dynamically import Globe component without SSR (server-side rendering)
 // This avoids loading the Globe on the server and improves initial load performance

@@ -5,15 +5,15 @@
 // Use `log`, `debug`, and `error` depending on the importance of the message.
 const isDev = process.env.NODE_ENV !== "production";
 
-export function log(...args: any[]) {
+export function log(...args: unknown[]) {
   if (isDev) console.log(...args);
 }
 
-export function debug(...args: any[]) {
+export function debug(...args: unknown[]) {
   if (isDev) console.debug(...args);
 }
 
-export function logError(...args: any[]) {
+export function logError(...args: unknown[]) {
   if (isDev) console.error(...args);
 }
 
