@@ -5,9 +5,9 @@ import { useEffect, useState } from "react";
 import { createBrowserClient } from "@supabase/ssr";
 import Image from "next/image";
 import { toast } from "sonner";
-import { log, logError } from "@/lib/logger";
 
 import { deleteCommentAction } from "@/actions/delete-comment";
+import { log, logError } from "@/lib/logger";
 
 const supabase = createBrowserClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
