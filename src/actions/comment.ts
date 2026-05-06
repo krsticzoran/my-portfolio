@@ -4,7 +4,7 @@ import { headers } from "next/headers";
 
 import { commentsRateLimiter } from "@/lib/rate-limit";
 import { sanitizeInput } from "@/lib/sanitize";
-import { supabaseServer } from "@/lib/supabaseServer";
+import { supabaseServer } from "@/utils/supabase/admin";
 import { createClient } from "@/utils/supabase/server";
 
 export async function addComment( data: {

@@ -5,7 +5,7 @@ import { z } from "zod";
 
 import { contactRateLimiter } from "@/lib/rate-limit";
 import { sanitizeInput } from "@/lib/sanitize";
-import { supabaseServer } from "@/lib/supabaseServer";
+import { supabaseServer } from "@/utils/supabase/admin";
 
 export async function submitContactForm(data: {
   email: string;
