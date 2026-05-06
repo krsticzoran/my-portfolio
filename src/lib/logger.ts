@@ -17,4 +17,6 @@ export function logError(...args: unknown[]) {
   if (isDev) console.error(...args);
 }
 
-export default { log, debug, logError };
+const logger = { log, debug, logError };
+
+export default logger;
