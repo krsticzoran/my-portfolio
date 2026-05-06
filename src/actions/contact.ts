@@ -3,10 +3,10 @@
 import { headers } from "next/headers";
 import { z } from "zod";
 
+import { logError } from "@/lib/logger";
 import { contactRateLimiter } from "@/lib/rate-limit";
 import { sanitizeInput } from "@/lib/sanitize";
 import { supabaseServer } from "@/utils/supabase/admin";
-import { logError } from "@/lib/logger";
 
 export async function submitContactForm(data: {
   email: string;
