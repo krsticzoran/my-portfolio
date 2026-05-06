@@ -3,8 +3,7 @@
 import { useState } from "react";
 
 import { Button } from "../ui/button";
-
-type FilterType = "client" | "personal" | "all";
+import { FilterType } from "@/lib/types";
 
 export default function ToggleBtn({
   onFilterChange,

@@ -5,8 +5,7 @@ import { useState } from "react";
 import Container from "../layout/container";
 import ExpandableCardDemo from "../ui/expandable-card-demo";
 import ToggleBtn from "../ui/toggle-btn";
-
-type FilterType = "client" | "personal" | "all";
+import { FilterType } from "@/lib/types";
 
 export default function Projects() {
   const [filter, setFilter] = useState<FilterType>("client");
