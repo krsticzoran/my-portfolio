@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 
-import { Button } from "../ui/button";
 import { FilterType } from "@/lib/types";
+
+import { Button } from "../ui/button";
 
 export default function ToggleBtn({
   onFilterChange,
