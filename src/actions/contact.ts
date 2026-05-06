@@ -6,6 +6,7 @@ import { z } from "zod";
 import { contactRateLimiter } from "@/lib/rate-limit";
 import { sanitizeInput } from "@/lib/sanitize";
 import { supabaseServer } from "@/utils/supabase/admin";
+import { logError } from "@/lib/logger";
 
 export async function submitContactForm(data: {
   email: string;
@@ -68,7 +69,7 @@ if (!success) {
     });
 
     if (error) {
-      console.error("Supabase insert error:", error);
+      logError("Supabase insert error:", error);
       return { success: false, message: "Database error" };
     }
 

@@ -5,6 +5,7 @@ import { headers } from "next/headers";
 import { commentsRateLimiter } from "@/lib/rate-limit";
 import { sanitizeInput } from "@/lib/sanitize";
 import { supabaseServer } from "@/utils/supabase/admin";
+import { logError } from "@/lib/logger";
 import { createClient } from "@/utils/supabase/server";
 
 export async function addComment( data: {
@@ -73,7 +74,7 @@ export async function addComment( data: {
         });
     
         if (error) {
-          console.error("Supabase insert error:", error);
+          logError("Supabase insert error:", error);
           return { success: false, message: "Database error" };
         }
     

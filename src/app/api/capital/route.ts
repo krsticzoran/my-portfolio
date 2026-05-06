@@ -1,5 +1,6 @@
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
+import { logError } from "@/lib/logger";
 
 export async function GET() {
   try {
@@ -10,7 +11,7 @@ export async function GET() {
 
     if (!response.ok) {
       const text = await response.text();
-      console.error("Country API error:", text);
+      logError("Country API error:", text);
       return NextResponse.json({ capital: "Tokyo" }, { status: 200 });
     }
 
@@ -19,7 +20,7 @@ export async function GET() {
 
     return NextResponse.json({ capital });
   } catch (error) {
-    console.error("Fetch error:", error);
+    logError("Fetch error:", error);
     return NextResponse.json({ capital: "Tokyo" }, { status: 200 });
   }
 }

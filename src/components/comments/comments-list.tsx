@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { createBrowserClient } from "@supabase/ssr";
 import Image from "next/image";
 import { toast } from "sonner";
+import { log, logError } from "@/lib/logger";
 
 import { deleteCommentAction } from "@/actions/delete-comment";
 
@@ -38,7 +39,7 @@ export default function CommentsList({ slug }: { slug: string }) {
         .eq("post_slug", slug)
         .order("created_at", { ascending: false });
 
-      console.log("FETCH ERROR:", error);
+      if (error) logError("FETCH ERROR:", error);
 
       if (data) setComments(data);
       setLoading(false);
@@ -71,14 +72,14 @@ export default function CommentsList({ slug }: { slug: string }) {
         },
         (payload) => {
           if (payload.old?.id) {
-            console.log("📥 INSERT payload:", payload);
+            log("📥 INSERT payload:", payload);
             setComments((prev) => prev.filter((c) => c.id !== payload.old.id));
           }
         }
       )
       .subscribe((status, err) => {
-        console.log("📊 Subscription status:", status);
-        console.log("❌ Error:", err);
+        log("📊 Subscription status:", status);
+        if (err) logError("❌ Error:", err);
       });
 
     return () => {
@@ -113,7 +114,7 @@ export default function CommentsList({ slug }: { slug: string }) {
         });
       }
     } catch (error) {
-      console.error("Error deleting comment:", error);
+      logError("Error deleting comment:", error);
       toast.error("Unexpected error", {
         style: {
           background: "#F44336",

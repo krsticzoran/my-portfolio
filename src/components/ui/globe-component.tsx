@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { logError } from "@/lib/logger";
 
 import dynamic from "next/dynamic";
 import { useInView } from "react-intersection-observer";
@@ -21,7 +22,7 @@ export default function GlobeComponent() {
       .then((data) => {
         if (data.capital) setCapital(data.capital);
       })
-      .catch((err) => console.error("API error", err));
+      .catch((err) => logError("API error", err));
   }, []);
 
   // Use Intersection Observer to detect when the Globe container is in the viewport
