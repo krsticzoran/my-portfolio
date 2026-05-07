@@ -7,7 +7,6 @@ import { Toaster } from "sonner";
 import { BackgroundWrapper } from "@/components/layout/background-wrapper";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
-import { AuthProvider } from "@/providers/auth-provider";
 
 const exo2 = Exo_2({
   subsets: ["latin"],
@@ -56,7 +55,7 @@ export default function RootLayout({
         <BackgroundWrapper>
           <Header />
           <Analytics />
-          <AuthProvider>{children}</AuthProvider>
+          {children}
           <Toaster position="bottom-left" />
           <Footer />
         </BackgroundWrapper>
