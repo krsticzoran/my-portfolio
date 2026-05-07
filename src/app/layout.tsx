@@ -10,7 +10,7 @@ import { Header } from "@/components/layout/header";
 
 const exo2 = Exo_2({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+weight: ["100", "900"],
   display: "swap",
   preload: true,
   variable: "--font-exo2",
