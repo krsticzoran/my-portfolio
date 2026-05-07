@@ -12,7 +12,9 @@ import { createClient } from "@/utils/supabase/server";
 
 const exo2 = Exo_2({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
+  preload: true,
   variable: "--font-exo2",
 });
 
