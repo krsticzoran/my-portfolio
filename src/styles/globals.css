@@ -5,6 +5,7 @@
 
 @theme {
   --font-exo: "Exo 2", "sans-serif";
+  --font-mono: var(--font-geist-mono), ui-monospace, Monaco, monospace;
   --breakpoint-xs: 375px;
 }
 
