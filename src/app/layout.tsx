@@ -8,7 +8,6 @@ import { BackgroundWrapper } from "@/components/layout/background-wrapper";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { AuthProvider } from "@/providers/auth-provider";
-import { createClient } from "@/utils/supabase/server";
 
 const exo2 = Exo_2({
   subsets: ["latin"],
@@ -46,32 +45,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const supabase = await createClient();
-
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
-  const user = session?.user
-    ? {
-        avatar_url: session.user.user_metadata.avatar_url || null,
-        name: session.user.user_metadata.full_name || null,
-        user_id: session.user.id,
-      }
-    : null;
-
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${exo2.variable} font-exo antialiased`}>
         <BackgroundWrapper>
           <Header />
           <Analytics />
-          <AuthProvider initialUser={user}>{children}</AuthProvider>
+          <AuthProvider>{children}</AuthProvider>
           <Toaster position="bottom-left" />
           <Footer />
         </BackgroundWrapper>
