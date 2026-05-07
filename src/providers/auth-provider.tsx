@@ -11,7 +11,7 @@ type UserType = {
 type AuthContextType = {
   user: UserType;
   isAuthenticated: boolean;
-  setUser: (user: UserType) => void;
+  setUser: (_user: UserType) => void;
 };
 
 const AuthContext = createContext<AuthContextType>({
