@@ -9,7 +9,7 @@ export default function CodeBlock() {
   return (
     <section
       aria-label="Simulated code block with developer information"
-      className="w-full lg:w-1/2 bg-gradient-to-r from-black to-[#0a0d37] border border-[#1b2c68a0] relative rounded-lg shadow-lg px-2 sm:px-0 text-foreground"
+      className="w-full lg:w-1/2 bg-gradient-to-r from-black to-[#0a0d37] border border-[#1b2c68a0] relative rounded-lg shadow-lg px-2 sm:px-0 text-foreground font-exo"
     >
       {/* Top visual lines */}
       <div className="flex flex-row">
@@ -24,7 +24,7 @@ export default function CodeBlock() {
           <div className="h-3 w-3 rounded-full bg-orange-400" />
           <div className="h-3 w-3 rounded-full bg-green-400" />
         </div>
-        <div className="text-xs sm:text-sm text-gray-400 font-mono">coder . js</div>
+        <div className="text-xs sm:text-sm text-gray-400 ">coder . js</div>
       </header>
 
       {/* Main code body */}
@@ -47,7 +47,7 @@ export default function CodeBlock() {
           </div>
 
           {/* Simulated code block */}
-          <code className="text-base sm:text-xl font-mono">
+          <code className="text-base sm:text-xl font-exo">
             <div>
               <span className="text-pink-400 mr-2">const</span>
               <span className="mr-2 text-violet-400">profile</span>
