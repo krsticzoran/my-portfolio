@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { motion, AnimatePresence } from "motion/react";
@@ -12,13 +12,7 @@ type Testimonial = {
   designation: string;
   src: string;
 };
-const AnimatedTestimonials = ({
-  testimonials,
-  autoplay = false,
-}: {
-  testimonials: Testimonial[];
-  autoplay?: boolean;
-}) => {
+const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimonial[] }) => {
   const [active, setActive] = useState(0);
 
   const handleNext = () => {
@@ -33,12 +27,7 @@ const AnimatedTestimonials = ({
     return index === active;
   };
 
-  useEffect(() => {
-    if (autoplay) {
-      const interval = setInterval(handleNext, 5000);
-      return () => clearInterval(interval);
-    }
-  }, [autoplay]);
+  // autoplay removed — component no longer starts an automatic interval
 
   const randomRotateY = () => {
     return Math.floor(Math.random() * 21) - 10;
