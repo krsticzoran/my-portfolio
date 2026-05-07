@@ -15,7 +15,7 @@ export default function About() {
     >
       {/* Left side: Image with lens zoom effect */}
       {/* Zoom image for biger screens */}
-      <div className="lg:w-1/2 w-full relative aspect-square rounded-lg shadow-lg overflow-hidden ">
+      <div className="lg:w-1/2 w-full relative aspect-square rounded-lg shadow-lg overflow-hidden relative">
         <Lens>
           <Image
             src={zk}
@@ -32,7 +32,7 @@ export default function About() {
         <Image
           src={zk}
           alt="Zoran Krstić"
-          width={640}
+         fill
           sizes="100vw"
           style={{ objectFit: "cover" }}
           priority={false}
