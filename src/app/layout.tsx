@@ -1,6 +1,6 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
-import { Exo_2 } from "next/font/google";
+import { Exo_2,Geist_Mono } from "next/font/google";
 import "@/styles/globals.css";
 import { Toaster } from "sonner";
 
@@ -15,6 +15,13 @@ const exo2 = Exo_2({
   display: "swap",
   preload: true,
   variable: "--font-exo2",
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+   display: "swap",
+  preload: true,
+  variable: "--font-geist-mono", 
 });
 
 export const metadata: Metadata = {
@@ -52,7 +59,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${exo2.variable} font-exo antialiased`}>
+      <body className={`${exo2.variable} ${geistMono.variable} font-exo antialiased`}>
         <BackgroundWrapper>
           <Header />
           <Analytics />
