@@ -18,8 +18,8 @@ This portfolio showcases my work, skills, and the technologies I use.
 ### Frameworks and Languages
 
 - ⚛️ **Next.js** – React framework for building fast and scalable web apps.
-- 🟩 **Supabase** – Open-source backend as a service providing PostgreSQL, authentication, and real-time APIs.
-- 🟦 **TypeScript** – Typed superset of JavaScript for better safety and DX.
+
+- 🟦 **TypeScript** – Typed superset of JavaScript for better safety.
 
 ### Styling
 
@@ -42,7 +42,7 @@ This portfolio showcases my work, skills, and the technologies I use.
 - 🧩 **Component-Based Structure** – Built with reusable and maintainable components.
 - 🎨 **Modern Design** – Clean, minimal, and elegant UI following current design trends.
 - 📱 **Fully Responsive** – Looks great and works smoothly across all devices and screen sizes.
-- 🧠 **Accessibility-Focused** – Built with accessibility best practices in mind (100/100 Lighthouse score).
+- 🧠 **Accessibility-Focused** – Built with accessibility best practices in mind (90+ Lighthouse score).
 - 🎬 **Smooth Animations** – Subtle transitions and animations powered by Framer Motion.
 - 📁 **Project Showcase** – Highlights selected real-world and demo projects.
 - 📬 **Contact Form** – Easy way to get in touch directly from the site.
