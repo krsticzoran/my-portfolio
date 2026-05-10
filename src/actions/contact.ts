@@ -1,12 +1,12 @@
 "use server";
 
 import { headers } from "next/headers";
+import { Resend } from "resend";
 import { z } from "zod";
 
 import { logError } from "@/lib/logger";
 import { contactRateLimiter } from "@/lib/rate-limit";
 import { sanitizeInput } from "@/lib/sanitize";
-import { supabaseServer } from "@/utils/supabase/admin";
 
 export async function submitContactForm(data: {
   email: string;
@@ -14,11 +14,9 @@ export async function submitContactForm(data: {
   website?: string;
   startTime: number;
 }) {
-
   const now = Date.now();
 
-  // Honeypot check: if the hidden 'website' field is filled,
-  // it indicates a bot submission since real users won't see or fill this field.
+  // Honeypot check
   if (data.website && data.website.trim() !== "") {
     return { success: false, message: "Honeypot field filled, likely a bot submission" };
   }
@@ -34,27 +32,26 @@ export async function submitContactForm(data: {
     return { success: false, message: "Form submitted too quickly" };
   }
 
-  // Check is message length too long
+  // Check message length
   if (data.message.length > 2000) {
     return { success: false, message: "Message is too long (max 2000 characters)" };
   }
 
-   // Get client IP
-   const headersList = await headers();
-   const ip = headersList.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-   
-  // UPSTASH RATE LIMITING
+  // Get client IP
+  const headersList = await headers();
+  const ip = headersList.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+
+  // Rate limiting
   const { success, reset } = await contactRateLimiter.limit(ip);
+  if (!success) {
+    const minutes = Math.ceil((reset - now) / 1000 / 60);
+    return {
+      success: false,
+      message: `Too many requests. Please try again in ${minutes} minute${minutes > 1 ? "s" : ""}.`,
+    };
+  }
 
-if (!success) {
-  const minutes = Math.ceil((reset - now) / 1000 / 60);
-  return {
-    success: false,
-    message: `Too many requests. Please try again in ${minutes} minute${minutes > 1 ? "s" : ""}.`,
-  };
-}
-
-// Validate email format
+  // Validate email format
   const isValidEmail = z.string().email().safeParse(data.email).success;
   if (!isValidEmail) return { success: false, message: "Invalid email" };
 
@@ -62,15 +59,28 @@ if (!success) {
   const sanitizedMessage = sanitizeInput(data.message);
 
   try {
-    const supabase = supabaseServer();
-    const { error } = await supabase.from("contact_messages").insert({
-      email: data.email,
-      message: sanitizedMessage,
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    const { error } = await resend.emails.send({
+      from: process.env.FROM_EMAIL!,
+      to: process.env.TO_EMAIL!,
+      subject: `New message from ${data.email}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; line-height: 1.5; color: #333;">
+          <h2 style="color: #0d0d0d;">📩 New Contact Form Submission</h2>
+          <p><strong>From:</strong> ${data.email}</p>
+          <p><strong>Message:</strong></p>
+          <p style="padding: 10px; background-color: #f9f9f9; border-left: 4px solid #0070f3;">
+            ${sanitizedMessage.replace(/\n/g, "<br>")}
+          </p>
+          <hr style="margin: 20px 0;" />
+          <small style="color: #777;">Sent via zkrstic.dev contact form</small>
+        </div>
+      `,
     });
 
     if (error) {
-      logError("Supabase insert error:", error);
-      return { success: false, message: "Database error" };
+      logError("Resend error:", error);
+      return { success: false, message: "Failed to send email" };
     }
 
     return { success: true };
