@@ -1,0 +1,43 @@
+# Zoran Krstić – Frontend Developer
+
+## About
+Zoran Krstić is a frontend developer specializing in React, Next.js, and TypeScript, passionate about building clean, performant, and user-friendly web applications.
+Available for freelance projects and full-time positions.
+
+## Website
+https://zkrstic.dev
+
+## Contact
+- Email: contact@zkrstic.com
+- GitHub: https://github.com/krsticzoran
+- LinkedIn: https://www.linkedin.com/in/zorankrstic/
+
+## Tech Stack
+Next.js, React, TypeScript, Tailwind CSS, Framer Motion, Nuxt 3, Vue, GraphQL, Express.js, MongoDB, Strapi, WordPress (Headless), Vercel, Netlify
+
+## Services
+- Web application development (React, Next.js, Nuxt 3)
+- Landing pages and portfolio websites
+- UI/UX implementation (Tailwind CSS, Framer Motion)
+- Figma to HTML/CSS/JS conversion
+- Headless CMS integration (WordPress, Strapi)
+- Performance optimization and SEO
+
+## Selected Projects
+
+### Client Projects
+- **Lypta** – SaaS marketing site (Nuxt 3, Tailwind CSS, Markdown Blog) – https://lypta-website.vercel.app/
+- **Portage Creek Web Designs** – Portfolio websites (Next.js, Tailwind CSS) – https://portagecreekwebdesigns.com/
+- **Fakturify** – SaaS invoicing marketing site (Nuxt 3, Tailwind CSS) – https://www.fakturify.com/
+- **Learn Plus NGO** – NGO website (Next.js, TypeScript, Strapi) – https://learn-plus.org/
+- **Infiniwave** – Designer portfolio landing page (Figma to HTML/CSS/JS) – https://infiniwave.be/
+- **Basketball Coach** – Portfolio site for NBA coach Siniša Savović (Next.js, SASS, Resend) – https://probasketballcoach.com/
+- **Rollo** – PVC joinery website with SEO (WordPress, Elementor) – https://rollo.hr/
+
+### Personal Projects
+- **Tea Shop** – E-commerce site (Next.js, WordPress Headless CMS) – https://e-store.zkrstic.com/
+- **Real Estate Agency** – Full-stack platform (React, TypeScript, GraphQL, Express.js, MongoDB) – https://real.estate.zkrstic.com/
+- **AI Buddy** – Voice-enabled ChatGPT interface (React, Redux Toolkit, Firebase) – https://ai-buddy.netlify.app/
+
+## Performance
+Achieves 90+ on Google PageSpeed Insights (mobile) and 97+ on desktop.
