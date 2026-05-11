@@ -36,9 +36,9 @@ This portfolio showcases my work, skills, and the technologies I use.
 - 🖼️ **Tabler Icons** – Crisp, customizable SVG icons.
 - 🧩 **lucide-react** – Beautiful open-source icon library for React.
 
-## Features
+## -## Features
 
-- ⚡ **Performance Optimized** – Achieves a 98+ score on Google PageSpeed Insights (mobile).
+- ⚡ **Performance Optimized** – Achieves a 90+ score on Google PageSpeed Insights (mobile) and 97+ on desktop.
 - 🧩 **Component-Based Structure** – Built with reusable and maintainable components.
 - 🎨 **Modern Design** – Clean, minimal, and elegant UI following current design trends.
 - 📱 **Fully Responsive** – Looks great and works smoothly across all devices and screen sizes.
