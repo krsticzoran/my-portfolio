@@ -18,6 +18,9 @@ const exo2 = Exo_2({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://zkrstic.dev"),
+  alternates: {
+    canonical: "/",
+  },
   title: "Zoran Krstić | Frontend Developer Portfolio",
   description:
     "Portfolio of Zoran Krstić, a frontend developer specialized in React and Next.js. Check out my projects, skills, and contact info.",
