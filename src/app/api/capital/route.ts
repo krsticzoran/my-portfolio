@@ -8,7 +8,10 @@ export async function GET() {
     const headerList = headers();
     const countryCode = (await headerList).get("x-vercel-ip-country") || "JP";
 
-    const response = await fetch(`https://restcountries.com/v3.1/alpha/${countryCode}`);
+    // Capitals almost never change — revalidate once a month (30 days)
+    const response = await fetch(`https://restcountries.com/v3.1/alpha/${countryCode}`, {
+      next: { revalidate: 2592000 },
+    });
 
     if (!response.ok) {
       const text = await response.text();
@@ -20,7 +23,6 @@ export async function GET() {
     let capital = data[0]?.capital?.[0] || "Tokyo";
 
     // If the detected country code is Georgia (GE), return Batumi instead of Tbilisi
-    // This is a simple special-case mapping requested for UX reasons.
     if (countryCode === "GE") {
       capital = "Batumi";
     }
