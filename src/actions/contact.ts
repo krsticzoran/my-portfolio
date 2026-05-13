@@ -2,39 +2,38 @@
 
 import { headers } from "next/headers";
 import { Resend } from "resend";
-import { z } from "zod";
 
+import { contactFormSchema, type ContactFormInput } from "@/lib/schemas/contact";
 import { logError } from "@/lib/logger";
 import { contactRateLimiter } from "@/lib/rate-limit";
 import { sanitizeInput } from "@/lib/sanitize";
 
-export async function submitContactForm(data: {
-  email: string;
-  message: string;
-  website?: string;
-  startTime: number;
-}) {
+export async function submitContactForm(data: ContactFormInput) {
   const now = Date.now();
 
+  // Shared schema validation (same rules as client)
+  const parsed = contactFormSchema.safeParse(data);
+  if (!parsed.success) {
+    const message = parsed.error.issues[0]?.message ?? "Invalid form data";
+    return { success: false, message };
+  }
+
+  const { email, message, website, startTime } = parsed.data;
+
   // Honeypot check
-  if (data.website && data.website.trim() !== "") {
+  if (website && website.trim() !== "") {
     return { success: false, message: "Honeypot field filled, likely a bot submission" };
   }
 
   // Check if message is empty or whitespace only
-  if (!data.message.trim()) {
+  if (!message.trim()) {
     return { success: false, message: "Comment cannot be empty or whitespace only" };
   }
 
   // Check if form was submitted too quickly (less than 3 seconds)
-  const elapsedTime = now - data.startTime;
+  const elapsedTime = now - startTime;
   if (elapsedTime < 3000) {
     return { success: false, message: "Form submitted too quickly" };
-  }
-
-  // Check message length
-  if (data.message.length > 2000) {
-    return { success: false, message: "Message is too long (max 2000 characters)" };
   }
 
   // Get client IP
@@ -51,23 +50,19 @@ export async function submitContactForm(data: {
     };
   }
 
-  // Validate email format
-  const isValidEmail = z.string().email().safeParse(data.email).success;
-  if (!isValidEmail) return { success: false, message: "Invalid email" };
-
   // Sanitize message to prevent XSS
-  const sanitizedMessage = sanitizeInput(data.message);
+  const sanitizedMessage = sanitizeInput(message);
 
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
     const { error } = await resend.emails.send({
       from: process.env.FROM_EMAIL!,
       to: process.env.TO_EMAIL!,
-      subject: `New message from ${data.email}`,
+      subject: `New message from ${email}`,
       html: `
         <div style="font-family: Arial, sans-serif; line-height: 1.5; color: #333;">
           <h2 style="color: #0d0d0d;">📩 New Contact Form Submission</h2>
-          <p><strong>From:</strong> ${data.email}</p>
+          <p><strong>From:</strong> ${email}</p>
           <p><strong>Message:</strong></p>
           <p style="padding: 10px; background-color: #f9f9f9; border-left: 4px solid #0070f3;">
             ${sanitizedMessage.replace(/\n/g, "<br>")}

@@ -3,7 +3,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { z } from "zod";
 
 import { submitContactForm } from "@/actions/contact";
 import { Button } from "@/components/ui/button";
@@ -16,23 +15,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
-// Define the schema for the contact form using Zod
-const formSchema = z.object({
-  email: z.string().email("Please enter a valid email address"),
-  message: z
-    .string()
-    .min(10, "Message must be at least 10 characters")
-    .max(2000, "Message cannot exceed 2000 characters")
-    .transform((msg) => msg.replace(/</g, "&lt;").replace(/>/g, "&gt;")),
-  startTime: z.number(),
-  website: z.string().optional(), // honeypot
-});
+import { contactFormSchema, type ContactFormInput } from "@/lib/schemas/contact";
 
 export default function ContactForm() {
   // Initialize the form with react-hook-form and Zod validation
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<ContactFormInput>({
+    resolver: zodResolver(contactFormSchema),
     defaultValues: {
       email: "",
       message: "",
@@ -46,7 +34,7 @@ export default function ContactForm() {
   const { reset } = form;
 
   // Function to handle form submission
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: ContactFormInput) => {
     try {
       const result = await submitContactForm(values);
       if (result.success) {
