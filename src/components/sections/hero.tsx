@@ -1,5 +1,6 @@
 import Container from "@/components/layout/container";
 import CodeBlock from "@/components/ui/code-block";
+import { ContainerTextFlip } from "@/components/ui/container-text-flip";
 
 export default function Hero() {
   return (
@@ -38,7 +39,8 @@ export default function Hero() {
           <span className="block mt-2 sm:mt-4 xl:mt-4 text-foreground ">Front-End Developer</span>
         </h1>
 
-        {/* Animated text flipping component — temporarily removed for LCP testing */}
+        {/* Animated text flipping component */}
+        <ContainerTextFlip />
 
         {/* Subheading with professional description */}
         <div className="text-lg text-zinc-400 mt-6 sm:mt-8 xl:mt-10 font-bold flex flex-col">
