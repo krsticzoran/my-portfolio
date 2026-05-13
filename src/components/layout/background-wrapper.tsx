@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode, PointerEvent } from "react";
+
 import { useMotionValue, useMotionTemplate, motion } from "framer-motion";
 
 export function BackgroundWrapper({ children }: { children: ReactNode }) {
