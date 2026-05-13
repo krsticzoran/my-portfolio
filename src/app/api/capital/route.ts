@@ -17,7 +17,13 @@ export async function GET() {
     }
 
     const data = await response.json();
-    const capital = data[0]?.capital?.[0] || "Tokyo";
+    let capital = data[0]?.capital?.[0] || "Tokyo";
+
+    // If the detected country code is Georgia (GE), return Batumi instead of Tbilisi
+    // This is a simple special-case mapping requested for UX reasons.
+    if (countryCode === "GE") {
+      capital = "Batumi";
+    }
 
     return NextResponse.json({ capital });
   } catch (error) {
