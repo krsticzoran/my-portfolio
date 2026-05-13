@@ -3,10 +3,10 @@
 import { headers } from "next/headers";
 import { Resend } from "resend";
 
-import { contactFormSchema, type ContactFormInput } from "@/lib/schemas/contact";
 import { logError } from "@/lib/logger";
 import { contactRateLimiter } from "@/lib/rate-limit";
 import { sanitizeInput } from "@/lib/sanitize";
+import { contactFormSchema, type ContactFormInput } from "@/lib/schemas/contact";
 
 export async function submitContactForm(data: ContactFormInput) {
   const now = Date.now();
