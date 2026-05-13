@@ -47,6 +47,12 @@ This portfolio showcases my work, skills, and the technologies I use.
 - 📁 **Project Showcase** – Highlights selected real-world and demo projects.
 - 📬 **Contact Form** – Easy way to get in touch directly from the site.
 
+### Form handling & validation
+
+- 🧾 **React Hook Form** is used on the client for lightweight, performant form state management and UX (controlled inputs, submission state, error display).
+- 🛡️ **Zod** defines a single schema for the contact form which is used for client-side validation (via a resolver) so validation messages are shown immediately to users.
+- 🔁 The server re-validates the same schema on submit (defence-in-depth) and additionally applies sanitization, honeypot checks, timing checks and rate limiting before sending notifications. This ensures client-side convenience and robust server-side protection against malformed or abusive requests.
+
 ## Security and Anti-Spam Measures
 
 To protect the contact form and comments system from spam and abuse, several techniques have been implemented:
