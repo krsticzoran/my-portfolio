@@ -1,7 +1,7 @@
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
-import { getCapital } from "@/lib/capitals";
+import { getCapital } from "@/data/capitals";
 import { capitalsRateLimiter } from "@/lib/rate-limit";
 
 export const runtime = "edge";
