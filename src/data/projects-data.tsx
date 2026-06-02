@@ -31,7 +31,7 @@ export const projectsData: Project[] = [
   {
     type: "client",
     description: "Next.js, Strapi CMS, MailerLite Integration, Tailwind CSS, PageSpeed Optimization",
-    title: "Miriam&aposs Joy – Artisan Showcase Site – Client Project (Upwork)",
+    title: "Miriam 's Joy – Artisan Showcase Site – Client Project (Upwork)",
     src: miriamImage,
     year: "2026",
     explore: "Explore",
