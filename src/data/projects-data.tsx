@@ -14,7 +14,6 @@ import portage from "@/assets/portage.png";
 import realEstateImage from "@/assets/real-estate.webp";
 import rolloImage from "@/assets/rollo.webp";
 
-
 export type Project = {
   type: "client" | "personal";
   description: string;
