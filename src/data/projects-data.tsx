@@ -61,7 +61,7 @@ export const projectsData: Project[] = [
   {
     type: "client",
     description: "Nuxt 3, Vue, Tailwind CSS, Markdown Blog",
-    title: "Lypta – SaaS Marketing Site – Client Project",
+    title: "Lypta – SaaS Marketing Site – Agency Collaboration",
     src: lyptaImage,
     year: "2026",
     explore: "Explore",
@@ -116,7 +116,7 @@ export const projectsData: Project[] = [
   {
     type: "client",
     description: "Nuxt 3, Vue, Tailwind CSS, Markdown Blog",
-    title: "Fakturify – SaaS Marketing Site – Client Project",
+    title: "Fakturify – SaaS Marketing Site – Agency Collaboration",
     src: fakturify,
     year: "2025",
     explore: "Explore",
