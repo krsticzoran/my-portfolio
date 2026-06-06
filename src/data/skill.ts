@@ -5,7 +5,9 @@ const skills: string[] = [
   "Next.js",
   "Vue",
   "Nuxt.js",
+  "Strapi",
   "Supabase",
+  "WordPress (Headless)",
   "GraphQL",
   "REST API",
   "SASS",
@@ -16,8 +18,6 @@ const skills: string[] = [
   "Git",
   "GitHub",
   "Bitbucket",
-  "WordPress (Headless)",
-  "Strapi",
   "SEO",
 ];
 
