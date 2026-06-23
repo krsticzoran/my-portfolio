@@ -11,6 +11,7 @@ import learnPlus from "@/assets/learnplus.webp";
 import lyptaImage from "@/assets/lypta.webp";
 import miriamImage from "@/assets/miriam.webp";
 import portage from "@/assets/portage.png";
+import rankinWorldImage from "@/assets/rankinworld.webp";
 import realEstateImage from "@/assets/real-estate.webp";
 import rolloImage from "@/assets/rollo.webp";
 
@@ -30,7 +31,44 @@ export type Project = {
 export const projectsData: Project[] = [
   {
     type: "client",
-    description: "Next.js, Strapi CMS, MailerLite Integration, Tailwind CSS, PageSpeed Optimization",
+    description:
+      "Next.js, TypeScript, Prisma, MySQL, Redux Toolkit, Caching Architecture, Performance Optimization",
+    title: "RankinWorld – Country Data Comparison Platform – Client Project (Upwork)",
+    src: rankinWorldImage,
+    year: "2026",
+    explore: "Explore",
+    ctaText: "Live",
+    ctaLink: "https://rankinworld.com",
+    content: () => {
+      return (
+        <>
+          <p>
+            <strong>RankinWorld</strong> is a data-driven country comparison platform built with
+            <strong> Next.js</strong> (App Router) and <strong>TypeScript</strong>, backed by
+            <strong> Prisma</strong> and <strong>MySQL</strong>. It was engineered to serve a large
+            dataset of global indicators spanning decades, with a focus on fast, scalable data
+            access and a clean, maintainable codebase.
+          </p>
+          <p>
+            The platform features a <strong>multi-layer caching architecture</strong> —
+            per-indicator and per-year server caching that eliminates repeated database
+            aggregations, combined with a client-side <strong>IndexedDB cache</strong> with
+            versioned busting to avoid redundant refetches. Content updates go live instantly
+            through <strong>on-demand revalidation</strong>
+            without redeploys. The project also involved refactoring monolithic components into a
+            modular structure and{" "}
+            <strong>hardening an inherited SQL injection vulnerability</strong>
+            through strict input validation.
+          </p>
+        </>
+      );
+    },
+  },
+
+  {
+    type: "client",
+    description:
+      "Next.js, Strapi CMS, MailerLite Integration, Tailwind CSS, PageSpeed Optimization",
     title: "Miriam 's Joy – Artisan Showcase Site – Client Project (Upwork)",
     src: miriamImage,
     year: "2026",
@@ -41,18 +79,21 @@ export const projectsData: Project[] = [
     content: () => {
       return (
         <>
-        <p>
-            <strong>Miriam&apos;s Joy</strong> is a high-performance artisan showcase website built with 
-            <strong> Next.js</strong> and <strong>Tailwind CSS</strong>. The project was engineered 
+          <p>
+            <strong>Miriam&apos;s Joy</strong> is a high-performance artisan showcase website built
+            with
+            <strong> Next.js</strong> and <strong>Tailwind CSS</strong>. The project was engineered
             to provide an elegant digital storefront for a creative brand, featuring a fully custom
-            <strong> Strapi CMS</strong> integration with dynamic content blocks that empower the client 
-            to build and manage pages independently.
+            <strong> Strapi CMS</strong> integration with dynamic content blocks that empower the
+            client to build and manage pages independently.
           </p>
           <p>
-            The platform is integrated with <strong>MailerLite</strong> for automated newsletter marketing 
-            and optimized to achieve <strong>95+ scores on mobile Google PageSpeed</strong>. This was 
-            accomplished via aggressive caching and smart demand-driven revalidation triggered by  
-            <strong> Strapi Webhooks</strong>, while ensuring the entire UI complies with <strong>WCAG AA accessibility</strong> standards.
+            The platform is integrated with <strong>MailerLite</strong> for automated newsletter
+            marketing and optimized to achieve{" "}
+            <strong>95+ scores on mobile Google PageSpeed</strong>. This was accomplished via
+            aggressive caching and smart demand-driven revalidation triggered by
+            <strong> Strapi Webhooks</strong>, while ensuring the entire UI complies with{" "}
+            <strong>WCAG AA accessibility</strong> standards.
           </p>
         </>
       );
