@@ -32,7 +32,7 @@ export const projectsData: Project[] = [
   {
     type: "client",
     description:
-      "Next.js, TypeScript, Prisma, MySQL, Redux Toolkit, Caching Architecture, Performance Optimization",
+      "Next.js, TypeScript, Prisma, MariaDB, Redux Toolkit, Caching Architecture, Performance Optimization",
     title: "RankinWorld – Country Data Comparison Platform – Client Project (Upwork)",
     src: rankinWorldImage,
     year: "2026",
@@ -45,8 +45,8 @@ export const projectsData: Project[] = [
           <p>
             <strong>RankinWorld</strong> is a data-driven country comparison platform built with
             <strong> Next.js</strong> (App Router) and <strong>TypeScript</strong>, backed by
-            <strong> Prisma</strong> and <strong>MySQL</strong>. It was engineered to serve a large
-            dataset of global indicators spanning decades, with a focus on fast, scalable data
+            <strong> Prisma</strong> and <strong>MariaDB</strong>. It was engineered to serve a
+            large dataset of global indicators spanning decades, with a focus on fast, scalable data
             access and a clean, maintainable codebase.
           </p>
           <p>
