@@ -32,7 +32,7 @@ export const projectsData: Project[] = [
   {
     type: "client",
     description:
-      "Next.js, TypeScript, Prisma, MariaDB, Strapi CMS, Redux Toolkit, Caching Architecture, Performance Optimization",
+      "Next.js, TypeScript, Prisma, MariaDB, Strapi CMS, Caching Architecture, Performance Optimization",
     title: "RankinWorld – Country Data Comparison Platform – Client Project (Upwork)",
     src: rankinWorldImage,
     year: "2026",
