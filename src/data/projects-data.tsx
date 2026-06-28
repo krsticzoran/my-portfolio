@@ -32,7 +32,7 @@ export const projectsData: Project[] = [
   {
     type: "client",
     description:
-      "Next.js, TypeScript, Prisma, MariaDB, Redux Toolkit, Caching Architecture, Performance Optimization",
+      "Next.js, TypeScript, Prisma, MariaDB, Strapi CMS, Redux Toolkit, Caching Architecture, Performance Optimization",
     title: "RankinWorld – Country Data Comparison Platform – Client Project (Upwork)",
     src: rankinWorldImage,
     year: "2026",
@@ -59,6 +59,16 @@ export const projectsData: Project[] = [
             modular structure and{" "}
             <strong>hardening an inherited SQL injection vulnerability</strong>
             through strict input validation.
+          </p>
+          <p>
+            To extend the platform with editorial content, a <strong>blog section</strong> was added
+            and powered by <strong>Strapi CMS</strong>. Strapi was the right fit here because it kept
+            the blog&apos;s content model fully decoupled from the data-heavy comparison engine —
+            non-technical editors can create and manage posts through a friendly admin UI without
+            touching code, while its headless API delivers that content straight into the Next.js
+            front end. Combined with <strong>on-demand revalidation</strong> via Strapi webhooks, new
+            articles go live instantly without a redeploy, all while preserving the site&apos;s fast,
+            cache-first performance profile.
           </p>
         </>
       );
