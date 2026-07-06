@@ -22,8 +22,8 @@ export type Project = {
   src: string | StaticImageData;
   year: string;
   explore: string;
-  ctaText: string;
-  ctaLink: string;
+  ctaText?: string;
+  ctaLink?: string;
   github?: string;
   content: () => JSX.Element;
 };
@@ -367,8 +367,6 @@ export const projectsData: Project[] = [
     src: aiBuddyImage,
     explore: "explore",
     year: "2023",
-    ctaText: "Live",
-    ctaLink: "https://ai-buddy.netlify.app/",
     github: "https://github.com/krsticzoran/ai-buddy",
     content: () => {
       return (
