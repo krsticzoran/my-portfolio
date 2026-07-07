@@ -229,7 +229,7 @@ export const projectsData: Project[] = [
     explore: "Explore",
     ctaText: "Live",
     github: "https://github.com/krsticzoran/Infiniwave",
-    ctaLink: "https://infiniwave.be/",
+    ctaLink: "https://infiniwave-eight.vercel.app/",
     content: () => {
       return (
         <>
