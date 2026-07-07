@@ -254,9 +254,7 @@ export const projectsData: Project[] = [
     src: eStoreImage,
     year: "2025",
     explore: "Explore",
-    ctaText: "Live",
     github: "https://github.com/krsticzoran/e-store",
-    ctaLink: "https://e-store.zkrstic.com/",
     content: () => {
       return (
         <>
@@ -338,8 +336,6 @@ export const projectsData: Project[] = [
     src: realEstateImage,
     explore: "explore",
     year: "2023 - 2024",
-    ctaText: "Live",
-    ctaLink: "https://real.estate.zkrstic.com/",
     github: "https://github.com/krsticzoran/real-estate-agency",
     content: () => {
       return (
