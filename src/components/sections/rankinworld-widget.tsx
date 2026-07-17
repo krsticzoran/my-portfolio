@@ -30,6 +30,16 @@ export default function RankinWorldWidget() {
           style={{ border: 0 }}
           title="Romania vs Serbia Comparison, 2023"
         />
+        <p style={{ fontSize: "13px", marginTop: "6px" }}>
+          <a
+            href="https://rankinworld.com/comparison/romania-vs-serbia?indicators=NY.GDP.MKTP.KD.ZG,SP.DYN.LE00.IN&year=2023"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Romania vs Serbia comparison
+          </a>{" "}
+          by RankinWorld
+        </p>
       </div>
     </Container>
   );
