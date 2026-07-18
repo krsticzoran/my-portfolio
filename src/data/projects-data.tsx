@@ -11,7 +11,7 @@ import learnPlus from "@/assets/learnplus.webp";
 import lyptaImage from "@/assets/lypta.webp";
 import miriamImage from "@/assets/miriam.webp";
 import portage from "@/assets/portage.png";
-// import rankinWorldImage from "@/assets/rankinworld.webp";
+import rankinWorldImage from "@/assets/rankinworld.webp";
 import realEstateImage from "@/assets/real-estate.webp";
 import rolloImage from "@/assets/rollo.webp";
 
@@ -29,7 +29,6 @@ export type Project = {
 };
 
 export const projectsData: Project[] = [
-  /* Temporarily hidden while the RankinWorld embed widget is being tested below.
   {
     type: "client",
     description:
@@ -75,7 +74,6 @@ export const projectsData: Project[] = [
       );
     },
   },
-  */
 
   {
     type: "client",
