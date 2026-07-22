@@ -85,7 +85,6 @@ export const projectsData: Project[] = [
     explore: "Explore",
     ctaText: "Live",
     ctaLink: "https://frontend-three-phi-69.vercel.app/",
-    github: "https://github.com/krsticzoran/miriams-joy-frontend",
     content: () => {
       return (
         <>
