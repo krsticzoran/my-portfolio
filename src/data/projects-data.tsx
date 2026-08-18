@@ -194,7 +194,7 @@ export const projectsData: Project[] = [
   },
   {
     type: "client",
-    description: "Next.js, TypeScript, Tailwind CSS, Strapi",
+    description: "Next.js, TypeScript, Tailwind CSS, Payload CMS, PostgreSQL",
     title: "Learn Plus – NGO Website – Client Project (Upwork)",
     src: learnPlus,
     year: "2025",
@@ -211,9 +211,16 @@ export const projectsData: Project[] = [
             activities, and mission in a clear and engaging way.
           </p>
           <p>
-            Built with <strong>Next.js</strong> and <strong>Strapi</strong> for a fully headless
-            architecture, providing fast performance, easy content management, and a responsive
-            layout optimized for all devices.
+            Built with <strong>Next.js</strong> and <strong>Payload CMS</strong>, which runs inside
+            the Next.js app itself — one codebase, one deployment, and no separate backend server to
+            host or pay for. Content lives in <strong>PostgreSQL</strong>, images are served from a
+            CDN, and the whole site is statically rendered and revalidated the moment an editor
+            saves a change.
+          </p>
+          <p>
+            Originally delivered on <strong>Strapi</strong> and later migrated to Payload, moving
+            the content model from a dashboard into typed, version-controlled code and removing the
+            recurring hosting cost for the client.
           </p>
         </>
       );
