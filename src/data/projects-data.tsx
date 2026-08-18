@@ -200,7 +200,7 @@ export const projectsData: Project[] = [
     year: "2025",
     explore: "Explore",
     ctaText: "Live",
-    github: "https://github.com/krsticzoran/learn-plus-ngo-next.js",
+    github: "https://github.com/krsticzoran/learn-plus-payload",
     ctaLink: "https://learn-plus.org/",
     content: () => {
       return (
