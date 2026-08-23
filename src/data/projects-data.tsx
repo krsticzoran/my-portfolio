@@ -52,9 +52,10 @@ export const projectsData: Project[] = [
           <p>
             The platform features a <strong>multi-layer caching architecture</strong> —
             per-indicator and per-year server caching that eliminates repeated database
-            aggregations, combined with a client-side <strong>IndexedDB cache</strong> with
-            versioned busting to avoid redundant refetches. Content updates go live instantly
-            through <strong>on-demand revalidation</strong>
+            aggregations, an in-memory client cache keyed by indicator and year to avoid redundant
+            refetches, and a <strong>Cloudflare</strong> edge layer that keeps roughly half of all
+            traffic from ever reaching the server. Content updates go live instantly through{" "}
+            <strong>on-demand revalidation</strong>
             without redeploys. The project also involved refactoring monolithic components into a
             modular structure and{" "}
             <strong>hardening an inherited SQL injection vulnerability</strong>
@@ -69,6 +70,14 @@ export const projectsData: Project[] = [
             front end. Combined with <strong>on-demand revalidation</strong> via Strapi webhooks, new
             articles go live instantly without a redeploy, all while preserving the site&apos;s fast,
             cache-first performance profile.
+          </p>
+          <p>
+            The platform was later extended with <strong>StatGuessr</strong>, a daily guessing game
+            where players identify a country from its World Bank statistical indicators. Built on
+            the same data layer that powers the comparison engine, it turns the existing dataset into
+            a reason to come back each day — with a rank-based scoring model chosen after measuring
+            several candidate formulas across hundreds of indicators, progressive hints, an
+            interactive map, and a purpose-built mobile layout.
           </p>
         </>
       );
