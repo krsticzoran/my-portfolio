@@ -25,7 +25,7 @@ export const socialLinks: SocialLink[] = [
     icon: IconBrandLinkedin,
   },
   {
-    href: "contact@zkrstic.com",
+    href: "hello@zkrstic.dev",
     label: "Email",
     icon: IconMail,
     isEmail: true,

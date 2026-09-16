@@ -57,7 +57,7 @@ export default function MobileNav() {
         <div className="flex px-4 items-center justify-between pt-6 pb-4">
           <div className="flex items-center">
             <Image src={Logo} alt="Zoran Krstić logo" width={56} height={56} />
-            <h2 className="font-semibold">zkrstic.com</h2>
+            <h2 className="font-semibold">zkrstic.dev</h2>
           </div>
           <SheetClose asChild>
             <button
