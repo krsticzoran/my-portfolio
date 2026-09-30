@@ -14,6 +14,7 @@ import portage from "@/assets/portage.png";
 import rankinWorldImage from "@/assets/rankinworld.webp";
 import realEstateImage from "@/assets/real-estate.webp";
 import rolloImage from "@/assets/rollo.webp";
+import styleInspectorImage from "@/assets/style-inspector.webp";
 
 export type Project = {
   type: "client" | "personal";
@@ -140,6 +141,45 @@ export const projectsData: Project[] = [
             delivery, optimized asset loading, and a fully responsive UI. It is designed to convey
             trust and efficiency, meeting the high standards required for legal workflow software
             and professional services.
+          </p>
+        </>
+      );
+    },
+  },
+  {
+    type: "personal",
+    description: "Chrome Extension, Manifest V3, Vanilla JavaScript, Shadow DOM, Chrome Storage API",
+    title: "Style Inspector – Chrome Extension – Personal Project",
+    src: styleInspectorImage,
+    year: "2026",
+    explore: "Explore",
+    github: "https://github.com/krsticzoran/style-inspector-extension",
+    content: () => {
+      return (
+        <>
+          <p>
+            <strong>Style Inspector</strong> is a Chrome extension built to remove a small piece of
+            daily friction: checking the typography of an element usually means opening DevTools,
+            selecting the node and reading down a long computed-styles list. Here, resting the
+            pointer on any text shows a tooltip with exactly the properties that matter — font
+            family, size and weight, line-height, letter-spacing, text and background color — with
+            colors converted to <strong>hex</strong>, ready to paste into a stylesheet.
+          </p>
+          <p>
+            It is written in <strong>vanilla JavaScript</strong> on <strong>Manifest V3</strong>,
+            with no dependencies and no build step. The tooltip lives in a{" "}
+            <strong>Shadow DOM</strong> root so a page&apos;s own CSS cannot distort it, and the
+            work is split by how it needs to be scheduled: pointer tracking is throttled with{" "}
+            <strong>requestAnimationFrame</strong>, while reading styles is debounced, so nothing is
+            measured until the pointer settles and sweeping across a page shows nothing at all.
+          </p>
+          <p>
+            The interaction is keyboard-driven and the state is shared: the on/off switch, the
+            detail level (compact, default or full) and the hint panel are all kept in{" "}
+            <strong>chrome.storage</strong>, so every tab agrees and the choices survive a restart.
+            Shortcuts registered through the <strong>commands API</strong> copy the displayed styles
+            to the clipboard as a pasteable CSS block, cycle the level of detail, and toggle the
+            extension from a background service worker or a toolbar popup.
           </p>
         </>
       );
