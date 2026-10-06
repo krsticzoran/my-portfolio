@@ -64,21 +64,21 @@ export const projectsData: Project[] = [
           </p>
           <p>
             To extend the platform with editorial content, a <strong>blog section</strong> was added
-            and powered by <strong>Strapi CMS</strong>. Strapi was the right fit here because it kept
-            the blog&apos;s content model fully decoupled from the data-heavy comparison engine —
-            non-technical editors can create and manage posts through a friendly admin UI without
+            and powered by <strong>Strapi CMS</strong>. Strapi was the right fit here because it
+            kept the blog&apos;s content model fully decoupled from the data-heavy comparison engine
+            — non-technical editors can create and manage posts through a friendly admin UI without
             touching code, while its headless API delivers that content straight into the Next.js
-            front end. Combined with <strong>on-demand revalidation</strong> via Strapi webhooks, new
-            articles go live instantly without a redeploy, all while preserving the site&apos;s fast,
-            cache-first performance profile.
+            front end. Combined with <strong>on-demand revalidation</strong> via Strapi webhooks,
+            new articles go live instantly without a redeploy, all while preserving the site&apos;s
+            fast, cache-first performance profile.
           </p>
           <p>
             The platform was later extended with <strong>StatGuessr</strong>, a daily guessing game
             where players identify a country from its World Bank statistical indicators. Built on
-            the same data layer that powers the comparison engine, it turns the existing dataset into
-            a reason to come back each day — with a rank-based scoring model chosen after measuring
-            several candidate formulas across hundreds of indicators, progressive hints, an
-            interactive map, and a purpose-built mobile layout.
+            the same data layer that powers the comparison engine, it turns the existing dataset
+            into a reason to come back each day — with a rank-based scoring model chosen after
+            measuring several candidate formulas across hundreds of indicators, progressive hints,
+            an interactive map, and a purpose-built mobile layout.
           </p>
         </>
       );
@@ -88,13 +88,13 @@ export const projectsData: Project[] = [
   {
     type: "client",
     description:
-      "Next.js, Strapi CMS, MailerLite Integration, Tailwind CSS, PageSpeed Optimization",
+      "Next.js, Strapi CMS, Stripe, MailerLite Integration, Tailwind CSS, PageSpeed Optimization",
     title: "Miriam 's Joy – Artisan Showcase Site – Client Project (Upwork)",
     src: miriamImage,
     year: "2026",
     explore: "Explore",
     ctaText: "Live",
-    ctaLink: "https://frontend-three-phi-69.vercel.app/",
+    ctaLink: "https://miriamsjoy.com/",
     content: () => {
       return (
         <>
@@ -107,10 +107,10 @@ export const projectsData: Project[] = [
             client to build and manage pages independently.
           </p>
           <p>
-            The platform is integrated with <strong>MailerLite</strong> for automated newsletter
-            marketing and optimized to achieve{" "}
-            <strong>95+ scores on mobile Google PageSpeed</strong>. This was accomplished via
-            aggressive caching and smart demand-driven revalidation triggered by
+            Card subscriptions are sold through <strong>Stripe</strong> payments, and the platform
+            is integrated with <strong>MailerLite</strong> for automated newsletter marketing. It is
+            optimized to achieve <strong>95+ scores on mobile Google PageSpeed</strong>. This was
+            accomplished via aggressive caching and smart demand-driven revalidation triggered by
             <strong> Strapi Webhooks</strong>, while ensuring the entire UI complies with{" "}
             <strong>WCAG AA accessibility</strong> standards.
           </p>
@@ -148,7 +148,8 @@ export const projectsData: Project[] = [
   },
   {
     type: "personal",
-    description: "Chrome Extension, Manifest V3, Vanilla JavaScript, Shadow DOM, Chrome Storage API",
+    description:
+      "Chrome Extension, Manifest V3, Vanilla JavaScript, Shadow DOM, Chrome Storage API",
     title: "Style Inspector – Chrome Extension – Personal Project",
     src: styleInspectorImage,
     year: "2026",
