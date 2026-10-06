@@ -27,4 +27,18 @@ describe("sanitizeInput", () => {
 
     expect(result).toHaveLength(2000);
   });
+
+  it("does not cut escaped characters at the length limit", () => {
+    const input = `${"a".repeat(1999)}<`;
+
+    const result = sanitizeInput(input);
+
+    expect(result.endsWith("&lt;")).toBe(true);
+  });
+
+  it("escapes & so user text is shown as written", () => {
+    const result = sanitizeInput("Tom & Jerry use &lt;");
+
+    expect(result).toBe("Tom &amp; Jerry use &amp;lt;");
+  });
 });
