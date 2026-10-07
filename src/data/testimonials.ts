@@ -21,14 +21,20 @@ export const testimonials: Testimonial[] = [
   },
   {
     quote:
+      "Zoran built a flawless website and went above and beyond. Always responsive, with truly rare dedication!",
+    name: "Miriam Barth - USA",
+    designation: "Artist",
+    src: "/miriam.jpeg",
+  },
+  {
+    quote:
       "Zoran designed and built my website exactly as I wanted. Professional, reliable, and easy to work with.",
     name: "Siniša Savović - Serbia",
     designation: "Basketball Coach",
     src: "/sinisa.jpg",
   },
   {
-    quote:
-      "Zoran did a great development job. I will work with him again on the next project.",
+    quote: "Zoran did a great development job. I will work with him again on the next project.",
     name: "Goran Pinjušić - Croatia",
     designation: "Sailboat Skipper",
     src: "/goran.png",
