@@ -1,43 +1,38 @@
-# Zoran Krstić – Frontend Developer
+# Zoran Krstić, Frontend Developer
 
-## About
-Zoran Krstić is a frontend developer specializing in React, Next.js, and TypeScript, passionate about building clean, performant, and user-friendly web applications.
-Available for freelance projects and full-time positions.
+> Zoran Krstić is a frontend developer specializing in React, Next.js and TypeScript, with growing full stack experience in databases, headless CMS and Stripe payments. He builds fast, accessible web apps with clean, maintainable code and is available for freelance projects and full-time positions.
 
-## Website
-https://zkrstic.dev
+Zoran works mostly with Next.js (App Router), TypeScript and Tailwind CSS, and connects them to headless CMS platforms (Strapi, Payload CMS, headless WordPress), databases (PostgreSQL, MariaDB with Prisma, MongoDB) and third-party services (Stripe, MailerLite, Resend, Upstash Redis, Cloudflare). He also has production experience with Nuxt 3 and Vue.
+
+He focuses on performance (multi-layer caching, on-demand revalidation, 90+ PageSpeed scores) and accessibility (WCAG AA). Services: web application development, headless CMS sites, e-commerce and subscription payments with Stripe, marketing and SaaS websites, performance optimization and SEO.
 
 ## Contact
-- Email: contact@zkrstic.com
-- GitHub: https://github.com/krsticzoran
-- LinkedIn: https://www.linkedin.com/in/zorankrstic/
 
-## Tech Stack
-Next.js, React, TypeScript, Tailwind CSS, Framer Motion, Nuxt 3, Vue, GraphQL, Express.js, MongoDB, Strapi, WordPress (Headless), Vercel, Netlify
+- [Portfolio](https://zkrstic.dev): projects, skills, testimonials and contact form
+- [Email](mailto:hello@zkrstic.dev): hello@zkrstic.dev
+- [GitHub](https://github.com/krsticzoran): source code of personal and selected client projects
+- [LinkedIn](https://www.linkedin.com/in/zorankrstic/): professional profile
+- [CV](https://zkrstic.dev/ZoranKrsticCV.pdf): resume in PDF
 
-## Services
-- Web application development (React, Next.js, Nuxt 3)
-- Landing pages and portfolio websites
-- UI/UX implementation (Tailwind CSS, Framer Motion)
-- Figma to HTML/CSS/JS conversion
-- Headless CMS integration (WordPress, Strapi)
-- Performance optimization and SEO
+## Client Projects
 
-## Selected Projects
+- [RankinWorld](https://rankinworld.com): data-driven country comparison platform with decades of global indicators and the StatGuessr daily guessing game; multi-layer caching (server, client, Cloudflare edge), on-demand revalidation, Strapi-powered blog (Next.js, TypeScript, Prisma, MariaDB, Strapi, Cloudflare)
+- [Miriam's Joy](https://miriamsjoy.com/): artisan greeting card site with card subscriptions sold through Stripe, MailerLite newsletter, custom Strapi content blocks, 95+ mobile PageSpeed and WCAG AA (Next.js, Strapi, Stripe, MailerLite, Tailwind CSS)
+- [Learn Plus](https://learn-plus.org/): accessible NGO website, migrated from Strapi to Payload CMS running inside the Next.js app, statically rendered with instant revalidation (Next.js, TypeScript, Payload CMS, PostgreSQL, Tailwind CSS)
+- [Lypta](https://lypta-website.vercel.app/): SaaS marketing site with a Markdown blog, agency collaboration (Nuxt 3, Vue, Tailwind CSS)
+- [Fakturify](https://www.fakturify.com/): SaaS invoicing marketing site, agency collaboration (Nuxt 3, Vue, Tailwind CSS)
+- [Portage Creek Web Designs](https://portagecreekwebdesigns.com/): portfolio websites (Next.js, Tailwind CSS, Netlify)
+- [Basketball Coach](https://probasketballcoach.com/): portfolio site for basketball coach Siniša Savović with a contact form (Next.js, SASS, Resend)
+- [Rollo](https://rollo.hr/): PVC joinery company website with SEO (WordPress, Elementor)
+- [Infiniwave](https://infiniwave-eight.vercel.app/): designer portfolio landing page, Figma to HTML/CSS/JS
 
-### Client Projects
-- **Lypta** – SaaS marketing site (Nuxt 3, Tailwind CSS, Markdown Blog) – https://lypta-website.vercel.app/
-- **Portage Creek Web Designs** – Portfolio websites (Next.js, Tailwind CSS) – https://portagecreekwebdesigns.com/
-- **Fakturify** – SaaS invoicing marketing site (Nuxt 3, Tailwind CSS) – https://www.fakturify.com/
-- **Learn Plus NGO** – NGO website (Next.js, TypeScript, Strapi) – https://learn-plus.org/
-- **Infiniwave** – Designer portfolio landing page (Figma to HTML/CSS/JS) – https://infiniwave.be/
-- **Basketball Coach** – Portfolio site for NBA coach Siniša Savović (Next.js, SASS, Resend) – https://probasketballcoach.com/
-- **Rollo** – PVC joinery website with SEO (WordPress, Elementor) – https://rollo.hr/
+## Personal Projects
 
-### Personal Projects
-- **Tea Shop** – E-commerce site (Next.js, WordPress Headless CMS) – https://e-store.zkrstic.com/
-- **Real Estate Agency** – Full-stack platform (React, TypeScript, GraphQL, Express.js, MongoDB) – https://real.estate.zkrstic.com/
-- **AI Buddy** – Voice-enabled ChatGPT interface (React, Redux Toolkit, Firebase) – https://ai-buddy.netlify.app/
+- [Style Inspector](https://github.com/krsticzoran/style-inspector-extension): Chrome extension that shows an element's typography and colors on hover, without opening DevTools (vanilla JavaScript, Manifest V3, Shadow DOM, Chrome Storage API)
+- [This portfolio](https://github.com/krsticzoran/my-portfolio): Next.js site with a contact form protected by schema validation, sanitization, honeypot, timing check and rate limiting, covered by Vitest unit tests (Next.js, TypeScript, Tailwind CSS, Zod, Resend, Upstash Redis, Vitest)
 
-## Performance
-Achieves 90+ on Google PageSpeed Insights (mobile) and 97+ on desktop.
+## Optional
+
+- [Real Estate Agency](https://github.com/krsticzoran/real-estate-agency): full stack real estate platform (React, TypeScript, GraphQL, Express.js, MongoDB)
+- [Tea Shop](https://github.com/krsticzoran/e-store): e-commerce site with headless WordPress (Next.js, Tailwind CSS, Framer Motion)
+- [AI Buddy](https://ai-buddy.netlify.app/): voice-enabled ChatGPT interface (React, Redux Toolkit, Firebase)
