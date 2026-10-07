@@ -1,4 +1,4 @@
-# 🚀 Zoran Krstić – Front-End Developer Portfolio
+# 🚀 Zoran Krstić – Frontend Developer Portfolio
 
 ![Portfolio Screenshot](./public/og-image.jpg)
 
@@ -8,7 +8,7 @@
 
 ## About
 
-Hi! I'm **Zoran Krstić**, a front-end developer passionate about building clean, performant, and user-friendly web applications.  
+Hi! I'm **Zoran Krstić**, a frontend developer with growing full stack experience, passionate about building clean, performant, and user-friendly web applications.  
 This portfolio showcases my work, skills, and the technologies I use.
 
 ---
