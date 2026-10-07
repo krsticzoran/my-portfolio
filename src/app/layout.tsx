@@ -23,10 +23,11 @@ export const metadata: Metadata = {
   },
   title: "Zoran Krstić | Frontend Developer Portfolio",
   description:
-    "Portfolio of Zoran Krstić, a frontend developer specialized in React and Next.js. Check out my projects, skills, and contact info.",
+    "Portfolio of Zoran Krstić, a frontend developer specialized in React and Next.js, with growing full stack experience. Check out my projects, skills, and contact info.",
   openGraph: {
     title: "Zoran Krstić | Frontend Developer",
-    description: "Creating high-performance web apps with modern UX and clean code.",
+    description:
+      "Fast, accessible web apps with clean, maintainable code, from headless CMS sites to storefronts powered by Stripe.",
     url: "https://zkrstic.dev",
     siteName: "Zoran Krstić Portfolio",
     images: [
@@ -43,7 +44,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Zoran Krstić | Frontend Developer",
-    description: "Creating high-performance web apps with modern UX and clean code.",
+    description:
+      "Fast, accessible web apps with clean, maintainable code, from headless CMS sites to storefronts powered by Stripe.",
     images: ["https://zkrstic.dev/og-image.jpg"],
   },
 };
@@ -63,9 +65,20 @@ export default function RootLayout({
         url: "https://zkrstic.dev",
         jobTitle: "Frontend Developer",
         description:
-          "Frontend developer specializing in React, Next.js, and TypeScript. Available for freelance projects and full-time positions.",
+          "Frontend developer specializing in React, Next.js, and TypeScript, with growing full stack experience in databases, headless CMS and Stripe payments. Available for freelance projects and full-time positions.",
         sameAs: ["https://github.com/krsticzoran", "https://www.linkedin.com/in/zorankrstic/"],
-        knowsAbout: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Frontend Development"],
+        knowsAbout: [
+          "React",
+          "Next.js",
+          "TypeScript",
+          "Tailwind CSS",
+          "PostgreSQL",
+          "Prisma",
+          "Headless CMS",
+          "Stripe",
+          "Frontend Development",
+          "Full Stack Development",
+        ],
       },
       {
         "@type": "WebSite",
