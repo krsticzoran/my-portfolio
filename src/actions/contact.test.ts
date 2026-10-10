@@ -79,10 +79,87 @@ describe("submitContactForm", () => {
     expect(result).toEqual({ success: false, message: "Form submitted too quickly" });
     expect(sendMock).not.toHaveBeenCalled();
   });
+
   it("accepts a form submitted exactly at the three second minimum", async () => {
     const result = await submitContactForm({ ...validData, startTime: NOW - 3000 });
 
     expect(result).toEqual({ success: true });
     expect(sendMock).toHaveBeenCalled();
+  });
+
+  describe("rate limiting", () => {
+    it("rejects with a singular minute when the limit resets within a minute", async () => {
+      vi.mocked(contactRateLimiter.limit).mockResolvedValueOnce({
+        success: false,
+        reset: NOW + 60_000,
+      } as never);
+
+      const result = await submitContactForm(validData);
+
+      expect(result).toEqual({
+        success: false,
+        message: "Too many requests. Please try again in 1 minute.",
+      });
+      expect(contactRateLimiter.limit).toHaveBeenCalledWith("1.2.3.4");
+      expect(sendMock).not.toHaveBeenCalled();
+    });
+
+    it("rejects with plural minutes when the limit resets in several minutes", async () => {
+      vi.mocked(contactRateLimiter.limit).mockResolvedValueOnce({
+        success: false,
+        reset: NOW + 5 * 60_000,
+      } as never);
+
+      const result = await submitContactForm(validData);
+
+      expect(result).toEqual({
+        success: false,
+        message: "Too many requests. Please try again in 5 minutes.",
+      });
+      expect(sendMock).not.toHaveBeenCalled();
+    });
+
+    it("rounds the remaining wait time up to the next full minute", async () => {
+      vi.mocked(contactRateLimiter.limit).mockResolvedValueOnce({
+        success: false,
+        reset: NOW + 61_000,
+      } as never);
+
+      const result = await submitContactForm(validData);
+
+      expect(result).toEqual({
+        success: false,
+        message: "Too many requests. Please try again in 2 minutes.",
+      });
+      expect(sendMock).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("client IP for rate limiting", () => {
+    it("uses the first address from a forwarded-for list", async () => {
+      vi.mocked(headers).mockResolvedValueOnce(
+        new Headers({ "x-forwarded-for": "5.6.7.8, 10.0.0.1" }) as never
+      );
+
+      await submitContactForm(validData);
+
+      expect(contactRateLimiter.limit).toHaveBeenCalledWith("5.6.7.8");
+    });
+
+    it("falls back to 'unknown' when the forwarded-for header is empty", async () => {
+      vi.mocked(headers).mockResolvedValueOnce(new Headers({ "x-forwarded-for": "" }) as never);
+
+      await submitContactForm(validData);
+
+      expect(contactRateLimiter.limit).toHaveBeenCalledWith("unknown");
+    });
+
+    it("falls back to 'unknown' when the forwarded-for header is missing", async () => {
+      vi.mocked(headers).mockResolvedValueOnce(new Headers() as never);
+
+      await submitContactForm(validData);
+
+      expect(contactRateLimiter.limit).toHaveBeenCalledWith("unknown");
+    });
   });
 });
