@@ -1,6 +1,7 @@
 import { headers } from "next/headers";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
+import { logError } from "@/lib/logger";
 import { contactRateLimiter } from "@/lib/rate-limit";
 
 import { submitContactForm } from "./contact";
@@ -160,6 +161,52 @@ describe("submitContactForm", () => {
       await submitContactForm(validData);
 
       expect(contactRateLimiter.limit).toHaveBeenCalledWith("unknown");
+    });
+  });
+
+  describe("email delivery", () => {
+    it("returns a generic error and logs it when Resend reports a failure", async () => {
+      const resendError = { name: "validation_error", message: "Invalid from address" };
+      sendMock.mockResolvedValueOnce({ data: null, error: resendError });
+
+      const result = await submitContactForm(validData);
+
+      expect(result).toEqual({ success: false, message: "Failed to send email" });
+      expect(logError).toHaveBeenCalledWith("Resend error:", resendError);
+    });
+
+    it("returns the error message when sending throws", async () => {
+      sendMock.mockRejectedValueOnce(new Error("Network down"));
+
+      const result = await submitContactForm(validData);
+
+      expect(result).toEqual({ success: false, message: "Network down" });
+      expect(logError).not.toHaveBeenCalled();
+    });
+
+    it("returns a generic error when sending throws something that is not an Error", async () => {
+      sendMock.mockRejectedValueOnce("timeout");
+
+      const result = await submitContactForm(validData);
+
+      expect(result).toEqual({ success: false, message: "Failed to send email" });
+      expect(logError).not.toHaveBeenCalled();
+    });
+
+    it("sends the sanitized message with line breaks and returns success", async () => {
+      const result = await submitContactForm({
+        ...validData,
+        message: "Hi <b>there</b>\nThanks & bye",
+      });
+
+      expect(result).toEqual({ success: true });
+      expect(sendMock).toHaveBeenCalledTimes(1);
+      expect(sendMock).toHaveBeenCalledWith(
+        expect.objectContaining({
+          subject: "New message from jane@example.com",
+          html: expect.stringContaining("Hi &lt;b&gt;there&lt;/b&gt;<br>Thanks &amp; bye"),
+        })
+      );
     });
   });
 });
