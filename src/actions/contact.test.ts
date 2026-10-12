@@ -175,22 +175,23 @@ describe("submitContactForm", () => {
       expect(logError).toHaveBeenCalledWith("Resend error:", resendError);
     });
 
-    it("returns the error message when sending throws", async () => {
-      sendMock.mockRejectedValueOnce(new Error("Network down"));
+    it("returns a generic error and logs it when sending throws", async () => {
+      const networkError = new Error("Network down");
+      sendMock.mockRejectedValueOnce(networkError);
 
       const result = await submitContactForm(validData);
 
-      expect(result).toEqual({ success: false, message: "Network down" });
-      expect(logError).not.toHaveBeenCalled();
+      expect(result).toEqual({ success: false, message: "Failed to send email" });
+      expect(logError).toHaveBeenCalledWith("Resend request failed:", networkError);
     });
 
-    it("returns a generic error when sending throws something that is not an Error", async () => {
+    it("returns a generic error and logs it when sending throws something that is not an Error", async () => {
       sendMock.mockRejectedValueOnce("timeout");
 
       const result = await submitContactForm(validData);
 
       expect(result).toEqual({ success: false, message: "Failed to send email" });
-      expect(logError).not.toHaveBeenCalled();
+      expect(logError).toHaveBeenCalledWith("Resend request failed:", "timeout");
     });
 
     it("sends the sanitized message with line breaks and returns success", async () => {

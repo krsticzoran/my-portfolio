@@ -80,7 +80,7 @@ export async function submitContactForm(data: ContactFormInput) {
 
     return { success: true };
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Failed to send email";
-    return { success: false, message };
+    logError("Resend request failed:", error);
+    return { success: false, message: "Failed to send email" };
   }
 }
