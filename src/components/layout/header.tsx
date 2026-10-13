@@ -32,7 +32,14 @@ export function Header() {
           className="flex items-center cursor-pointer"
           aria-label="Scroll to hero section"
         >
-          <Image src={Logo} alt="Zoran Krstić logo" width={56} height={56} priority />
+          <Image
+            src={Logo}
+            alt="Zoran Krstić logo"
+            width={56}
+            height={56}
+            priority
+            fetchPriority="high"
+          />
         </Link>
       </div>
 
