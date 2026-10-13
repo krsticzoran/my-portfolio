@@ -9,7 +9,7 @@ import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 
 const exo2 = Exo_2({
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
   preload: true,
