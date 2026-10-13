@@ -1,17 +1,7 @@
-"use client";
-
 import { ReactNode } from "react";
 
-import { motion } from "motion/react";
-
+// Fades the page in with a CSS animation (see `.animate-page-fade-in` in globals.css).
+// It used to be a motion component, which kept the whole page invisible until JavaScript loaded.
 export default function PageFadeIn({ children }: { children: ReactNode }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      {children}
-    </motion.div>
-  );
+  return <div className="animate-page-fade-in">{children}</div>;
 }
