@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { useInView } from "react-intersection-observer";
 
+import { getThirdCity } from "@/data/capitals";
 import { logError } from "@/lib/logger";
 
 // Dynamically import Globe component without SSR (server-side rendering)
@@ -40,8 +41,7 @@ export default function GlobeComponent() {
           Based in Serbia, Available Worldwide
         </h3>
         <p className="text-zinc-400 text-base md:text-lg leading-relaxed text-pretty">
-          Whether you&apos;re in Berlin, New York, or{" "}
-          {capital === "Berlin" || capital === "New York" ? "Tokyo" : capital}, I&apos;m ready to{" "}
+          Whether you&apos;re in Berlin, New York, or {getThirdCity(capital)}, I&apos;m ready to{" "}
           <span className="italic">collaborate remotely</span> and bring your ideas to life.{" "}
           <span className="italic">Let&apos;s build something great together.</span>
         </p>

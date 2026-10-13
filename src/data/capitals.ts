@@ -1,5 +1,4 @@
 // Static map of ISO 3166-1 alpha-2 country codes to capital cities.
-// GE (Georgia) is intentionally set to Batumi instead of Tbilisi.
 const CAPITALS: Record<string, string> = {
   AD: "Andorra la Vella",
   AE: "Abu Dhabi",
@@ -77,7 +76,7 @@ const CAPITALS: Record<string, string> = {
   GA: "Libreville",
   GB: "London",
   GD: "Saint George's",
-  GE: "Batumi", // special case
+  GE: "Tbilisi",
   GF: "Cayenne",
   GG: "Saint Peter Port",
   GH: "Accra",
@@ -251,4 +250,13 @@ const CAPITALS: Record<string, string> = {
 
 export function getCapital(countryCode: string): string {
   return CAPITALS[countryCode.toUpperCase()] ?? "Tokyo";
+}
+
+// Capitals of countries already named in the "Whether you're in Berlin, New York, or ..." sentence
+// (Berlin → Germany, New York → USA).
+const CAPITALS_ALREADY_IN_SENTENCE = ["Berlin", "Washington D.C."];
+
+// Picks the third city for the sentence, so a visitor's country is never mentioned twice.
+export function getThirdCity(capital: string): string {
+  return CAPITALS_ALREADY_IN_SENTENCE.includes(capital) ? "Tokyo" : capital;
 }
