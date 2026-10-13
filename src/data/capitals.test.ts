@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { getThirdCity } from "./capitals";
+import { getCapital, getThirdCity } from "./capitals";
 
 describe("getThirdCity", () => {
   it("uses Tokyo for a visitor from Germany", () => {
@@ -17,5 +17,19 @@ describe("getThirdCity", () => {
 
   it("uses the visitor's capital for any other country", () => {
     expect(getThirdCity("Belgrade")).toBe("Belgrade");
+  });
+});
+
+describe("getCapital", () => {
+  it("returns the capital for a known country code", () => {
+    expect(getCapital("RS")).toBe("Belgrade");
+  });
+
+  it("accepts a lowercase country code", () => {
+    expect(getCapital("rs")).toBe("Belgrade");
+  });
+
+  it("falls back to Tokyo for an unknown country code", () => {
+    expect(getCapital("XX")).toBe("Tokyo");
   });
 });
