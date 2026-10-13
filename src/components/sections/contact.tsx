@@ -1,6 +1,6 @@
 import Container from "@/components/layout/container";
 
-import ContactForm from "./contact-form";
+import LazyContactForm from "./lazy-contact-form";
 import GlobeComponent from "../ui/globe-component";
 
 export default function Contact() {
@@ -16,7 +16,7 @@ export default function Contact() {
         >
           Get in Touch
         </h2>
-        <ContactForm />
+        <LazyContactForm />
       </div>
 
       <GlobeComponent />
