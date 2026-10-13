@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 import { navLinks } from "@/data/nav-links";
@@ -5,11 +7,11 @@ import { useActiveSection } from "@/hooks/use-active-section";
 
 import { Button } from "../ui/button";
 
-export default function DesktopNav() {
-  // Extract section IDs by removing the '#' from href strings
-  // This is needed because useActiveSection expects IDs without the '#' prefix
-  const sectionIds = navLinks.map((link) => link.href.replace("#", ""));
+// Section IDs without the '#' prefix (useActiveSection expects plain IDs).
+// Computed once at module level so the array keeps the same reference between renders.
+const sectionIds = navLinks.map((link) => link.href.replace("#", ""));
 
+export default function DesktopNav() {
   // Get the currently active section ID (with '#' prefix) from the custom hook
   const activeHash = useActiveSection(sectionIds);
 
