@@ -9,7 +9,8 @@ import Container from "../layout/container";
 
 const AnimatedTestimonials = dynamic(() => import("../ui/animated-testimonials"), {
   ssr: false,
-  loading: () => <div className="w-full h-[660px]" />, // Placeholder to reserve space
+  // Placeholder is the smallest real height (mobile 608px, md+ 480px), so loading never shrinks the section
+  loading: () => <div className="w-full h-[608px] md:h-[480px]" />,
 });
 
 export default function Testimonials() {
@@ -34,7 +35,7 @@ export default function Testimonials() {
         {inView ? (
           <AnimatedTestimonials testimonials={testimonials} />
         ) : (
-          <div className="h-[660px]" />
+          <div className="h-[608px] md:h-[480px]" />
         )}
       </div>
     </Container>
