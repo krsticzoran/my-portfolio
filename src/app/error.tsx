@@ -1,15 +1,24 @@
 "use client";
 
+import { useEffect } from "react";
+
 import { motion } from "motion/react";
 import Link from "next/link";
 
-export default function GlobalError({
+import { logError } from "@/lib/logger";
+
+export default function ErrorPage({
   error,
   reset,
 }: {
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  // Record the error; the visitor only sees a generic message and the error ID
+  useEffect(() => {
+    logError(error);
+  }, [error]);
+
   return (
     <main
       role="alert"
@@ -36,18 +45,20 @@ export default function GlobalError({
         ))}
       </h1>
 
-      <motion.p
+      <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8, duration: 0.5 }}
         className="mt-6 text-lg text-zinc-400 text-center max-w-xl"
       >
-        Something went wrong. <br />
-        <details className="group mt-4 text-sm text-zinc-300">
-          <summary className="group-open:text-zinc-500 cursor-pointer">Details</summary>
-          <pre className="mt-2 text-zinc-300">{error.message}</pre>
-        </details>
-      </motion.p>
+        <p>Something went wrong. Please try again.</p>
+        {/* digest is a short ID Next.js adds for server errors; it matches the entry in the hosting logs */}
+        {error.digest && (
+          <p className="mt-4 text-sm text-zinc-500">
+            Error ID: <code>{error.digest}</code>
+          </p>
+        )}
+      </motion.div>
 
       <motion.div
         initial={{ opacity: 0, y: 8 }}
