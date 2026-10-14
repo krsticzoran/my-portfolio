@@ -5,11 +5,7 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <main
-      role="alert"
-      aria-live="assertive"
-      className="flex flex-col items-center justify-center text-foreground bg-background h-screen w-full absolute z-50 top-0 overflow-hidden px-4"
-    >
+    <main className="flex flex-col items-center justify-center text-foreground bg-background h-screen w-full absolute z-50 top-0 overflow-hidden px-4">
       <h1
         aria-label="Error 404: Page not found"
         className="text-7xl sm:text-9xl xl:text-[200px] font-bold flex items-center justify-center gap-4"
