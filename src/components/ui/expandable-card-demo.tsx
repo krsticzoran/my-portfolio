@@ -18,7 +18,22 @@ export default function ExpandableCardDemo({ type }: { type?: FilterType }) {
     type && type !== "all" ? projectsData.filter((project) => project.type === type) : projectsData;
   const [active, setActive] = useState<(typeof cards)[number] | boolean | null>(null);
   const ref = useRef<HTMLDivElement>(null!);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  // The element that had focus when the modal opened (the project card), to return focus to on close
+  const openerRef = useRef<HTMLElement | null>(null);
   const id = useId();
+  const isOpen = Boolean(active && typeof active === "object");
+
+  // Move focus into the modal when it opens, and back to the card when it closes
+  useEffect(() => {
+    if (isOpen) {
+      openerRef.current = document.activeElement as HTMLElement | null;
+      closeButtonRef.current?.focus({ preventScroll: true });
+    } else if (openerRef.current) {
+      openerRef.current.focus({ preventScroll: true });
+      openerRef.current = null;
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -61,10 +76,15 @@ export default function ExpandableCardDemo({ type }: { type?: FilterType }) {
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby={`modal-title-${id}`}
               className="relative w-full max-w-[600px] overflow-y-auto shadow-lg h-[100dvh] sm:h-fit md:max-h-[90%]  flex flex-col  bg-white sm:rounded-3xl overflow-hidden "
             >
               <motion.button
                 key={`button-${active.title}-${id}`}
+                ref={closeButtonRef}
+                aria-label="Close project details"
                 layout
                 initial={{
                   opacity: 0,
@@ -78,7 +98,7 @@ export default function ExpandableCardDemo({ type }: { type?: FilterType }) {
                     duration: 0,
                   },
                 }}
-                className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-white rounded-full h-6 w-6"
+                className="flex absolute top-2 right-2 z-10 items-center justify-center bg-white rounded-full h-8 w-8 shadow cursor-pointer hover:bg-zinc-200 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900"
                 onClick={() => setActive(null)}
               >
                 <CloseIcon />
@@ -97,6 +117,7 @@ export default function ExpandableCardDemo({ type }: { type?: FilterType }) {
                 <div className="flex justify-between items-start p-4 ">
                   <div>
                     <motion.h3
+                      id={`modal-title-${id}`}
                       layoutId={`title-${active.title}-${id}`}
                       className="text-xl font-semibold text-background tracking-tight"
                     >
