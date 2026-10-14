@@ -13,12 +13,21 @@ interface Props {
 
 export default function ProjectCard({ card, index, id, setActive }: Props) {
   return (
-    <motion.li
-      layoutId={`card-${card.title}-${index}-${id}`}
-      onClick={() => setActive(card)}
-      className="my-8 sm:my-6 px-4 lg:px-6 py-2 lg:py-4 flex justify-between items-center hover:bg-zinc-900/80 rounded-xl cursor-pointer transition-all duration-500"
-    >
-      <div className="flex gap-4 lg:gap-6 items-center w-full  flex-col-reverse sm:flex-row">
+    <motion.li layoutId={`card-${card.title}-${index}-${id}`} className="my-8 sm:my-6">
+      {/* The whole card acts as a button: focusable with Tab, opens with Enter/Space */}
+      <div
+        role="button"
+        tabIndex={0}
+        aria-label={`Open project details: ${card.title}`}
+        onClick={() => setActive(card)}
+        onKeyDown={(event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault(); // Space would otherwise scroll the page
+            setActive(card);
+          }
+        }}
+        className="px-4 lg:px-6 py-2 lg:py-4 flex gap-4 lg:gap-6 items-center w-full flex-col-reverse sm:flex-row hover:bg-zinc-900/80 rounded-xl cursor-pointer transition-all duration-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-400"
+      >
         <motion.div
           layoutId={`image-${card.title}-${id}`}
           className="relative w-full h-40   sm:w-36 sm:h-24  lg:min-h-32 lg:min-w-48"
@@ -53,8 +62,11 @@ export default function ProjectCard({ card, index, id, setActive }: Props) {
               {card.year}
             </motion.p>
           </div>
+          {/* Visual cue only: the card itself is the button, so skip this for keyboard and screen readers */}
           <motion.button
             layoutId={`button-${card.title}-${id}`}
+            tabIndex={-1}
+            aria-hidden="true"
             className="hidden md:block px-6 py-2 text-sm lg:text-base rounded-md font-semibold bg-foreground text-background hover:bg-zinc-700 transition-colors duration-300 mt-6 md:mt-0 capitalize cursor-pointer"
           >
             {card.explore}
