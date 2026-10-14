@@ -5,15 +5,14 @@ import type { Project } from "@/data/projects-data";
 
 interface Props {
   card: Project;
-  index: number;
   id: string;
   // eslint-disable-next-line no-unused-vars
   setActive: (card: Project) => void;
 }
 
-export default function ProjectCard({ card, index, id, setActive }: Props) {
+export default function ProjectCard({ card, id, setActive }: Props) {
   return (
-    <motion.li layoutId={`card-${card.title}-${index}-${id}`} className="my-8 sm:my-6">
+    <motion.li layoutId={`card-${card.title}-${id}`} className="my-8 sm:my-6">
       {/* The whole card acts as a button: focusable with Tab, opens with Enter/Space */}
       <div
         role="button"

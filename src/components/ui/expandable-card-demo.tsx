@@ -124,7 +124,7 @@ export default function ExpandableCardDemo({ type }: { type?: FilterType }) {
                       {active.title}
                     </motion.h3>
                     <motion.p
-                      layoutId={`description-${active.description}-${id}`}
+                      layoutId={`description-${active.title}-${id}`}
                       className="text-xs sm:text-sm text-zinc-500  mt-1 tracking-wide uppercase"
                     >
                       {active.description}
@@ -184,7 +184,6 @@ export default function ExpandableCardDemo({ type }: { type?: FilterType }) {
           <ProjectCard
             key={`card-${card.title}-${index}-${id}`}
             card={card}
-            index={index}
             id={id}
             setActive={(card) => setActive(card)}
           />
