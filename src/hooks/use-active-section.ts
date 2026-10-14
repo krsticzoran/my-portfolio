@@ -1,13 +1,16 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // Custom hook that tracks which section is currently active based on scroll position
 export function useActiveSection(sectionIds: string[]) {
-  // State to hold the ID of the currently active section
+  // State to hold the ID of the currently active section (rendered by the nav)
   const [activeId, setActiveId] = useState<string>("");
 
-  // State to track the scroll direction (up or down)
-  const [scrollDirection, setScrollDirection] = useState<"up" | "down">("down");
+  // Refs for values the observer callback reads. Unlike state, changing a ref doesn't
+  // re-render or re-run effects, so the observer can be created once and still always
+  // see the latest values (no stale closure).
+  const scrollDirectionRef = useRef<"up" | "down">("down");
+  const activeIdRef = useRef("");
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -16,7 +19,7 @@ export function useActiveSection(sectionIds: string[]) {
       const currentScrollY = window.scrollY;
 
       // Determine scroll direction
-      setScrollDirection(currentScrollY > lastScrollY ? "down" : "up");
+      scrollDirectionRef.current = currentScrollY > lastScrollY ? "down" : "up";
       lastScrollY = currentScrollY;
     };
 
@@ -29,7 +32,7 @@ export function useActiveSection(sectionIds: string[]) {
   // Effect to observe intersections of sections to determine which is active
   useEffect(() => {
     const handleObserve = (entries: IntersectionObserverEntry[]) => {
-      let newActiveId = activeId;
+      let newActiveId = activeIdRef.current;
       let highestVisibleRatio = 0;
 
       entries.forEach((entry) => {
@@ -37,19 +40,20 @@ export function useActiveSection(sectionIds: string[]) {
         const id = `#${entry.target.id}`; // Add '#' prefix for consistency with nav links
 
         // When scrolling down, use first intersecting element
-        if (scrollDirection === "down" && entry.isIntersecting) {
+        if (scrollDirectionRef.current === "down" && entry.isIntersecting) {
           newActiveId = id;
           return;
         }
 
         // When scrolling up, find the element with highest visibility
-        if (scrollDirection === "up" && ratio > highestVisibleRatio) {
+        if (scrollDirectionRef.current === "up" && ratio > highestVisibleRatio) {
           highestVisibleRatio = ratio;
           newActiveId = id;
         }
       });
 
-      if (newActiveId !== activeId) {
+      if (newActiveId !== activeIdRef.current) {
+        activeIdRef.current = newActiveId;
         setActiveId(newActiveId);
       }
     };
@@ -68,7 +72,7 @@ export function useActiveSection(sectionIds: string[]) {
     });
 
     return () => observer.disconnect();
-  }, [sectionIds, scrollDirection, activeId]);
+  }, [sectionIds]);
 
   return activeId;
 }

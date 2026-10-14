@@ -97,4 +97,14 @@ describe("useActiveSection", () => {
 
     expect(observers.every((o) => o.disconnected)).toBe(true);
   });
+
+  it("creates the observer only once", () => {
+    renderHook(() => useActiveSection(SECTION_IDS));
+    scrollTo(500);
+    scrollTo(200);
+
+    intersect([{ target: section("projects"), isIntersecting: true, intersectionRatio: 0.7 }]);
+
+    expect(observers).toHaveLength(1);
+  });
 });
