@@ -158,7 +158,7 @@ export default function ExpandableCardDemo({ type }: { type?: FilterType }) {
                         className="inline-flex items-center px-4 py-2 text-sm rounded-md font-bold cursor-pointer transition bg-background text-foreground hover:bg-zinc-800"
                       >
                         <IconPlayerPlay size={16} className="mr-2" />
-                        Open Site
+                        {active.ctaText ?? "Open Site"}
                       </motion.a>
                     ) : null}
                     {active.github ? (

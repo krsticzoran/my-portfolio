@@ -68,7 +68,7 @@ export default function ProjectCard({ card, id, setActive }: Props) {
             aria-hidden="true"
             className="hidden md:block px-6 py-2 text-sm lg:text-base rounded-md font-semibold bg-foreground text-background hover:bg-zinc-700 transition-colors duration-300 mt-6 md:mt-0 capitalize cursor-pointer"
           >
-            {card.explore}
+            {card.explore ?? "Explore"}
           </motion.button>
         </div>
       </div>

@@ -22,8 +22,8 @@ export type Project = {
   title: string;
   src: string | StaticImageData;
   year: string;
-  explore: string;
-  ctaText?: string;
+  explore?: string; // button text on the card, defaults to "Explore"
+  ctaText?: string; // text of the live-site button in the modal, defaults to "Open Site"
   ctaLink?: string;
   github?: string;
   content: () => JSX.Element;
@@ -37,8 +37,6 @@ export const projectsData: Project[] = [
     title: "RankinWorld – Country Data Comparison Platform – Client Project (Upwork)",
     src: rankinWorldImage,
     year: "2026",
-    explore: "Explore",
-    ctaText: "Live",
     ctaLink: "https://rankinworld.com",
     content: () => {
       return (
@@ -92,8 +90,6 @@ export const projectsData: Project[] = [
     title: "Miriam's Joy – Artisan Showcase Site – Client Project (Upwork)",
     src: miriamImage,
     year: "2026",
-    explore: "Explore",
-    ctaText: "Live",
     ctaLink: "https://miriamsjoy.com/",
     content: () => {
       return (
@@ -124,8 +120,6 @@ export const projectsData: Project[] = [
     title: "Lypta – SaaS Marketing Site – Agency Collaboration",
     src: lyptaImage,
     year: "2026",
-    explore: "Explore",
-    ctaText: "Live",
     ctaLink: "https://lypta-website.vercel.app/",
     content: () => {
       return (
@@ -153,7 +147,6 @@ export const projectsData: Project[] = [
     title: "Style Inspector – Chrome Extension – Personal Project",
     src: styleInspectorImage,
     year: "2026",
-    explore: "Explore",
     github: "https://github.com/krsticzoran/style-inspector-extension",
     content: () => {
       return (
@@ -192,8 +185,6 @@ export const projectsData: Project[] = [
     title: "Portage Creek Web Designs - Portfolio Websites - Client Project (Upwork)",
     src: portage,
     year: "2025",
-    explore: "Explore",
-    ctaText: "Live",
     github: "https://github.com/krsticzoran/Portage-Creek",
     ctaLink: "https://portagecreekwebdesigns.com/",
     content: () => {
@@ -219,8 +210,6 @@ export const projectsData: Project[] = [
     title: "Fakturify – SaaS Marketing Site – Agency Collaboration",
     src: fakturify,
     year: "2025",
-    explore: "Explore",
-    ctaText: "Live",
     ctaLink: "https://www.fakturify.com/",
     content: () => {
       return (
@@ -248,8 +237,6 @@ export const projectsData: Project[] = [
     title: "Learn Plus – NGO Website – Client Project (Upwork)",
     src: learnPlus,
     year: "2025",
-    explore: "Explore",
-    ctaText: "Live",
     github: "https://github.com/krsticzoran/learn-plus-payload",
     ctaLink: "https://learn-plus.org/",
     content: () => {
@@ -282,8 +269,6 @@ export const projectsData: Project[] = [
     title: "Designer Portfolio Landing Page – Client Project (Upwork)",
     src: infiniwave,
     year: "2025",
-    explore: "Explore",
-    ctaText: "Live",
     github: "https://github.com/krsticzoran/Infiniwave",
     ctaLink: "https://infiniwave-eight.vercel.app/",
     content: () => {
@@ -309,7 +294,6 @@ export const projectsData: Project[] = [
     title: "Tea Shop – E-commerce Website – Personal Project",
     src: eStoreImage,
     year: "2025",
-    explore: "Explore",
     github: "https://github.com/krsticzoran/e-store",
     content: () => {
       return (
@@ -333,9 +317,7 @@ export const projectsData: Project[] = [
     description: "Next.js, SASS, Resend API",
     title: "Basketball Coach Portfolio – Client Project",
     src: basketballImage,
-    explore: "explore",
     year: "2024",
-    ctaText: "Live",
     ctaLink: "https://probasketballcoach.com/",
     github: "https://github.com/krsticzoran/basketball-coach",
     content: () => {
@@ -362,9 +344,7 @@ export const projectsData: Project[] = [
     description: "SEO",
     title: "Rollo – PVC Joinery Website – Client Project",
     src: rolloImage,
-    explore: "explore",
     year: "2024 - Present",
-    ctaText: "Live",
     ctaLink: "https://rollo.hr/",
     content: () => {
       return (
@@ -390,7 +370,6 @@ export const projectsData: Project[] = [
     description: "React, TypeScript, GraphQL, Express.js, MongoDB",
     title: "Real Estate Agency Website – Personal Project ",
     src: realEstateImage,
-    explore: "explore",
     year: "2023 - 2024",
     github: "https://github.com/krsticzoran/real-estate-agency",
     content: () => {
@@ -417,7 +396,6 @@ export const projectsData: Project[] = [
     description: "React, Bootstrap, Redux Toolkit, Firebase",
     title: "AI Buddy – Personal Project ",
     src: aiBuddyImage,
-    explore: "explore",
     year: "2023",
     github: "https://github.com/krsticzoran/ai-buddy",
     content: () => {
