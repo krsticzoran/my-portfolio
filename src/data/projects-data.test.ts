@@ -1,3 +1,4 @@
+import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 
 import { projectsData } from "./projects-data";
@@ -27,5 +28,18 @@ describe("projectsData", () => {
       .map(({ position, project }) => `#${position} ${project.title}`);
 
     expect(incomplete).toEqual([]);
+  });
+
+  it("has readable text in the modal content of every project", () => {
+    const withoutText = projectsData
+      .filter((project) => {
+        // content() returns JSX: render it to an HTML string, then strip the tags to get plain text
+        const html = renderToStaticMarkup(project.content());
+        const text = html.replace(/<[^>]*>/g, "");
+        return text.trim() === "";
+      })
+      .map((project) => project.title);
+
+    expect(withoutText).toEqual([]);
   });
 });
