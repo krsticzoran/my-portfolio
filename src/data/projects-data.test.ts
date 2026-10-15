@@ -1,3 +1,6 @@
+import { existsSync } from "node:fs";
+import path from "node:path";
+
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 
@@ -28,6 +31,28 @@ describe("projectsData", () => {
       .map(({ position, project }) => `#${position} ${project.title}`);
 
     expect(incomplete).toEqual([]);
+  });
+
+  it("has a year for every project", () => {
+    const withoutYear = projectsData
+      .filter((project) => project.year.trim() === "")
+      .map((project) => project.title);
+
+    expect(withoutYear).toEqual([]);
+  });
+
+  it("points every project image to an existing file", () => {
+    // In Vitest every src is a string: imported images become "/src/assets/x.webp" (relative to the
+    // project root), while hand-written paths like "/x.webp" live in public/. Check both places.
+    const root = process.cwd();
+    const fileExists = (src: string) =>
+      existsSync(path.join(root, "public", src)) || existsSync(path.join(root, src));
+
+    const missingImages = projectsData
+      .filter((project) => typeof project.src === "string" && !fileExists(project.src))
+      .map((project) => `${project.title}: ${String(project.src)}`);
+
+    expect(missingImages).toEqual([]);
   });
 
   it("has readable text in the modal content of every project", () => {
