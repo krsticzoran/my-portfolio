@@ -9,13 +9,13 @@ import Image from "next/image";
 import { CloseIcon } from "@/components/ui/close-icon";
 import { projectsData } from "@/data/projects-data";
 import { useOutsideClick } from "@/hooks/use-outside-click";
+import { filterProjects } from "@/lib/filter-projects";
 import { FilterType } from "@/lib/types";
 
 import ProjectCard from "./project-card";
 
 export default function ExpandableCardDemo({ type }: { type?: FilterType }) {
-  const cards =
-    type && type !== "all" ? projectsData.filter((project) => project.type === type) : projectsData;
+  const cards = filterProjects(projectsData, type);
   const [active, setActive] = useState<(typeof cards)[number] | boolean | null>(null);
   const ref = useRef<HTMLDivElement>(null!);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
