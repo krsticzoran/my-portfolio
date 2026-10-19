@@ -68,3 +68,26 @@ To protect the contact form from spam and abuse, several techniques have been im
 📏 Length Validation – Messages have a maximum character limit (2,000 characters) to avoid abuse and excessive payloads.
 
 🔒 Empty Input Check – Whitespace-only messages are ignored to ensure all submissions are meaningful.
+
+## Testing
+
+The project has **66 unit and integration tests** written with **Vitest**, focused on the logic behind the site rather than on visual components.
+
+### What is covered
+
+- 📬 **Contact form server action** – schema validation, honeypot, timing check, rate limiting (per-client IP), email delivery and error handling. Redis, Resend and Next.js headers are mocked, so tests never call real services.
+- 🧼 **Sanitization** – HTML escaping and length limits, including edge cases found and fixed through tests (escaped characters cut at the length limit, ampersands).
+- 🛡️ **Validation schema** – Zod rules and user-facing error messages, including min/max boundaries.
+- 🌍 **Location API route** – visitor's capital from the country header, fallbacks and the rate limit response.
+- 🧭 **Active section hook** – navigation highlighting in a simulated browser (jsdom) with a fake `IntersectionObserver`.
+- 🗂️ **Content data** – unique project titles, `https` links, filled-in text, and that every project and testimonial image exists.
+- 🔧 **Smaller helpers** – project filtering, freelance experience calculation, logging in production.
+
+### Workflow
+
+A **Husky** pre-commit hook runs **lint-staged** (ESLint + Prettier on staged files) and the full test suite, so a commit with failing tests or lint errors is rejected.
+
+```bash
+npm test            # run all tests once
+npm run test:watch  # re-run tests on file save
+```
