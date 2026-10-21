@@ -1,5 +1,5 @@
 import path from "node:path";
-import { defineConfig } from "vitest/config";
+import { configDefaults, defineConfig } from "vitest/config";
 
 export default defineConfig({
   // Compile JSX in tests. tsconfig has "jsx": "preserve" (Next compiles JSX itself),
@@ -12,5 +12,7 @@ export default defineConfig({
   },
   test: {
     environment: "node",
+    // e2e/ holds Playwright tests; they run with `npx playwright test`, not Vitest.
+    exclude: [...configDefaults.exclude, "e2e/**"],
   },
 });
