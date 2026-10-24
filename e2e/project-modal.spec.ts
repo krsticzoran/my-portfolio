@@ -61,4 +61,18 @@ test.describe("project modal", () => {
     await expect(dialog).toBeHidden();
     await expect(card).toBeFocused();
   });
+
+  test("a project can be opened with the keyboard", async ({ page }) => {
+    const rankinCard = page.getByRole("button", { name: /Open project details: RankinWorld/ });
+    await rankinCard.focus();
+    await expect(rankinCard).toBeFocused();
+
+    await page.keyboard.press("Tab");
+    const miriamCard = page.getByRole("button", { name: /Open project details: Miriam's Joy/ });
+    await expect(miriamCard).toBeFocused();
+
+    await page.keyboard.press("Enter");
+    const dialog = page.getByRole("dialog", { name: /Miriam's Joy/ });
+    await expect(dialog).toBeVisible();
+  });
 });
