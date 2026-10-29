@@ -10,6 +10,19 @@ const openProject = async (page: Page) => {
   return dialog;
 };
 
+// Focuses RankinWorld, tabs to the next card (Miriam's Joy) and returns it, already checked to be focused
+const tabToMiriamCard = async (page: Page) => {
+  const rankinCard = page.getByRole("button", { name: /Open project details: RankinWorld/ });
+  await rankinCard.focus();
+  await expect(rankinCard).toBeFocused();
+
+  await page.keyboard.press("Tab");
+  const miriamCard = page.getByRole("button", { name: /Open project details: Miriam's Joy/ });
+  await expect(miriamCard).toBeFocused();
+
+  return miriamCard;
+};
+
 test.describe("project modal", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
@@ -62,16 +75,20 @@ test.describe("project modal", () => {
     await expect(card).toBeFocused();
   });
 
-  test("a project can be opened with the keyboard", async ({ page }) => {
-    const rankinCard = page.getByRole("button", { name: /Open project details: RankinWorld/ });
-    await rankinCard.focus();
-    await expect(rankinCard).toBeFocused();
-
-    await page.keyboard.press("Tab");
-    const miriamCard = page.getByRole("button", { name: /Open project details: Miriam's Joy/ });
-    await expect(miriamCard).toBeFocused();
+  test("a project can be opened with Enter", async ({ page }) => {
+    await tabToMiriamCard(page);
 
     await page.keyboard.press("Enter");
+
+    const dialog = page.getByRole("dialog", { name: /Miriam's Joy/ });
+    await expect(dialog).toBeVisible();
+  });
+
+  test("a project can be opened with Space", async ({ page }) => {
+    await tabToMiriamCard(page);
+
+    await page.keyboard.press("Space");
+
     const dialog = page.getByRole("dialog", { name: /Miriam's Joy/ });
     await expect(dialog).toBeVisible();
   });
