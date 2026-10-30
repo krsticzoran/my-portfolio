@@ -1,4 +1,4 @@
-import { expect, type Page, test } from "@playwright/test";
+import { expect, type Locator, type Page, test } from "@playwright/test";
 
 // Opens the RankinWorld project modal and returns it, already checked to be visible
 const openProject = async (page: Page) => {
@@ -21,6 +21,17 @@ const tabToMiriamCard = async (page: Page) => {
   await expect(miriamCard).toBeFocused();
 
   return miriamCard;
+};
+
+// Waits until an element stops moving or resizing (e.g. the card-to-modal layout animation)
+const waitForElementToSettle = async (locator: Locator) => {
+  await expect(async () => {
+    const first = await locator.boundingBox();
+    await locator.page().waitForTimeout(100);
+    const second = await locator.boundingBox();
+    expect(first).not.toBeNull();
+    expect(second).toEqual(first);
+  }).toPass();
 };
 
 test.describe("project modal", () => {
@@ -91,5 +102,16 @@ test.describe("project modal", () => {
 
     const dialog = page.getByRole("dialog", { name: /Miriam's Joy/ });
     await expect(dialog).toBeVisible();
+  });
+
+  test("the modal opens in the viewport, not at the top of the page", async ({ page }) => {
+    await page.getByRole("button", { name: /Open project details: Miriam's Joy/ }).click();
+
+    // At the top of the page the bug is invisible: the modal would be on screen anyway
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(0);
+
+    const dialog = page.getByRole("dialog", { name: /Miriam's Joy/ });
+    await waitForElementToSettle(dialog);
+    await expect(dialog).toBeInViewport({ ratio: 1 });
   });
 });
