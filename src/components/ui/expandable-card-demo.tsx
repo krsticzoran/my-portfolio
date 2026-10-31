@@ -16,13 +16,14 @@ import ProjectCard from "./project-card";
 
 export default function ExpandableCardDemo({ type }: { type?: FilterType }) {
   const cards = filterProjects(projectsData, type);
-  const [active, setActive] = useState<(typeof cards)[number] | boolean | null>(null);
+  // The open project, or null when the modal is closed
+  const [active, setActive] = useState<(typeof cards)[number] | null>(null);
   const ref = useRef<HTMLDivElement>(null!);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   // The element that had focus when the modal opened (the project card), to return focus to on close
   const openerRef = useRef<HTMLElement | null>(null);
   const id = useId();
-  const isOpen = Boolean(active && typeof active === "object");
+  const isOpen = active !== null;
 
   // Move focus into the modal when it opens, and back to the card when it closes
   useEffect(() => {
@@ -51,7 +52,7 @@ export default function ExpandableCardDemo({ type }: { type?: FilterType }) {
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
-        setActive(false);
+        setActive(null);
       }
     }
 
@@ -68,7 +69,7 @@ export default function ExpandableCardDemo({ type }: { type?: FilterType }) {
   return (
     <>
       <AnimatePresence>
-        {active && typeof active === "object" && (
+        {active && (
           <motion.div
             initial={{ opacity: 0, zIndex: 10 }}
             animate={{ opacity: 1, zIndex: 50 }}
@@ -78,7 +79,7 @@ export default function ExpandableCardDemo({ type }: { type?: FilterType }) {
         )}
       </AnimatePresence>
       <AnimatePresence>
-        {active && typeof active === "object" ? (
+        {active ? (
           <div className="fixed inset-0 flex justify-center items-start sm:items-center z-[100]">
             <motion.div
               layoutId={`card-${active.title}-${id}`}
@@ -192,7 +193,7 @@ export default function ExpandableCardDemo({ type }: { type?: FilterType }) {
             key={`card-${card.title}-${index}-${id}`}
             card={card}
             id={id}
-            setActive={(card) => setActive(card)}
+            setActive={setActive}
           />
         ))}
       </ul>
