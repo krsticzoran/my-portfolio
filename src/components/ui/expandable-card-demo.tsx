@@ -35,6 +35,19 @@ export default function ExpandableCardDemo({ type }: { type?: FilterType }) {
     }
   }, [isOpen]);
 
+  // Lock page scroll while the modal is open. The cleanup restores the previous value,
+  // so the page is unlocked even if the list unmounts with the modal open (e.g. a client-side navigation)
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isOpen]);
+
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
@@ -42,15 +55,9 @@ export default function ExpandableCardDemo({ type }: { type?: FilterType }) {
       }
     }
 
-    if (active && typeof active === "object") {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [active]);
+  }, []);
 
   useOutsideClick(ref, () => {
     if (ref.current) {
