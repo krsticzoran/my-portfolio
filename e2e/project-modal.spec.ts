@@ -50,7 +50,7 @@ test.describe("project modal", () => {
     await dialog.getByRole("button", { name: "Close project details" }).click();
 
     await expect(dialog).toBeHidden();
-    await expect(page.locator("body")).toHaveCSS("overflow", "auto");
+    await expect(page.locator("body")).not.toHaveCSS("overflow-y", "hidden");
   });
 
   test("Escape key closes the modal", async ({ page }) => {
@@ -60,7 +60,7 @@ test.describe("project modal", () => {
     await page.keyboard.press("Escape");
 
     await expect(dialog).toBeHidden();
-    await expect(page.locator("body")).toHaveCSS("overflow", "auto");
+    await expect(page.locator("body")).not.toHaveCSS("overflow-y", "hidden");
   });
 
   test("clicking outside closes the modal", async ({ page, isMobile }) => {
@@ -71,7 +71,7 @@ test.describe("project modal", () => {
     await page.mouse.click(10, 10);
 
     await expect(dialog).toBeHidden();
-    await expect(page.locator("body")).toHaveCSS("overflow", "auto");
+    await expect(page.locator("body")).not.toHaveCSS("overflow-y", "hidden");
   });
 
   test("focus moves to the close button and returns to the card", async ({ page }) => {

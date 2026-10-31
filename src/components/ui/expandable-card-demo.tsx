@@ -45,7 +45,7 @@ export default function ExpandableCardDemo({ type }: { type?: FilterType }) {
     if (active && typeof active === "object") {
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = "";
     }
 
     window.addEventListener("keydown", onKeyDown);
