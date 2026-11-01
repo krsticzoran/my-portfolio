@@ -1,0 +1,30 @@
+name: CI
+
+# When the workflow runs: on pushes to main (including merges), and on pull requests.
+# Other branches are checked through their PR, so the same commit is not checked twice.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Least privilege: the job only needs to read the code
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v7
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          # Same version as local development (nvm reads the same file)
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
