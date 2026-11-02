@@ -28,3 +28,16 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      # Checks run from the fastest to the slowest: the first failure stops the job
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Unit tests
+        run: npm test
+
+      - name: Build
+        run: npm run build
