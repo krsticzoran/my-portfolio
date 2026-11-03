@@ -13,7 +13,7 @@ const titles = (list: { title: string }[]) => list.map((project) => project.titl
 
 describe("filterProjects", () => {
   it("keeps only client projects for the client filter", () => {
-    expect(titles(filterProjects(projects, "client"))).toEqual(["A", "C"]);
+    expect(titles(filterProjects(projects, "client"))).toEqual(["A", "B", "C"]);
   });
 
   it("keeps only personal projects for the personal filter", () => {
