@@ -1,5 +1,7 @@
 # 🚀 Zoran Krstić – Frontend Developer Portfolio
 
+[![CI](https://github.com/krsticzoran/my-portfolio/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/krsticzoran/my-portfolio/actions/workflows/ci.yml)
+
 ![Portfolio Screenshot](./public/og-image.jpg)
 
 🔗 **Live Website**: [zkrstic.dev](https://zkrstic.dev)
