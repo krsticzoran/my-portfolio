@@ -73,9 +73,12 @@ To protect the contact form from spam and abuse, several techniques have been im
 
 ## Testing
 
-The project has **66 unit and integration tests** written with **Vitest**, focused on the logic behind the site rather than on visual components.
+The project is tested on two levels:
 
-### What is covered
+- **Unit and integration tests** written with **Vitest**, focused on the logic behind the site.
+- **End-to-end tests** written with **Playwright**, which open the real site in a browser and use it the way a visitor would.
+
+### Unit and integration tests (Vitest)
 
 - 📬 **Contact form server action** – schema validation, honeypot, timing check, rate limiting (per-client IP), email delivery and error handling. Redis, Resend and Next.js headers are mocked, so tests never call real services.
 - 🧼 **Sanitization** – HTML escaping and length limits, including edge cases found and fixed through tests (escaped characters cut at the length limit, ampersands).
@@ -84,12 +87,31 @@ The project has **66 unit and integration tests** written with **Vitest**, focus
 - 🧭 **Active section hook** – navigation highlighting in a simulated browser (jsdom) with a fake `IntersectionObserver`.
 - 🗂️ **Content data** – unique project titles, `https` links, filled-in text, and that every project and testimonial image exists.
 - 🔧 **Smaller helpers** – project filtering, freelance experience calculation, logging in production.
+- 🔒 **Project modal scroll lock** – the page is unlocked even if the list unmounts with the modal open, and the previous `overflow` value is restored.
+
+### End-to-end tests (Playwright)
+
+Tests run against a production build in **Chromium, Firefox, WebKit (Safari) and a mobile Chrome viewport**.
+
+- 🏠 **Home page** – loads with the correct title and main heading.
+- 🗂️ **Project modal** – opens from a card by mouse, **Enter** and **Space**; closes with the close button, **Escape** and a click outside; focus moves into the modal and back to the card.
+- 📐 **Modal position** – after scrolling down the page, the modal opens fully inside the viewport (guards against a past bug where an animation left it stuck at the top of the page).
+
+### Continuous integration
+
+Every pull request runs a **GitHub Actions** workflow with two parallel jobs:
+
+- **verify** – lint, typecheck, unit tests and production build.
+- **e2e** – Playwright tests in every browser listed above; the HTML report (screenshots and traces of failures) is saved as a build artifact.
+
+The `main` branch is protected: a pull request can only be merged when both jobs pass and the branch is up to date with `main`. Production deployments on Vercel wait for the same checks before going live.
 
 ### Workflow
 
-A **Husky** pre-commit hook runs **lint-staged** (ESLint + Prettier on staged files) and the full test suite, so a commit with failing tests or lint errors is rejected.
+A **Husky** pre-commit hook runs **lint-staged**: ESLint and Prettier on staged files, plus the Vitest tests related to them. CI then runs the full suite.
 
 ```bash
-npm test            # run all tests once
-npm run test:watch  # re-run tests on file save
+npm test            # run all unit tests once
+npm run test:watch  # re-run unit tests on file save
+npm run test:e2e    # build the site and run the Playwright tests
 ```
