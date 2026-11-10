@@ -27,7 +27,7 @@
     "cobe": "^0.6.4",
     "lucide-react": "^0.523.0",
     "motion": "^12.23.24",
-    "next": "^15.3.6",
+    "next": "^16.4.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.60.0",
