@@ -4,11 +4,12 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-exo: "Exo 2", "sans-serif";
   --breakpoint-xs: 375px;
 }
 
 @theme inline {
+  /* inline: --font-exo2 is set on <body> by next/font, not on :root */
+  --font-exo: var(--font-exo2), sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-chart-5: var(--chart-5);

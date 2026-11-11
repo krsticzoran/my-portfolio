@@ -1,6 +1,6 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
-import { Exo_2 } from "next/font/google";
+import localFont from "next/font/local";
 import "@/styles/globals.css";
 import { Toaster } from "sonner";
 
@@ -8,11 +8,11 @@ import { BackgroundWrapper } from "@/components/layout/background-wrapper";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 
-const exo2 = Exo_2({
-  subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600", "700"],
+// Self-hosted (latin + latin-ext, weights 400–700), so the build never downloads fonts
+const exo2 = localFont({
+  src: "../assets/fonts/exo2-latin-variable.woff2",
+  weight: "400 700",
   display: "swap",
-  preload: true,
   variable: "--font-exo2",
 });
 
