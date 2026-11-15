@@ -16,12 +16,29 @@ describe("contactFormSchema", () => {
     expect(result.data).toEqual(validData);
   });
 
-  it("rejects an invalid email with a user-facing message", () => {
-    const result = contactFormSchema.safeParse({ ...validData, email: "not-an-email" });
+  // Pins the current email rules, so a Zod upgrade that changes them fails here
+  describe("email", () => {
+    it.each([
+      "jane@example.com",
+      "jane+tag@example.com",
+      "jane.doe@example.com",
+      "jane@mail.example.co.uk",
+    ])("accepts %s", (email) => {
+      const result = contactFormSchema.safeParse({ ...validData, email });
 
-    expect(result.success).toBe(false);
-    if (result.success) return;
-    expect(result.error.issues[0].message).toBe("Please enter a valid email address");
+      expect(result.success).toBe(true);
+    });
+
+    it.each(["not-an-email", "jane@", "@example.com", "jane @example.com", "jane@example"])(
+      "rejects %s with a user-facing message",
+      (email) => {
+        const result = contactFormSchema.safeParse({ ...validData, email });
+
+        expect(result.success).toBe(false);
+        if (result.success) return;
+        expect(result.error.issues[0].message).toBe("Please enter a valid email address");
+      }
+    );
   });
 
   describe("message length", () => {
