@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import createGlobe from "cobe";
 import { useMotionValue, useSpring } from "motion/react";
 
+import { logError } from "@/lib/logger";
 import { cn } from "@/lib/utils";
 
 const MOVEMENT_DAMPING = 1400;
@@ -99,21 +100,28 @@ export function Globe({
     window.addEventListener("resize", onResize);
     onResize();
 
-    const globe = createGlobe(canvasRef.current!, {
-      ...config,
-      width: widthRef.current * 2,
-      height: widthRef.current * 2,
-      onRender: (state) => {
-        if (!pointerInteracting.current) phiRef.current += 0.005;
-        state.phi = phiRef.current + rs.get();
-        state.width = widthRef.current * 2;
-        state.height = widthRef.current * 2;
-      },
-    });
+    // Without WebGL (hardware acceleration off, old drivers, privacy browsers) createGlobe throws.
+    // The globe is decorative, so it just stays hidden instead of crashing the whole page.
+    let globe: ReturnType<typeof createGlobe> | undefined;
+    try {
+      globe = createGlobe(canvasRef.current!, {
+        ...config,
+        width: widthRef.current * 2,
+        height: widthRef.current * 2,
+        onRender: (state) => {
+          if (!pointerInteracting.current) phiRef.current += 0.005;
+          state.phi = phiRef.current + rs.get();
+          state.width = widthRef.current * 2;
+          state.height = widthRef.current * 2;
+        },
+      });
+      setTimeout(() => (canvasRef.current!.style.opacity = "1"), 0);
+    } catch (err) {
+      logError("Globe could not be rendered (WebGL unavailable)", err);
+    }
 
-    setTimeout(() => (canvasRef.current!.style.opacity = "1"), 0);
     return () => {
-      globe.destroy();
+      globe?.destroy();
       window.removeEventListener("resize", onResize);
     };
   }, [rs, config]);
