@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -18,13 +20,17 @@ import { Input } from "@/components/ui/input";
 import { contactFormSchema, type ContactFormInput } from "@/lib/schemas/contact";
 
 export default function ContactForm() {
+  // When the form was opened, for the server's "submitted too quickly" bot check.
+  // The lazy initializer runs once, so re-renders don't call Date.now() again.
+  const [startTime] = useState(() => Date.now());
+
   // Initialize the form with react-hook-form and Zod validation
   const form = useForm<ContactFormInput>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
       email: "",
       message: "",
-      startTime: Date.now(),
+      startTime,
       website: "", // honeypot field
     },
     mode: "onSubmit",

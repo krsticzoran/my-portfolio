@@ -30,6 +30,9 @@ const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimonial[] })
   // autoplay removed — component no longer starts an automatic interval
 
   const randomRotateY = () => {
+    // A new random tilt on every render is the intended shuffle effect. No hydration
+    // mismatch: the testimonials render only on the client (lazy loaded when in view).
+    // eslint-disable-next-line react-hooks/purity
     return Math.floor(Math.random() * 21) - 10;
   };
   return (
