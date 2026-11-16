@@ -1,31 +1,22 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-
-import { FlatCompat } from "@eslint/eslintrc";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
+import prettier from "eslint-config-prettier/flat";
+import importPlugin from "eslint-plugin-import";
+import jsxA11y from "eslint-plugin-jsx-a11y";
 
 const eslintConfig = [
   {
     ignores: [".next/**", "playwright-report/**", "test-results/**", "next-env.d.ts"],
   },
-  ...compat.config({
-    extends: [
-      "next/core-web-vitals",
-      "next/typescript",
-      "plugin:jsx-a11y/recommended",
-      "plugin:react-hooks/recommended",
-      "plugin:import/errors",
-      "plugin:import/warnings",
-      "prettier",
-    ],
-    plugins: ["jsx-a11y", "react-hooks", "import"],
+  // Already registers the react, react-hooks, import, jsx-a11y and @next/next plugins
+  ...nextVitals,
+  ...nextTs,
+  {
+    // Only rules here: registering a plugin a second time throws "Cannot redefine plugin"
     rules: {
+      ...jsxA11y.flatConfigs.recommended.rules,
+      ...importPlugin.flatConfigs.errors.rules,
+      ...importPlugin.flatConfigs.warnings.rules,
       semi: ["error"],
       quotes: ["error", "double"],
       "prefer-arrow-callback": "error",
@@ -56,7 +47,9 @@ const eslintConfig = [
         },
       ],
     },
-  }),
+  },
+  // Last, so it turns off the formatting rules that Prettier handles
+  prettier,
 ];
 
 export default eslintConfig;
