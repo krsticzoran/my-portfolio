@@ -4,8 +4,6 @@ import { NextResponse } from "next/server";
 import { getCapital } from "@/data/capitals";
 import { capitalsRateLimiter } from "@/lib/rate-limit";
 
-export const runtime = "edge";
-
 export async function GET() {
   const headerList = await headers();
 
