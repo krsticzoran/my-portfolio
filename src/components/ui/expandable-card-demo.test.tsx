@@ -5,7 +5,7 @@ import { afterEach, describe, expect, it } from "vitest";
 import ExpandableCardDemo from "./expandable-card-demo";
 
 const openRankinWorld = () => {
-  fireEvent.click(screen.getByRole("button", { name: /Open project details: RankinWorld/ }));
+  fireEvent.click(screen.getByRole("button", { name: /^RankinWorld/ }));
 };
 
 describe("ExpandableCardDemo scroll lock", () => {
