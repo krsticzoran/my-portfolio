@@ -32,7 +32,7 @@ export default function About() {
         <Image
           src={zk}
           alt="Zoran Krstić"
-         fill
+          fill
           sizes="100vw"
           style={{ objectFit: "cover" }}
           priority={false}
@@ -66,10 +66,9 @@ export default function About() {
               href="/ZoranKrsticCV.pdf"
               download="Zoran_Krstic_CV.pdf"
               className="flex flex-col gap-1 text-center w-full h-full py-2 lg:py-10"
-              aria-label="Download my CV (lightweight PDF)"
             >
               <span>Resume</span>
-              <span className="text-zinc-400 text-bas ">(Click to download)</span>
+              <span className="text-zinc-400 text-base">(Click to download)</span>
             </a>
           </div>
         </MagicCard>

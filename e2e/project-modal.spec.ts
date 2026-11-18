@@ -1,8 +1,10 @@
 import { expect, type Locator, type Page, test } from "@playwright/test";
 
+// A card's accessible name is its visible text (title, description, year), so cards are found by the title at the start
+
 // Opens the RankinWorld project modal and returns it, already checked to be visible
 const openProject = async (page: Page) => {
-  await page.getByRole("button", { name: /Open project details: RankinWorld/ }).click();
+  await page.getByRole("button", { name: /^RankinWorld/ }).click();
 
   const dialog = page.getByRole("dialog", { name: /RankinWorld/ });
   await expect(dialog).toBeVisible();
@@ -12,12 +14,12 @@ const openProject = async (page: Page) => {
 
 // Focuses RankinWorld, tabs to the next card (Miriam's Joy) and returns it, already checked to be focused
 const tabToMiriamCard = async (page: Page) => {
-  const rankinCard = page.getByRole("button", { name: /Open project details: RankinWorld/ });
+  const rankinCard = page.getByRole("button", { name: /^RankinWorld/ });
   await rankinCard.focus();
   await expect(rankinCard).toBeFocused();
 
   await page.keyboard.press("Tab");
-  const miriamCard = page.getByRole("button", { name: /Open project details: Miriam's Joy/ });
+  const miriamCard = page.getByRole("button", { name: /^Miriam's Joy/ });
   await expect(miriamCard).toBeFocused();
 
   return miriamCard;
@@ -75,7 +77,7 @@ test.describe("project modal", () => {
   });
 
   test("focus moves to the close button and returns to the card", async ({ page }) => {
-    const card = page.getByRole("button", { name: /Open project details: RankinWorld/ });
+    const card = page.getByRole("button", { name: /^RankinWorld/ });
 
     const dialog = await openProject(page);
     await expect(dialog.getByRole("button", { name: "Close project details" })).toBeFocused();
@@ -105,7 +107,7 @@ test.describe("project modal", () => {
   });
 
   test("the modal opens in the viewport, not at the top of the page", async ({ page }) => {
-    await page.getByRole("button", { name: /Open project details: Miriam's Joy/ }).click();
+    await page.getByRole("button", { name: /^Miriam's Joy/ }).click();
 
     // At the top of the page the bug is invisible: the modal would be on screen anyway
     await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(0);

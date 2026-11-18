@@ -17,7 +17,6 @@ export default function ProjectCard({ card, id, setActive }: Props) {
       <div
         role="button"
         tabIndex={0}
-        aria-label={`Open project details: ${card.title}`}
         onClick={() => setActive(card)}
         onKeyDown={(event) => {
           if (event.key === "Enter" || event.key === " ") {
@@ -34,7 +33,7 @@ export default function ProjectCard({ card, id, setActive }: Props) {
           <Image
             fill
             src={card.src}
-            alt={card.title}
+            alt="" // the title right below already names the card
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 36vw, 48vw"
             className="rounded-lg object-cover object-top"
             loading="lazy"
@@ -61,15 +60,15 @@ export default function ProjectCard({ card, id, setActive }: Props) {
               {card.year}
             </motion.p>
           </div>
-          {/* Visual cue only: the card itself is the button, so skip this for keyboard and screen readers */}
-          <motion.button
+          {/* Visual cue only, styled as a button: the card itself is the button, and a real
+              <button> inside it would be a nested interactive control */}
+          <motion.span
             layoutId={`button-${card.title}-${id}`}
-            tabIndex={-1}
             aria-hidden="true"
             className="hidden md:block px-6 py-2 text-sm lg:text-base rounded-md font-semibold bg-foreground text-background hover:bg-zinc-700 transition-colors duration-300 mt-6 md:mt-0 capitalize cursor-pointer"
           >
             {card.explore ?? "Explore"}
-          </motion.button>
+          </motion.span>
         </div>
       </div>
     </motion.li>
