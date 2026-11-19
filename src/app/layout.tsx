@@ -76,6 +76,8 @@ export default function RootLayout({
           "Prisma",
           "Headless CMS",
           "Stripe",
+          "Playwright",
+          "CI/CD",
           "Frontend Development",
           "Full Stack Development",
         ],
