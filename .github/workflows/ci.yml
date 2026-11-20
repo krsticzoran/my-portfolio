@@ -11,6 +11,12 @@ on:
 permissions:
   contents: read
 
+# Both jobs build the site, and the build reads Sanity content.
+# Not secret: the dataset is public and read-only. Kept here (not in Secrets) so Dependabot PRs get it too.
+env:
+  NEXT_PUBLIC_SANITY_PROJECT_ID: rrt4k613
+  NEXT_PUBLIC_SANITY_DATASET: production
+
 jobs:
   verify:
     runs-on: ubuntu-latest

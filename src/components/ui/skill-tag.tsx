@@ -1,6 +1,8 @@
-import skills from "@/data/skill";
+import { getSkills } from "@/sanity/skills";
 
-export default function SkillTags() {
+export default async function SkillTags() {
+  const skills = await getSkills();
+
   return (
     <div
       className="text-sm sm:text-base pl-6 flex flex-wrap gap-2"
