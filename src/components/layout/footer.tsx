@@ -1,4 +1,11 @@
-export function Footer() {
+import { cacheLife } from "next/cache";
+
+// The year is computed when the page is generated, so it's cached on purpose: "weeks" regenerates
+// the page in the background at most weekly, and the year is at most a week late after New Year.
+export async function Footer() {
+  "use cache";
+  cacheLife("weeks");
+
   const year = new Date().getFullYear();
 
   return (

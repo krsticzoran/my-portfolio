@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Caching is declared per component or function with "use cache" instead of per fetch
+  cacheComponents: true,
+  // Recommended together with cacheComponents; becomes the default in the next major version
+  partialPrefetching: true,
   experimental: {
     // Inline the (small) global CSS into the HTML so it doesn't block the first render
     // with an extra request. Fine for a one-page site where per-file CSS caching matters little.
