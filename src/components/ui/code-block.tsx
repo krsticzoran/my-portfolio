@@ -1,9 +1,20 @@
 import React from "react";
 
+import { cacheLife } from "next/cache";
+
 import { getFreelanceExperience } from "@/lib/helpers";
 
 import CodeLine from "./code-line";
 import SkillTags from "./skill-tag";
+
+// Years of experience depend on today's date, so this line is cached like the footer year.
+// The cache sits here, not in the helper, so the helper stays a plain tested function.
+async function FreelanceExperience() {
+  "use cache";
+  cacheLife("weeks");
+
+  return <CodeLine label="freelanceExperience" value={getFreelanceExperience()} />;
+}
 
 export default function CodeBlock() {
   return (
@@ -56,7 +67,7 @@ export default function CodeBlock() {
             </div>
             <CodeLine label="name" value="Zoran Krstić" />
             <CodeLine label="role" value="Frontend Developer" />
-            <CodeLine label="freelanceExperience" value={getFreelanceExperience()} />
+            <FreelanceExperience />
             <CodeLine label="location" value="Serbia" />
             <div className="pl-6">
               <span className="text-zinc-300 mr-1">stack:</span>
