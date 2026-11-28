@@ -5,8 +5,10 @@ import { client } from "./client";
 
 const SKILLS_QUERY = `*[_id == "skills"][0].items`;
 
-// Content from the CMS is outside input, so its shape is checked like form input
-const skillsSchema = z.array(z.string()).min(1);
+// Content from the CMS is outside input, so its shape is checked like form input.
+// Both levels need .min(1): the outer one for the list, the inner one for each name, so an empty
+// row in the Studio list can't become an empty tag on the site.
+const skillsSchema = z.array(z.string().min(1)).min(1);
 
 // No fallback on purpose: if Sanity fails during a build, the deploy fails and the previous one
 // stays live; if it fails during revalidation, Next keeps serving the last good page.
